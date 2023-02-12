@@ -12,6 +12,8 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 
+import { ToggleTheme } from "@/features/toggle-theme";
+
 const useStyles = createStyles((theme) => ({
   hiddenMobile: {
     [theme.fn.smallerThan("sm")]: {
@@ -45,7 +47,7 @@ export const Header = () => {
           </Group>
 
           <Group>
-            <Button>toggle theme</Button>
+            <ToggleTheme />
 
             <Group className={classes.hiddenMobile}>
               <Button>sign in</Button>
