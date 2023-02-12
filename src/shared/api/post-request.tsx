@@ -1,3 +1,4 @@
+import { $token } from "../auth/token";
 import { API_URL } from "./api-url";
 
 type RequestOptions = {
@@ -17,8 +18,19 @@ const postRequestOptions = (body: any): RequestOptions => ({
   body: JSON.stringify(body),
 });
 
-export const postRequest = async (url: string, body: any) => {
-  const res = await fetch(`${API_URL}${url}`, postRequestOptions(body));
+export const postRequest = async (
+  url: string,
+  body: any,
+  withToken = false
+) => {
+  const options = postRequestOptions(body);
+
+  if (withToken) {
+    // eslint-disable-next-line effector/no-getState
+    options.headers.authorization = `Bearer ${$token.getState()}`;
+  }
+
+  const res = await fetch(`${API_URL}${url}`, options);
 
   if (!res.ok || res.status !== 200) {
     throw new Error(`Could not fetch ${url}, received ${res.status}`);

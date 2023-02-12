@@ -1,5 +1,6 @@
 import { rest } from "msw";
 
+import { createDeck } from "./create-deck";
 import { fetchCardList } from "./fetch-card-list";
 import { fetchDeckList } from "./fetch-deck-list";
 import { signInHandler } from "./sign-in-handler";
@@ -11,6 +12,7 @@ export const handlers = [
   rest.post("/auth", signInHandler), //
 
   rest.get("/decklist", fetchDeckList),
+  rest.post("/decklist", createDeck),
 
   rest.get("/deck/:deckId", fetchCardList),
 ];

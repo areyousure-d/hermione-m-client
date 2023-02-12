@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Text, Title } from "@mantine/core";
+import { Box, Center, Flex, Text, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
@@ -8,6 +8,7 @@ import {
   DeckListContainer,
   startFetchDeckList,
 } from "@/entities/deck";
+import { CreateDeck } from "@/features/create-deck";
 
 export const UserHomepage = () => {
   const [startFetch, deckList] = useUnit([startFetchDeckList, $deckList]);
@@ -21,7 +22,7 @@ export const UserHomepage = () => {
       <Box>
         <Flex justify="space-between" mb="lg">
           <Title order={2}>Decklist</Title>
-          <Button>Create Deck</Button>
+          <CreateDeck />
         </Flex>
 
         <DeckListContainer>
