@@ -1,3 +1,11 @@
+import { Routing } from "@/pages";
+
+import { RouterProvider } from "./providers";
+
 export const App = () => {
-  return <div>app</div>;
+  return (
+    <RouterProvider>
+      <Routing />
+    </RouterProvider>
+  );
 };
