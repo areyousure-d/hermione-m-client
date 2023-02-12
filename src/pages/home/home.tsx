@@ -1,3 +1,16 @@
+import { useUnit } from "effector-react";
+
+import { $isAuthorized } from "@/shared/auth/token";
+
+import { GuestHomepage } from "./guest-homepage";
+import { UserHomepage } from "./user-homepage";
+
 export const HomePage = () => {
-  return <div>home page</div>;
+  const [isAuthorized] = useUnit([$isAuthorized]);
+
+  if (isAuthorized) {
+    return <UserHomepage />;
+  }
+
+  return <GuestHomepage />;
 };

@@ -1,7 +1,6 @@
 import {
   Box,
   Burger,
-  Button,
   createStyles,
   Divider,
   Drawer,
