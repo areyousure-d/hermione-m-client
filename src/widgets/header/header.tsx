@@ -12,6 +12,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 
+import { SignUp } from "@/features/sign-up";
 import { ToggleTheme } from "@/features/toggle-theme";
 
 const useStyles = createStyles((theme) => ({
@@ -51,7 +52,7 @@ export const Header = () => {
 
             <Group className={classes.hiddenMobile}>
               <Button>sign in</Button>
-              <Button>sign up</Button>
+              <SignUp />
             </Group>
 
             <Burger
@@ -87,7 +88,7 @@ export const Header = () => {
 
           <Group position="center" grow pb="xl" px="md">
             <Button>sign in</Button>
-            <Button>sign up</Button>
+            <SignUp />
           </Group>
         </ScrollArea>
       </Drawer>
