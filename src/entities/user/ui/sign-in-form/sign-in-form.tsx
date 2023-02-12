@@ -9,7 +9,7 @@ type Props = {
   submit: (userData: User) => void;
 };
 
-export const SignUpForm = ({ submit }: Props) => {
+export const SignInForm = ({ submit }: Props) => {
   const [userData, setUserData] = useState(initialFormData);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ export const SignUpForm = ({ submit }: Props) => {
           value={userData.password}
         />
 
-        <Button type="submit">Sign up</Button>
+        <Button type="submit">Sign in</Button>
       </Stack>
     </form>
   );
