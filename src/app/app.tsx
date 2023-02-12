@@ -1,11 +1,15 @@
 import { Routing } from "@/pages";
+import { BasicLayout } from "@/shared/ui/basic-layout";
+import { Header } from "@/widgets/header";
 
-import { RouterProvider } from "./providers";
+import { Providers } from "./providers";
 
 export const App = () => {
   return (
-    <RouterProvider>
-      <Routing />
-    </RouterProvider>
+    <Providers>
+      <BasicLayout header={<Header />}>
+        <Routing />
+      </BasicLayout>
+    </Providers>
   );
 };
