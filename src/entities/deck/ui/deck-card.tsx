@@ -1,4 +1,5 @@
 import { Box, createStyles, Text } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 import { Deck } from "../model";
 
@@ -22,6 +23,7 @@ export const DeckCard = ({ deck }: Props) => {
   return (
     <Box className={classes.card} p="md">
       <Text>{deck.deckname}</Text>
+      <Link to={`/deck/${deck.id}`}>inspect</Link>
     </Box>
   );
 };

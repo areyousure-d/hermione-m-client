@@ -1,4 +1,4 @@
-import { createEvent, createStore } from "effector";
+import { createListCRUD } from "../lib/create-list-crud";
 
 export type Deck = {
   id: number;
@@ -6,7 +6,7 @@ export type Deck = {
   created_by: number;
 };
 
-const initialDecks = [
+const initialDecks: Deck[] = [
   {
     id: 1,
     deckname: "test deck",
@@ -19,29 +19,9 @@ const initialDecks = [
   },
 ];
 
-export const $nextDeckId = createStore(3);
-export const $decks = createStore<Deck[]>(initialDecks);
-
-export const createDeckEvent = createEvent<Omit<Deck, "id">>();
-export const updateDeckEvent = createEvent<Deck>();
-export const deleteDeckEvent = createEvent<Pick<Deck, "id">>();
-
-$nextDeckId.on(createDeckEvent, (nextDeckId) => nextDeckId + 1);
-
-$decks.on(createDeckEvent, (decks, deck) => {
-  // eslint-disable-next-line effector/no-getState
-  const newDeck = { ...deck, id: $nextDeckId.getState() };
-  return [...decks, newDeck];
-});
-
-$decks.on(updateDeckEvent, (decks, updatedDeck) => {
-  const index = decks.findIndex((deck) => deck.id === updatedDeck.id);
-
-  if (index !== -1) {
-    const newDecks = [...decks];
-    newDecks.splice(index, 1);
-    return newDecks;
-  }
-
-  return decks;
-});
+export const {
+  $list: $decks,
+  createItem: createDeckEvent,
+  updateItem: updateDeckEvent,
+  deleteItem: deleteDeckEvent,
+} = createListCRUD(initialDecks);
