@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom";
 
 import { $cardList, startFetchCardList } from "@/entities/card/model";
 import { CreateCard } from "@/features/create-card";
+import { DeleteDeck } from "@/features/delete-deck";
 import { $isAuthorized } from "@/shared/auth/token";
 
 export const DeckPage = () => {
-  const { deckId } = useParams();
+  const { deckId } = useParams() as { deckId: string };
 
   const [startFetch, cardList, isAuthorized] = useUnit([
     startFetchCardList,
@@ -32,6 +33,11 @@ export const DeckPage = () => {
         <Title order={2}>Deck page</Title>
         <CreateCard />
       </Flex>
+
+      <div>
+        <DeleteDeck deckId={deckId} />
+      </div>
+
       <div>
         {cardList.length === 0 ? (
           <Text>no card</Text>

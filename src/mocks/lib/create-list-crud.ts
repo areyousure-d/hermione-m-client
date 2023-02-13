@@ -31,7 +31,7 @@ export const createListCRUD = <T extends { id: number }>(initial: T[]) => {
   $list.on(deleteItem, (list, { id }) => {
     const index = list.findIndex((item) => item.id === id);
 
-    if (index) {
+    if (index !== -1) {
       const newList = [...list];
       newList.splice(index, 1);
       return newList;
