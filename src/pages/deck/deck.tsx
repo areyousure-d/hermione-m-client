@@ -1,9 +1,10 @@
-import { Text, Title } from "@mantine/core";
+import { Flex, Text, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { $cardList, startFetchCardList } from "@/entities/card/model";
+import { CreateCard } from "@/features/create-card";
 import { $isAuthorized } from "@/shared/auth/token";
 
 export const DeckPage = () => {
@@ -27,7 +28,10 @@ export const DeckPage = () => {
 
   return (
     <div>
-      <Title order={2}>Deck page</Title>
+      <Flex justify="space-between" mb="lg">
+        <Title order={2}>Deck page</Title>
+        <CreateCard />
+      </Flex>
       <div>
         {cardList.length === 0 ? (
           <Text>no card</Text>

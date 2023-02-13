@@ -30,7 +30,7 @@ const initialCards: Card[] = [
 
 export const {
   $list: $cards,
-  createItem: createCard,
-  updateItem: updateCard,
-  deleteItem: deleteCard,
+  createItem: createCardEvent,
+  updateItem: updateCardEvent,
+  deleteItem: deleteCardEvent,
 } = createListCRUD(initialCards);
