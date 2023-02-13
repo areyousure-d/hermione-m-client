@@ -1,11 +1,12 @@
-import { createRequest, getRequest, postRequest } from "@/shared/api";
+import { createRequest } from "@/shared/api";
 
 import { Deck } from "./model";
 
-export const fetchDeckList = () => getRequest("/decklist");
+export const fetchDeckList = () =>
+  createRequest({ path: "/decklist", method: "GET", withToken: true });
 
 export const createDeck = (body: Pick<Deck, "deckname">) =>
-  postRequest("/decklist", body, true);
+  createRequest({ path: "/decklist", method: "POST", body, withToken: true });
 
 export const deleteDeck = (deckId: string) =>
   createRequest({
