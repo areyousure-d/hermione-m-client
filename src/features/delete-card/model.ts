@@ -1,17 +1,20 @@
-import { sample } from "effector";
+import { createEffect, createEvent, sample } from "effector";
 
-import { deleteCard, startFetchCardList } from "@/entities/card";
-import { createModalForm } from "@/shared/ui/modal-form";
+import { Card, deleteCard, startFetchCardList } from "@/entities/card";
 
-export const {
-  submitted,
-  apiCallFx: deleteCardFx,
-  $isSuccess,
-  $isError,
-  openModal,
-  closeModal,
-  $isModalOpened,
-} = createModalForm(deleteCard);
+export const deleteCardFx = createEffect(
+  async (card: Pick<Card, "id" | "deck_id">) => {
+    const response = await deleteCard(card);
+    return response;
+  }
+);
+
+export const submitted = createEvent<Pick<Card, "id" | "deck_id">>();
+
+sample({
+  clock: submitted,
+  target: deleteCardFx,
+});
 
 sample({
   clock: deleteCardFx.doneData,

@@ -8,7 +8,7 @@ export const $deck = createStore<Deck | null>(null);
 export const startFetchDeck = createEvent<number>();
 
 export const fetchDeckFx = createEffect(async (deckId: number) => {
-  const response = await getDeckById({ id: deckId });
+  const response = await getDeckById(deckId);
   return response;
 });
 

@@ -1,15 +1,10 @@
 import { Button, Flex, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
+import { useState } from "react";
 
 import { ModalForm } from "@/shared/ui/modal-form";
 
-import {
-  $isModalOpened,
-  closeModal,
-  deleteCardFx,
-  openModal,
-  submitted,
-} from "./model";
+import { deleteCardFx, submitted } from "./model";
 
 type Props = {
   cardId: number;
@@ -17,23 +12,22 @@ type Props = {
 };
 
 export const DeleteCard = ({ cardId, deckId }: Props) => {
-  const [submit, loading, openModalFn, closeModalFn, isModalOpened] = useUnit([
-    submitted,
-    deleteCardFx.pending,
-    openModal,
-    closeModal,
-    $isModalOpened,
-  ]);
+  const [modalOpened, setModalOpened] = useState(false);
+
+  const closeModal = () => setModalOpened(false);
+  const openModal = () => setModalOpened(true);
+
+  const [submit, loading] = useUnit([submitted, deleteCardFx.pending]);
 
   const deleteCard = () => submit({ id: cardId, deck_id: Number(deckId) });
 
   return (
     <>
-      <Button onClick={openModalFn}>Delete card</Button>
+      <Button onClick={openModal}>Delete card</Button>
 
       <ModalForm
-        isModalOpened={isModalOpened}
-        closeModal={closeModalFn}
+        isModalOpened={modalOpened}
+        closeModal={closeModal}
         loading={loading}
         title="Delete card"
       >
@@ -42,7 +36,7 @@ export const DeleteCard = ({ cardId, deckId }: Props) => {
         <Flex align="flex-end" w="100%">
           <Group>
             <Button onClick={deleteCard}>Yes</Button>
-            <Button onClick={closeModalFn}>Cancel</Button>
+            <Button onClick={closeModal}>Cancel</Button>
           </Group>
         </Flex>
       </ModalForm>
