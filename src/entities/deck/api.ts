@@ -23,3 +23,10 @@ export const updateDeck = (deck: Deck) =>
     body: deck,
     withToken: true,
   });
+
+export const getDeckById = (deckId: Pick<Deck, "id">) =>
+  createRequest({
+    path: `/deck/${deckId}`,
+    method: "GET",
+    withToken: true,
+  });

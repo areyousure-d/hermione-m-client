@@ -4,7 +4,7 @@ import { Card } from "./model";
 
 export const fetchCardList = (deckId: string) =>
   createRequest({
-    path: `/deck/${deckId}`,
+    path: `/deck/${deckId}/card`,
     method: "GET",
     withToken: true,
   });
