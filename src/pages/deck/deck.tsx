@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { $cardList, startFetchCardList } from "@/entities/card/model";
 import { $deckList } from "@/entities/deck";
 import { CreateCard } from "@/features/create-card";
+import { DeleteCard } from "@/features/delete-card";
 import { DeleteDeck } from "@/features/delete-deck";
 import { UpdateCard } from "@/features/update-card";
 import { UpdateDeck } from "@/features/update-deck";
@@ -58,6 +59,7 @@ export const DeckPage = () => {
               <li key={card.id}>
                 <div>{card.front}</div>
                 <UpdateCard card={card} />
+                <DeleteCard deckId={deckId} cardId={card.id} />
               </li>
             ))}
           </ul>

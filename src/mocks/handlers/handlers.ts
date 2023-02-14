@@ -2,6 +2,7 @@ import { rest } from "msw";
 
 import { createCard } from "./create-card";
 import { createDeck } from "./create-deck";
+import { deleteCard } from "./delete-card";
 import { deleteDeck } from "./delete-deck";
 import { fetchCardList } from "./fetch-card-list";
 import { fetchDeckList } from "./fetch-deck-list";
@@ -28,4 +29,6 @@ export const handlers = [
   rest.patch("/deck", updateDeck),
 
   rest.patch("/card", updateCard),
+
+  rest.delete("/card", deleteCard),
 ];
