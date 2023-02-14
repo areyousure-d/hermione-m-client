@@ -15,3 +15,11 @@ export const deleteDeck = (deckId: string) =>
     body: { deckId },
     withToken: true,
   });
+
+export const updateDeck = (deck: Deck) =>
+  createRequest({
+    path: "/deck",
+    method: "PATCH",
+    body: deck,
+    withToken: true,
+  });

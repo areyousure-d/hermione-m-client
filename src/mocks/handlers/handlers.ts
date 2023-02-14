@@ -7,6 +7,7 @@ import { fetchCardList } from "./fetch-card-list";
 import { fetchDeckList } from "./fetch-deck-list";
 import { signInHandler } from "./sign-in-handler";
 import { signUpHandler } from "./sign-up-handler";
+import { updateDeck } from "./update-deck";
 
 export const handlers = [
   rest.post("/user", signUpHandler), //
@@ -22,4 +23,6 @@ export const handlers = [
   rest.post("/deck/card", createCard),
 
   rest.delete("/deck", deleteDeck),
+
+  rest.patch("/deck", updateDeck),
 ];
