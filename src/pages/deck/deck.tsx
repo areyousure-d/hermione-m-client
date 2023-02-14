@@ -7,6 +7,7 @@ import { $cardList, startFetchCardList } from "@/entities/card/model";
 import { $deckList } from "@/entities/deck";
 import { CreateCard } from "@/features/create-card";
 import { DeleteDeck } from "@/features/delete-deck";
+import { UpdateCard } from "@/features/update-card";
 import { UpdateDeck } from "@/features/update-deck";
 import { $isAuthorized } from "@/shared/auth/token";
 
@@ -54,7 +55,10 @@ export const DeckPage = () => {
         ) : (
           <ul>
             {cardList.map((card) => (
-              <li key={card.id}>{card.front}</li>
+              <li key={card.id}>
+                <div>{card.front}</div>
+                <UpdateCard card={card} />
+              </li>
             ))}
           </ul>
         )}

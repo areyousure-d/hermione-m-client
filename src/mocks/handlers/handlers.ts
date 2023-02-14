@@ -7,6 +7,7 @@ import { fetchCardList } from "./fetch-card-list";
 import { fetchDeckList } from "./fetch-deck-list";
 import { signInHandler } from "./sign-in-handler";
 import { signUpHandler } from "./sign-up-handler";
+import { updateCard } from "./update-card";
 import { updateDeck } from "./update-deck";
 
 export const handlers = [
@@ -25,4 +26,6 @@ export const handlers = [
   rest.delete("/deck", deleteDeck),
 
   rest.patch("/deck", updateDeck),
+
+  rest.patch("/card", updateCard),
 ];

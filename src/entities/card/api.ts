@@ -7,3 +7,6 @@ export const fetchCardList = (deckId: string) =>
 
 export const createCard = (body: Omit<Card, "id">) =>
   createRequest({ path: `/deck/card`, method: "POST", body, withToken: true });
+
+export const updateCard = (body: Card) =>
+  createRequest({ path: "/card", method: "PATCH", body, withToken: true });
