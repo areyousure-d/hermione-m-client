@@ -6,7 +6,7 @@ import { User } from "../../model";
 const initialFormData = { username: "", password: "" };
 
 type Props = {
-  submit: (userData: User) => void;
+  submit: ({ body }: { body: User }) => void;
 };
 
 export const SignUpForm = ({ submit }: Props) => {
@@ -19,7 +19,7 @@ export const SignUpForm = ({ submit }: Props) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    submit(userData);
+    submit({ body: userData });
     setUserData(initialFormData);
   };
 

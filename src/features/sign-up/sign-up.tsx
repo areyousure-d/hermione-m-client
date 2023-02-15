@@ -5,32 +5,29 @@ import { SignUpForm } from "@/entities/user";
 import { $isAuthorized } from "@/shared/auth/token";
 
 import {
-  $isError,
-  $isFormOpened,
-  closeForm,
-  openForm,
-  signUpFx,
-  submitted,
+  $modalOpened,
+  $signUpMutationFailed,
+  closeModal,
+  openModal,
+  signUpMutation,
 } from "./model";
 
 export const SignUp = () => {
   const [
-    submit,
-    pending,
-    isError,
-    isFormOpened,
-    closeFormEvent,
-    openFormEvent,
+    signUpMutationFailed,
+    modalOpened,
+    openModalFn,
+    closeModalFn,
     isAuthorized,
   ] = useUnit([
-    submitted,
-    signUpFx.pending,
-    $isError,
-    $isFormOpened,
-    closeForm,
-    openForm,
+    $signUpMutationFailed,
+    $modalOpened,
+    openModal,
+    closeModal,
     $isAuthorized,
   ]);
+
+  const { start, pending } = useUnit(signUpMutation);
 
   if (isAuthorized) {
     return null;
@@ -38,18 +35,18 @@ export const SignUp = () => {
 
   return (
     <>
-      <Button onClick={openFormEvent}>Sign up</Button>
+      <Button onClick={openModalFn}>Sign up</Button>
 
-      <Modal opened={isFormOpened} onClose={closeFormEvent} title="Sign up">
+      <Modal opened={modalOpened} onClose={closeModalFn} title="Sign up">
         <LoadingOverlay visible={pending} overlayBlur={3} />
 
-        {isError && (
+        {signUpMutationFailed && (
           <Text fz="md" color="red.7">
             Sign up error
           </Text>
         )}
 
-        <SignUpForm submit={submit} />
+        <SignUpForm submit={start} />
       </Modal>
     </>
   );

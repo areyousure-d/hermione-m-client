@@ -1,9 +1,7 @@
-import { createRequest } from "@/shared/api";
+import { createMutation } from "@farfetched/core";
 
-import { User } from "./model";
+import { createUnAuthorizedRequestFx } from "@/shared/api";
 
-export const signUp = (body: User) =>
-  createRequest({ path: "/user", method: "POST", body });
-
-export const signIn = (body: User) =>
-  createRequest({ path: "/auth", method: "POST", body });
+export const signUpMutation = createMutation({
+  effect: createUnAuthorizedRequestFx({ path: "/user", method: "POST" }),
+});
