@@ -1,8 +1,9 @@
-import { Button, LoadingOverlay, Modal, Text } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 
 import { SignInForm } from "@/entities/user";
 import { $isAuthorized, tokenErased } from "@/shared/auth/token";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import {
   $modalOpened,
@@ -29,7 +30,7 @@ export const SignIn = () => {
     $signInMutationFailed,
   ]);
 
-  const { start, pending: signInMutationPending } = useUnit(signInMutation);
+  const { start, pending } = useUnit(signInMutation);
 
   if (isAuthorized) {
     return <Button onClick={tokenErasedEvent}>Sign out</Button>;
@@ -39,9 +40,12 @@ export const SignIn = () => {
     <>
       <Button onClick={openModalFn}>Sign in</Button>
 
-      <Modal opened={modalOpened} onClose={closeModalFn} title="Sign up">
-        <LoadingOverlay visible={signInMutationPending} overlayBlur={3} />
-
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
+        title="Sign up"
+      >
         {signInMutationFailed && (
           <Text fz="md" color="red.7">
             Sign up error
@@ -49,7 +53,7 @@ export const SignIn = () => {
         )}
 
         <SignInForm submit={start} />
-      </Modal>
+      </ModalWithLoading>
     </>
   );
 };

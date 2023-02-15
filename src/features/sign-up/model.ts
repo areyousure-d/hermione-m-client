@@ -1,7 +1,8 @@
 import { createMutation } from "@farfetched/core";
-import { createEvent, createStore, sample } from "effector";
+import { sample } from "effector";
 
 import { createUnAuthorizedRequestFx } from "@/shared/api";
+import { createModal } from "@/shared/ui/modal-with-loading";
 
 export const signUpMutation = createMutation({
   effect: createUnAuthorizedRequestFx({ path: "/user", method: "POST" }),
@@ -9,12 +10,11 @@ export const signUpMutation = createMutation({
 
 export const $signUpMutationFailed = signUpMutation.$failed;
 
-export const $modalOpened = createStore(false);
-export const openModal = createEvent();
-export const closeModal = createEvent();
-
-$modalOpened.on(openModal, () => true);
-$modalOpened.on(closeModal, () => false);
+export const {
+  $modalOpened,
+  open: openModal,
+  close: closeModal,
+} = createModal();
 
 sample({
   clock: [signUpMutation.finished.success, signUpMutation.finished.failure],
