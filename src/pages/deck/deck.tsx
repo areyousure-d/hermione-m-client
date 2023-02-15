@@ -3,7 +3,8 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { $cardList } from "@/entities/card/model";
+import { cardListQuery } from "@/entities/card/model";
+import { deckByIdQuery } from "@/entities/deck";
 import { CreateCard } from "@/features/create-card";
 import { DeleteCard } from "@/features/delete-card";
 import { DeleteDeck } from "@/features/delete-deck";
@@ -11,25 +12,23 @@ import { UpdateCard } from "@/features/update-card";
 import { UpdateDeck } from "@/features/update-deck";
 import { $isAuthorized } from "@/shared/auth/token";
 
-import { $deck, fetchDeckFx, startFetchDeck } from "./model";
-
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
 
-  const [cardList, isAuthorized, deck, startFetchDeckFn, fetchDeckLoading] =
-    useUnit([
-      $cardList,
-      $isAuthorized,
-      $deck,
-      startFetchDeck,
-      fetchDeckFx.pending,
-    ]);
+  const [isAuthorized] = useUnit([$isAuthorized]);
+  const { data: cardList, start: startFetchCardList } = useUnit(cardListQuery);
+  const {
+    data: deck,
+    start: startFetchDeckById,
+    pending: deckByIdPending,
+  } = useUnit(deckByIdQuery);
 
   useEffect(() => {
     if (deckId && isAuthorized) {
-      startFetchDeckFn(Number(deckId));
+      startFetchCardList(deckId);
+      startFetchDeckById(Number(deckId));
     }
-  }, [deckId, isAuthorized, startFetchDeckFn]);
+  }, [deckId, startFetchCardList, isAuthorized, startFetchDeckById]);
 
   if (!isAuthorized) {
     return <Text>access denied</Text>;
@@ -39,7 +38,7 @@ export const DeckPage = () => {
     return <Text>there is no such deck</Text>;
   }
 
-  if (fetchDeckLoading) {
+  if (deckByIdPending) {
     return <Text>loading</Text>;
   }
 
@@ -56,10 +55,12 @@ export const DeckPage = () => {
       </div>
 
       <div>
-        {cardList.length === 0 ? (
+        {!cardList || cardList.length === 0 ? (
           <Text>no card</Text>
         ) : (
           <ul>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
             {cardList.map((card) => (
               <li key={card.id}>
                 <div>{card.front}</div>

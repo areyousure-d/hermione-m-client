@@ -1,19 +1,19 @@
+import { createMutation } from "@farfetched/core";
 import { sample } from "effector";
 
-import { createDeck, startFetchDeckList } from "@/entities/deck";
-import { createModalForm } from "@/shared/ui/modal-form";
+import { startFetchDeckList } from "@/entities/deck";
+import { createRequestFx } from "@/shared/api";
+import { createModal } from "@/shared/ui/modal-with-loading";
 
-export const {
-  submitted,
-  apiCallFx: createDeckFx,
-  $isSuccess,
-  $isError,
-  openModal,
-  closeModal,
-  $isModalOpened,
-} = createModalForm(createDeck);
+export const createDeckMutation = createMutation({
+  effect: createRequestFx({ path: "/decklist", method: "POST" }),
+});
+
+export const $createDeckMutationFailed = createDeckMutation.$failed;
+
+export const { $modalOpened, openModal, closeModal } = createModal();
 
 sample({
-  clock: createDeckFx.doneData,
+  clock: createDeckMutation.finished.success,
   target: startFetchDeckList,
 });

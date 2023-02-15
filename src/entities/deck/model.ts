@@ -1,6 +1,7 @@
+import { createQuery } from "@farfetched/core";
 import { createEffect, createEvent, createStore, sample } from "effector";
 
-import { fetchDeckList } from "./api";
+import { fetchDeckList, getDeckById } from "./api";
 
 export type Deck = {
   id: number;
@@ -33,4 +34,12 @@ sample({
   clock: fetchDeckListFx.fail,
   fn: () => true,
   target: $fetchDeckListError,
+});
+
+export const deckListQuery = createQuery({
+  handler: fetchDeckList,
+});
+
+export const deckByIdQuery = createQuery({
+  handler: getDeckById,
 });

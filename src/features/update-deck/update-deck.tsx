@@ -3,15 +3,14 @@ import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Deck } from "@/entities/deck";
-import { ModalForm } from "@/shared/ui/modal-form";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import {
-  $isError,
-  $isModalOpened,
+  $modalOpened,
+  $updateDeckMutationFailed,
   closeModal,
   openModal,
-  submitted,
-  updateDeckFx,
+  updateDeckMutation,
 } from "./model";
 
 type Props = {
@@ -19,15 +18,10 @@ type Props = {
 };
 
 export const UpdateDeck = ({ deck }: Props) => {
-  const [submit, loading, isError, openModalFn, closeModalFn, isModalOpened] =
-    useUnit([
-      submitted,
-      updateDeckFx.pending,
-      $isError,
-      openModal,
-      closeModal,
-      $isModalOpened,
-    ]);
+  const [openModalFn, closeModalFn, modalOpened, createDeckMutationFailed] =
+    useUnit([openModal, closeModal, $modalOpened, $updateDeckMutationFailed]);
+
+  const { start, pending } = useUnit(updateDeckMutation);
 
   const [deckname, setDeckname] = useState(deck.deckname);
 
@@ -37,7 +31,7 @@ export const UpdateDeck = ({ deck }: Props) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    submit({ ...deck, deckname });
+    start({ body: { ...deck, deckname } });
     setDeckname(deck.deckname);
   };
 
@@ -45,13 +39,13 @@ export const UpdateDeck = ({ deck }: Props) => {
     <>
       <Button onClick={openModalFn}>Update deck</Button>
 
-      <ModalForm
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
         title="Update deck"
-        isModalOpened={isModalOpened}
-        closeModal={closeModalFn}
-        loading={loading}
       >
-        {isError && (
+        {createDeckMutationFailed && (
           <Text fz="md" color="red.7">
             Update deck error
           </Text>
@@ -71,7 +65,7 @@ export const UpdateDeck = ({ deck }: Props) => {
             <Button type="submit">Update deck</Button>
           </Stack>
         </form>
-      </ModalForm>
+      </ModalWithLoading>
     </>
   );
 };

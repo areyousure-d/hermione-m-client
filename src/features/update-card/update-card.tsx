@@ -3,15 +3,14 @@ import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Card } from "@/entities/card";
-import { ModalForm } from "@/shared/ui/modal-form";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import {
-  $isError,
-  $isModalOpened,
+  $modalOpened,
+  $updateCardMutationFailed,
   closeModal,
   openModal,
-  submitted,
-  updateCardFx,
+  updateCardMutation,
 } from "./model";
 
 type Props = {
@@ -19,15 +18,10 @@ type Props = {
 };
 
 export const UpdateCard = ({ card }: Props) => {
-  const [submit, loading, isError, openModalFn, closeModalFn, isModalOpened] =
-    useUnit([
-      submitted,
-      updateCardFx.pending,
-      $isError,
-      openModal,
-      closeModal,
-      $isModalOpened,
-    ]);
+  const [openModalFn, closeModalFn, modalOpened, updateCardMutationFailed] =
+    useUnit([openModal, closeModal, $modalOpened, $updateCardMutationFailed]);
+
+  const { start, pending } = useUnit(updateCardMutation);
 
   const [formValues, setFormValues] = useState({
     front: card.front,
@@ -41,7 +35,7 @@ export const UpdateCard = ({ card }: Props) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    submit({ ...card, ...formValues });
+    start({ body: { ...card, ...formValues } });
     setFormValues({
       front: card.front,
       back: card.back,
@@ -52,13 +46,13 @@ export const UpdateCard = ({ card }: Props) => {
     <>
       <Button onClick={openModalFn}>Update card</Button>
 
-      <ModalForm
-        title="Update card"
-        isModalOpened={isModalOpened}
-        closeModal={closeModalFn}
-        loading={loading}
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
+        title="Update deck"
       >
-        {isError && (
+        {updateCardMutationFailed && (
           <Text fz="md" color="red.7">
             Create card error
           </Text>
@@ -89,7 +83,7 @@ export const UpdateCard = ({ card }: Props) => {
             <Button type="submit">Update card</Button>
           </Stack>
         </form>
-      </ModalForm>
+      </ModalWithLoading>
     </>
   );
 };

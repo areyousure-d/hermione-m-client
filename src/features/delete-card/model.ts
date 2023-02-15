@@ -1,24 +1,12 @@
-import { createEffect, createEvent, sample } from "effector";
+import { createMutation } from "@farfetched/core";
 
-import { Card, deleteCard, startFetchCardList } from "@/entities/card";
+import { createRequestFx } from "@/shared/api";
+import { createModal } from "@/shared/ui/modal-with-loading";
 
-export const deleteCardFx = createEffect(
-  async (card: Pick<Card, "id" | "deck_id">) => {
-    const response = await deleteCard(card);
-    return response;
-  }
-);
-
-export const submitted = createEvent<Pick<Card, "id" | "deck_id">>();
-
-sample({
-  clock: submitted,
-  target: deleteCardFx,
+export const deleteCardMutation = createMutation({
+  effect: createRequestFx({ path: `/deck/card`, method: "POST" }),
 });
 
-sample({
-  clock: deleteCardFx.doneData,
-  source: submitted,
-  fn: (card) => card.deck_id.toString(),
-  target: startFetchCardList,
-});
+export const $deleteCardMutationFailed = deleteCardMutation.$failed;
+
+export const { $modalOpened, openModal, closeModal } = createModal();

@@ -3,15 +3,14 @@ import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { ModalForm } from "@/shared/ui/modal-form";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import {
-  $isError,
-  $isModalOpened,
+  $createCardMutationFailed,
+  $modalOpened,
   closeModal,
-  createCardFx,
+  createCardMutation,
   openModal,
-  submitted,
 } from "./model";
 
 const initialFormValues = {
@@ -22,15 +21,10 @@ const initialFormValues = {
 export const CreateCard = () => {
   const { deckId } = useParams();
 
-  const [submit, loading, isError, openModalFn, closeModalFn, isModalOpened] =
-    useUnit([
-      submitted,
-      createCardFx.pending,
-      $isError,
-      openModal,
-      closeModal,
-      $isModalOpened,
-    ]);
+  const [createCardMutationFailed, openModalFn, closeModalFn, modalOpened] =
+    useUnit([$createCardMutationFailed, openModal, closeModal, $modalOpened]);
+
+  const { start, pending } = useUnit(createCardMutation);
 
   const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -42,7 +36,7 @@ export const CreateCard = () => {
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (deckId) {
-      submit({ ...formValues, deck_id: Number(deckId) });
+      start({ body: { ...formValues, deck_id: Number(deckId) } });
       setFormValues(initialFormValues);
     }
   };
@@ -51,13 +45,13 @@ export const CreateCard = () => {
     <>
       <Button onClick={openModalFn}>Create card</Button>
 
-      <ModalForm
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
         title="Create deck"
-        isModalOpened={isModalOpened}
-        closeModal={closeModalFn}
-        loading={loading}
       >
-        {isError && (
+        {createCardMutationFailed && (
           <Text fz="md" color="red.7">
             Create card error
           </Text>
@@ -88,7 +82,7 @@ export const CreateCard = () => {
             <Button type="submit">Create card</Button>
           </Stack>
         </form>
-      </ModalForm>
+      </ModalWithLoading>
     </>
   );
 };

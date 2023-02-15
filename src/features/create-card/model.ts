@@ -1,22 +1,12 @@
-import { sample } from "effector";
+import { createMutation } from "@farfetched/core";
 
-import { createCard, startFetchCardList } from "@/entities/card";
-import { createModalForm } from "@/shared/ui/modal-form";
+import { createRequestFx } from "@/shared/api";
+import { createModal } from "@/shared/ui/modal-with-loading";
 
-export const {
-  submitted,
-  apiCallFx: createCardFx,
-  $isSuccess,
-  $isError,
-  openModal,
-  closeModal,
-  $isModalOpened,
-} = createModalForm(createCard);
-
-// refetch card list on create card
-sample({
-  clock: createCardFx.doneData,
-  source: submitted,
-  fn: (card) => card.deck_id.toString(),
-  target: startFetchCardList,
+export const createCardMutation = createMutation({
+  effect: createRequestFx({ path: `/deck/card`, method: "POST" }),
 });
+
+export const $createCardMutationFailed = createCardMutation.$failed;
+
+export const { $modalOpened, openModal, closeModal } = createModal();

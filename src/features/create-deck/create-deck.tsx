@@ -2,27 +2,21 @@ import { Button, Stack, Text, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { ModalForm } from "@/shared/ui/modal-form";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import {
-  $isError,
-  $isModalOpened,
+  $createDeckMutationFailed,
+  $modalOpened,
   closeModal,
-  createDeckFx,
+  createDeckMutation,
   openModal,
-  submitted,
 } from "./model";
 
 export const CreateDeck = () => {
-  const [submit, loading, isError, openModalFn, closeModalFn, isModalOpened] =
-    useUnit([
-      submitted,
-      createDeckFx.pending,
-      $isError,
-      openModal,
-      closeModal,
-      $isModalOpened,
-    ]);
+  const [openModalFn, closeModalFn, modalOpened, createDeckMutationFailed] =
+    useUnit([openModal, closeModal, $modalOpened, $createDeckMutationFailed]);
+
+  const { start, pending } = useUnit(createDeckMutation);
 
   const [deckname, setDeckname] = useState("");
 
@@ -32,7 +26,7 @@ export const CreateDeck = () => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    submit({ deckname });
+    start({ body: { deckname } });
     setDeckname("");
   };
 
@@ -40,13 +34,13 @@ export const CreateDeck = () => {
     <>
       <Button onClick={openModalFn}>Create deck</Button>
 
-      <ModalForm
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
         title="Create deck"
-        isModalOpened={isModalOpened}
-        closeModal={closeModalFn}
-        loading={loading}
       >
-        {isError && (
+        {createDeckMutationFailed && (
           <Text fz="md" color="red.7">
             Create deck error
           </Text>
@@ -66,7 +60,7 @@ export const CreateDeck = () => {
             <Button type="submit">Create deck</Button>
           </Stack>
         </form>
-      </ModalForm>
+      </ModalWithLoading>
     </>
   );
 };

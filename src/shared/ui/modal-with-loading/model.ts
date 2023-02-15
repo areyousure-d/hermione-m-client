@@ -2,15 +2,15 @@ import { createEvent, createStore } from "effector";
 
 export const createModal = () => {
   const $modalOpened = createStore(false);
-  const open = createEvent();
-  const close = createEvent();
+  const openModal = createEvent();
+  const closeModal = createEvent();
 
-  $modalOpened.on(open, () => true);
-  $modalOpened.on(close, () => false);
+  $modalOpened.on(openModal, () => true);
+  $modalOpened.on(closeModal, () => false);
 
   return {
     $modalOpened,
-    open,
-    close,
+    openModal,
+    closeModal,
   };
 };

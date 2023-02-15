@@ -10,11 +10,7 @@ export const signUpMutation = createMutation({
 
 export const $signUpMutationFailed = signUpMutation.$failed;
 
-export const {
-  $modalOpened,
-  open: openModal,
-  close: closeModal,
-} = createModal();
+export const { $modalOpened, openModal, closeModal } = createModal();
 
 sample({
   clock: [signUpMutation.finished.success, signUpMutation.finished.failure],

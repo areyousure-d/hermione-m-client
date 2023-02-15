@@ -22,6 +22,7 @@ export const backendRequest = async ({
   if (options.withToken) {
     // eslint-disable-next-line effector/no-getState
     headers.set("authorization", `Bearer ${$token.getState()}`);
+    //headers.set("authorization", `Bearer ${options.token}`);
   }
 
   const body = JSON.stringify(options.body);
@@ -65,13 +66,24 @@ export const createUnAuthorizedRequestFx = ({
     }),
   });
 
+export const createGetRequestFx = () =>
+  attach({
+    effect: authorizedRequestFx,
+    mapParams: (path: string) => {
+      return {
+        path,
+        method: "GET" as const,
+      };
+    },
+  });
+
 export const createRequestFx = ({
   path,
   method,
 }: Pick<RequestParams, "path" | "method">) =>
   attach({
     effect: authorizedRequestFx,
-    mapParams: (data: RequestParams) => {
+    mapParams: (data: Pick<RequestParams, "body">) => {
       return {
         ...data,
         path,

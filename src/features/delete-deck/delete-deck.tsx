@@ -1,14 +1,13 @@
 import { Button, Flex, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { ModalForm } from "@/shared/ui/modal-form";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import {
-  $isModalOpened,
+  $modalOpened,
   closeModal,
-  deleteDeckFx,
+  deleteDeckMutation,
   openModal,
-  submitted,
 } from "./model";
 
 type Props = {
@@ -16,24 +15,24 @@ type Props = {
 };
 
 export const DeleteDeck = ({ deckId }: Props) => {
-  const [submit, loading, openModalFn, closeModalFn, isModalOpened] = useUnit([
-    submitted,
-    deleteDeckFx.pending,
+  const [openModalFn, closeModalFn, modalOpened] = useUnit([
     openModal,
     closeModal,
-    $isModalOpened,
+    $modalOpened,
   ]);
 
-  const deleteDeck = () => submit(deckId);
+  const { start, pending } = useUnit(deleteDeckMutation);
+
+  const deleteDeck = () => start({ body: { deckId } });
 
   return (
     <>
       <Button onClick={openModalFn}>Delete deck</Button>
 
-      <ModalForm
-        isModalOpened={isModalOpened}
-        closeModal={closeModalFn}
-        loading={loading}
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
         title="Delete deck"
       >
         <Text>Are you sure you want to delete this deck?</Text>
@@ -44,7 +43,7 @@ export const DeleteDeck = ({ deckId }: Props) => {
             <Button onClick={closeModalFn}>Cancel</Button>
           </Group>
         </Flex>
-      </ModalForm>
+      </ModalWithLoading>
     </>
   );
 };
