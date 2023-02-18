@@ -3,14 +3,14 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { cardListQuery } from "@/entities/card/model";
+import { cardListQuery } from "@/entities/card";
 import { deckByIdQuery } from "@/entities/deck";
-import { CreateCard } from "@/features/create-card";
 import { DeleteCard } from "@/features/delete-card";
 import { DeleteDeck } from "@/features/delete-deck";
 import { UpdateCard } from "@/features/update-card";
 import { UpdateDeck } from "@/features/update-deck";
 import { $isAuthorized } from "@/shared/auth/token";
+import { ButtonLink } from "@/shared/ui/button-link";
 
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -46,7 +46,7 @@ export const DeckPage = () => {
     <div>
       <Flex justify="space-between" mb="lg">
         <Title order={2}>{deck.deckname}</Title>
-        <CreateCard />
+        <ButtonLink to={`/deck/${deckId}/create-card`}>Create Card</ButtonLink>
       </Flex>
 
       <div>

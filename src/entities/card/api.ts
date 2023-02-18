@@ -1,8 +1,12 @@
-import { createRequest } from "@/shared/api";
+import { createQuery } from "@farfetched/core";
 
-export const fetchCardList = (deckId: string) =>
-  createRequest({
-    path: `/deck/${deckId}/card`,
-    method: "GET",
-    withToken: true,
-  });
+import { createRequestWithParams } from "@/shared/api";
+
+const fetchCardListFx = createRequestWithParams((deckId: string) => ({
+  path: `/deck/${deckId}/card`,
+  method: "GET",
+}));
+
+export const cardListQuery = createQuery({
+  effect: fetchCardListFx,
+});

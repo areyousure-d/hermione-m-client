@@ -1,2 +1,3 @@
+export { cardListQuery } from "./api";
 export type { Card } from "./model";
-export { $cardList, cardListQuery } from "./model";
+export { $cardList } from "./model";

@@ -36,10 +36,6 @@ sample({
   target: $fetchDeckListError,
 });
 
-export const deckListQuery = createQuery({
-  handler: fetchDeckList,
-});
-
 export const deckByIdQuery = createQuery({
   handler: getDeckById,
 });

@@ -1,7 +1,4 @@
-import { createQuery } from "@farfetched/core";
 import { createStore } from "effector";
-
-import { fetchCardList } from "./api";
 
 export type Card = {
   id: number;
@@ -11,7 +8,3 @@ export type Card = {
 };
 
 export const $cardList = createStore<Card[]>([]);
-
-export const cardListQuery = createQuery({
-  handler: fetchCardList,
-});

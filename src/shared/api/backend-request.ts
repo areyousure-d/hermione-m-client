@@ -19,7 +19,7 @@ export const backendRequest = async ({
   const headers = new Headers();
   headers.set("content-type", "application/json; charset=utf-8");
 
-  if (options.withToken) {
+  if (options.withToken || options.token) {
     // eslint-disable-next-line effector/no-getState
     headers.set("authorization", `Bearer ${$token.getState()}`);
     //headers.set("authorization", `Bearer ${options.token}`);
@@ -42,7 +42,7 @@ export const backendRequest = async ({
 
 const backendRequestFx = createEffect(backendRequest);
 
-const authorizedRequestFx = attach({
+export const authorizedRequestFx = attach({
   effect: backendRequestFx,
   source: $token,
   mapParams: (requestParams: Omit<RequestParams, "token">, token) => ({
@@ -66,17 +66,6 @@ export const createUnAuthorizedRequestFx = ({
     }),
   });
 
-export const createGetRequestFx = () =>
-  attach({
-    effect: authorizedRequestFx,
-    mapParams: (path: string) => {
-      return {
-        path,
-        method: "GET" as const,
-      };
-    },
-  });
-
 export const createRequestFx = ({
   path,
   method,
@@ -90,4 +79,13 @@ export const createRequestFx = ({
         method,
       };
     },
+  });
+
+export const createRequestWithParams = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mapParams: (params: any) => Omit<RequestParams, "token">
+) =>
+  attach({
+    effect: authorizedRequestFx,
+    mapParams,
   });
