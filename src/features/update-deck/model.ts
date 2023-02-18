@@ -1,12 +1,16 @@
 import { createMutation } from "@farfetched/core";
 import { sample } from "effector";
 
-import { startFetchDeckList } from "@/entities/deck";
-import { createRequestFx } from "@/shared/api";
+import { Deck, deckListQuery } from "@/entities/deck";
+import { createRequestEffect } from "@/shared/api";
 import { createModal } from "@/shared/ui/modal-with-loading";
 
 export const updateDeckMutation = createMutation({
-  effect: createRequestFx({ path: "/deck", method: "PATCH" }),
+  effect: createRequestEffect((deck: Deck) => ({
+    path: "/deck",
+    method: "PATCH",
+    body: deck,
+  })),
 });
 
 export const $updateDeckMutationFailed = updateDeckMutation.$failed;
@@ -15,7 +19,7 @@ export const { $modalOpened, openModal, closeModal } = createModal();
 
 sample({
   clock: updateDeckMutation.finished.success,
-  target: startFetchDeckList,
+  target: deckListQuery.start,
 });
 
 sample({

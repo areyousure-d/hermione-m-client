@@ -35,7 +35,7 @@ export const UpdateCard = ({ card }: Props) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    start({ body: { ...card, ...formValues } });
+    start({ ...card, ...formValues });
     setFormValues({
       front: card.front,
       back: card.back,

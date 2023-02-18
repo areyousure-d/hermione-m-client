@@ -1,7 +1,4 @@
 export {
-  authorizedRequestFx,
-  backendRequest as createRequest,
-  createRequestFx,
-  createRequestWithParams,
+  createRequestEffect,
   createUnAuthorizedRequestFx,
 } from "./backend-request";

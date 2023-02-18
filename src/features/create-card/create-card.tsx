@@ -25,7 +25,7 @@ export const CreateCard = ({ deckId }: Props) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    start({ body: { ...formValues, deck_id: Number(deckId) } });
+    start({ ...formValues, deck_id: Number(deckId) });
     setFormValues(initialFormValues);
   };
 

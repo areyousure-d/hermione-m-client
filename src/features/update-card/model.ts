@@ -1,10 +1,15 @@
 import { createMutation } from "@farfetched/core";
 
-import { createRequestFx } from "@/shared/api";
+import { Card } from "@/entities/card";
+import { createRequestEffect } from "@/shared/api";
 import { createModal } from "@/shared/ui/modal-with-loading";
 
 export const updateCardMutation = createMutation({
-  effect: createRequestFx({ path: `/deck/card`, method: "POST" }),
+  effect: createRequestEffect((card: Card) => ({
+    path: `/deck/card`,
+    method: "POST",
+    body: card,
+  })),
 });
 
 export const $updateCardMutationFailed = updateCardMutation.$failed;

@@ -31,7 +31,7 @@ export const UpdateDeck = ({ deck }: Props) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    start({ body: { ...deck, deckname } });
+    start({ ...deck, deckname });
     setDeckname(deck.deckname);
   };
 

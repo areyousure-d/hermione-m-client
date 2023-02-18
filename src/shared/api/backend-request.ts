@@ -7,22 +7,15 @@ type RequestParams = {
   path: string;
   method: "POST" | "GET" | "DELETE" | "PUT" | "PATCH";
   body?: Record<string, unknown> | null;
-  withToken?: boolean;
   token?: string | null;
 };
 
-export const backendRequest = async ({
-  path,
-  method,
-  ...options
-}: RequestParams) => {
+const backendRequest = async ({ path, method, ...options }: RequestParams) => {
   const headers = new Headers();
   headers.set("content-type", "application/json; charset=utf-8");
 
-  if (options.withToken || options.token) {
-    // eslint-disable-next-line effector/no-getState
-    headers.set("authorization", `Bearer ${$token.getState()}`);
-    //headers.set("authorization", `Bearer ${options.token}`);
+  if (options.token) {
+    headers.set("authorization", `Bearer ${options.token}`);
   }
 
   const body = JSON.stringify(options.body);
@@ -42,7 +35,7 @@ export const backendRequest = async ({
 
 const backendRequestFx = createEffect(backendRequest);
 
-export const authorizedRequestFx = attach({
+const authorizedRequestFx = attach({
   effect: backendRequestFx,
   source: $token,
   mapParams: (requestParams: Omit<RequestParams, "token">, token) => ({
@@ -66,26 +59,15 @@ export const createUnAuthorizedRequestFx = ({
     }),
   });
 
-export const createRequestFx = ({
-  path,
-  method,
-}: Pick<RequestParams, "path" | "method">) =>
-  attach({
-    effect: authorizedRequestFx,
-    mapParams: (data: Pick<RequestParams, "body">) => {
-      return {
-        ...data,
-        path,
-        method,
-      };
-    },
-  });
+type MapParamsCallback<T> = (
+  params: T
+) => Pick<RequestParams, "path" | "method" | "body">;
 
-export const createRequestWithParams = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mapParams: (params: any) => Omit<RequestParams, "token">
-) =>
-  attach({
+export const createRequestEffect = <T = void>(
+  mapParams: MapParamsCallback<T>
+) => {
+  return attach({
     effect: authorizedRequestFx,
     mapParams,
   });
+};

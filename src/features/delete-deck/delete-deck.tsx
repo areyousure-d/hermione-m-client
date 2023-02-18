@@ -23,7 +23,7 @@ export const DeleteDeck = ({ deckId }: Props) => {
 
   const { start, pending } = useUnit(deleteDeckMutation);
 
-  const deleteDeck = () => start({ body: { deckId } });
+  const deleteDeck = () => start({ id: Number(deckId) });
 
   return (
     <>

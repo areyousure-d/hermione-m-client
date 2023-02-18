@@ -1,22 +1,21 @@
 import { createQuery } from "@farfetched/core";
 
-import { createRequest, createRequestWithParams } from "@/shared/api";
+import { createRequestEffect } from "@/shared/api";
 
-export const fetchDeckList = () =>
-  createRequest({ path: "/decklist", method: "GET", withToken: true });
+const fetchDeckListFx = createRequestEffect(() => ({
+  path: `/decklist`,
+  method: "GET",
+}));
 
-export const getDeckById = (deckId: number) =>
-  createRequest({
-    path: `/deck/${deckId}`,
-    method: "GET",
-    withToken: true,
-  });
-
-const fetchDeckListFx = createRequestWithParams((deckId: string) => ({
+const getDeckByIdFx = createRequestEffect((deckId: number) => ({
   path: `/deck/${deckId}`,
   method: "GET",
 }));
 
 export const deckListQuery = createQuery({
   effect: fetchDeckListFx,
+});
+
+export const deckByIdQuery = createQuery({
+  effect: getDeckByIdFx,
 });

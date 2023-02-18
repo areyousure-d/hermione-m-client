@@ -2,16 +2,11 @@ import { Box, Center, Flex, Text, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
-import {
-  $deckList,
-  DeckCard,
-  DeckListContainer,
-  startFetchDeckList,
-} from "@/entities/deck";
+import { DeckCard, DeckListContainer, deckListQuery } from "@/entities/deck";
 import { CreateDeck } from "@/features/create-deck";
 
 export const UserHomepage = () => {
-  const [startFetch, deckList] = useUnit([startFetchDeckList, $deckList]);
+  const { start: startFetch, data: deckList } = useUnit(deckListQuery);
 
   useEffect(() => {
     startFetch();
@@ -26,9 +21,11 @@ export const UserHomepage = () => {
         </Flex>
 
         <DeckListContainer>
-          {deckList.length === 0 ? (
+          {!deckList ? (
             <Text>Decklist is empty</Text>
           ) : (
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
           )}
         </DeckListContainer>

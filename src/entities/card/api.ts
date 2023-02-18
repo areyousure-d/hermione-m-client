@@ -1,8 +1,8 @@
 import { createQuery } from "@farfetched/core";
 
-import { createRequestWithParams } from "@/shared/api";
+import { createRequestEffect } from "@/shared/api";
 
-const fetchCardListFx = createRequestWithParams((deckId: string) => ({
+const fetchCardListFx = createRequestEffect((deckId: string) => ({
   path: `/deck/${deckId}/card`,
   method: "GET",
 }));

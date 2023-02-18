@@ -24,8 +24,7 @@ export const DeleteCard = ({ cardId, deckId }: Props) => {
 
   const { start, pending } = useUnit(deleteCardMutation);
 
-  const deleteCard = () =>
-    start({ body: { id: cardId, deck_id: Number(deckId) } });
+  const deleteCard = () => start({ id: cardId, deck_id: Number(deckId) });
 
   return (
     <>

@@ -26,7 +26,7 @@ export const CreateDeck = () => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    start({ body: { deckname } });
+    start({ deckname });
     setDeckname("");
   };
 
