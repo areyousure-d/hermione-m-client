@@ -59,8 +59,6 @@ export const DeckPage = () => {
           <Text>no card</Text>
         ) : (
           <ul>
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
             {cardList.map((card) => (
               <li key={card.id}>
                 <div>{card.front}</div>

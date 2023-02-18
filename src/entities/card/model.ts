@@ -1,4 +1,4 @@
-import { createStore } from "effector";
+import { z } from "zod";
 
 export type Card = {
   id: number;
@@ -7,4 +7,11 @@ export type Card = {
   deck_id: number;
 };
 
-export const $cardList = createStore<Card[]>([]);
+export const card = z.object({
+  id: z.number(),
+  front: z.string(),
+  back: z.string(),
+  deck_id: z.number(),
+});
+
+export const cardList = z.array(card);

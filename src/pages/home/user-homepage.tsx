@@ -24,8 +24,6 @@ export const UserHomepage = () => {
           {!deckList ? (
             <Text>Decklist is empty</Text>
           ) : (
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
           )}
         </DeckListContainer>

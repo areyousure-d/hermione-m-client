@@ -14,6 +14,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@farfetched/core": "^0.7.2",
+    "@farfetched/zod": "^0.7.2",
     "@mantine/core": "^5.10.3",
     "@mantine/hooks": "^5.10.3",
     "@tabler/icons": "^1.119.0",
@@ -22,7 +23,8 @@
     "effector-react": "^22.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "zod": "^3.20.6"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
