@@ -5,7 +5,17 @@ import { defineConfig } from "vitest/config";
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: ["effector/babel-plugin"],
+        // Use .babelrc files
+        babelrc: true,
+        // Use babel.config.js files
+        configFile: true,
+      },
+    }),
+  ],
 
   resolve: {
     alias: [{ find: "@", replacement: resolve(__dirname, "./src/") }],

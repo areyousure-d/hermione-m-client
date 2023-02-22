@@ -1,7 +1,7 @@
 import { createEvent, createStore } from "effector";
 
 export const createListCRUD = <T extends { id: number }>(initial: T[]) => {
-  const $nextItemId = createStore(initial.length + 1);
+  const $nextItemId = createStore(initial.length);
   const $list = createStore(initial);
 
   const createItem = createEvent<Omit<T, "id">>();
