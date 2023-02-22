@@ -7,6 +7,7 @@ import { deleteDeck } from "./delete-deck";
 import { fetchCardList } from "./fetch-card-list";
 import { fetchDeckList } from "./fetch-deck-list";
 import { getDeckById } from "./get-deck-by-id";
+import { learnCard } from "./learn-card";
 import { signInHandler } from "./sign-in-handler";
 import { signUpHandler } from "./sign-up-handler";
 import { updateCard } from "./update-card";
@@ -34,4 +35,6 @@ export const handlers = [
   rest.delete("/card", deleteCard),
 
   rest.get("/deck/:deckId", getDeckById),
+
+  rest.post("/learn-card", learnCard),
 ];
