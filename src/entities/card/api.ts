@@ -1,11 +1,8 @@
 import { createQuery } from "@farfetched/core";
-import { zodContract } from "@farfetched/zod";
 
 import { createRequestEffect } from "@/shared/api";
 
-import { cardList } from "./model";
-
-const cardListContract = zodContract(cardList);
+import { cardListContract } from "./model";
 
 const fetchCardListFx = createRequestEffect((deckId: string) => ({
   path: `/deck/${deckId}/card`,

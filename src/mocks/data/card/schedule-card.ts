@@ -41,6 +41,7 @@ export const scheduleCard = ({
         phase: "review",
         interval: ONE_DAY_IN_MS,
         steps: 0,
+        answered_at: Date.now(),
       };
     }
   }
@@ -53,6 +54,7 @@ export const scheduleCard = ({
       interval: ONE_DAY_IN_MS,
       ease_factor: card.ease_factor - EASE_FACTOR_PENALTY,
       steps: 0,
+      answered_at: 0,
     };
   }
 
@@ -62,6 +64,7 @@ export const scheduleCard = ({
       interval: card.interval * 1.2,
       ease_factor: card.ease_factor - 0.15,
       steps: 0,
+      answered_at: Date.now(),
     };
   }
 
@@ -70,6 +73,7 @@ export const scheduleCard = ({
       ...card,
       interval: card.interval * card.ease_factor,
       steps: 0,
+      answered_at: Date.now(),
     };
   }
 
@@ -79,5 +83,6 @@ export const scheduleCard = ({
     interval: card.interval * card.ease_factor * 1.3,
     ease_factor: card.ease_factor + 0.15,
     steps: 0,
+    answered_at: Date.now(),
   };
 };

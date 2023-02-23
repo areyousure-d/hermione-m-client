@@ -1,6 +1,6 @@
 import { Card } from "./types";
 
-const shouldRepeat = (card: Card) => {
+const shouldLearn = (card: Card) => {
   const now = Date.now();
   if (card.answered_at + card.interval > now) {
     return false;
@@ -9,9 +9,9 @@ const shouldRepeat = (card: Card) => {
   return true;
 };
 
-export const getCardsToRepeat = (cards: Card[]) => {
+export const getCardsToLearn = (cards: Card[]) => {
   const cardsToRepeat = cards.filter(
-    (card) => shouldRepeat(card) || card.phase === "learn"
+    (card) => shouldLearn(card) || card.phase === "learn"
   );
   return cardsToRepeat;
 };

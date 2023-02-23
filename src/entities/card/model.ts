@@ -1,3 +1,4 @@
+import { zodContract } from "@farfetched/zod";
 import { z } from "zod";
 
 export type Card = {
@@ -7,11 +8,13 @@ export type Card = {
   deck_id: number;
 };
 
-export const card = z.object({
+const cardSchema = z.object({
   id: z.number(),
   front: z.string(),
   back: z.string(),
   deck_id: z.number(),
 });
 
-export const cardList = z.array(card);
+const cardListSchema = z.array(cardSchema);
+
+export const cardListContract = zodContract(cardListSchema);

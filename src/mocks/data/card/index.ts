@@ -4,5 +4,5 @@ export {
   deleteCardEvent,
   updateCardEvent,
 } from "./card";
-export { getCardsToRepeat } from "./get-cards-to-repeat";
+export { getCardsToLearn } from "./get-cards-to-learn";
 export { scheduleCard } from "./schedule-card";

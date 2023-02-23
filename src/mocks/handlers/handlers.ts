@@ -5,6 +5,7 @@ import { createDeck } from "./create-deck";
 import { deleteCard } from "./delete-card";
 import { deleteDeck } from "./delete-deck";
 import { fetchCardList } from "./fetch-card-list";
+import { fetchCardsToLearn } from "./fetch-cards-to-learn";
 import { fetchDeckList } from "./fetch-deck-list";
 import { getDeckById } from "./get-deck-by-id";
 import { learnCard } from "./learn-card";
@@ -35,6 +36,8 @@ export const handlers = [
   rest.delete("/card", deleteCard),
 
   rest.get("/deck/:deckId", getDeckById),
+
+  rest.get("/learn-card/:deckId", fetchCardsToLearn),
 
   rest.post("/learn-card", learnCard),
 ];
