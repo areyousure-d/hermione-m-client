@@ -1,14 +1,28 @@
-import { Flex } from "@mantine/core";
-import { ReactNode } from "react";
+import { SimpleGrid, Text } from "@mantine/core";
+
+import { Deck } from "../model";
+import { DeckCard } from "./deck-card";
 
 type Props = {
-  children: ReactNode;
+  deckList: Deck[] | null;
 };
 
-export const DeckListContainer = ({ children }: Props) => {
+export const DeckListContainer = ({ deckList }: Props) => {
   return (
-    <Flex gap="md" wrap="wrap">
-      {children}
-    </Flex>
+    <SimpleGrid
+      cols={3}
+      spacing="md"
+      verticalSpacing="lg"
+      breakpoints={[
+        { maxWidth: "sm", cols: 2, spacing: "sm" },
+        { maxWidth: "xs", cols: 1, spacing: "xs" },
+      ]}
+    >
+      {!deckList ? (
+        <Text>Decklist is empty</Text>
+      ) : (
+        deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
+      )}
+    </SimpleGrid>
   );
 };

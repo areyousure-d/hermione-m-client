@@ -1,3 +1,9 @@
+import { Container, Title } from "@mantine/core";
+
 export const GuestHomepage = () => {
-  return <div>guest home page</div>;
+  return (
+    <Container>
+      <Title order={2}>guest home page</Title>
+    </Container>
+  );
 };

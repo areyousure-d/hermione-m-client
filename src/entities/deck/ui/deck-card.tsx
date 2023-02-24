@@ -1,5 +1,6 @@
-import { Box, createStyles, Text } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Card, createStyles, Group, Title } from "@mantine/core";
+
+import { ButtonLink } from "@/shared/ui/button-link";
 
 import { Deck } from "../model";
 
@@ -7,13 +8,12 @@ type Props = {
   deck: Deck;
 };
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((_theme) => ({
   card: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
     height: "200px",
-    width: "300px",
-    border: "1px solid transparent",
-    borderRadius: "10px",
-    backgroundColor: theme.colors.blue[1],
   },
 }));
 
@@ -21,9 +21,21 @@ export const DeckCard = ({ deck }: Props) => {
   const { classes } = useStyles();
 
   return (
-    <Box className={classes.card} p="md">
-      <Text>{deck.deckname}</Text>
-      <Link to={`/deck/${deck.id}`}>inspect</Link>
-    </Box>
+    <Card p="sm" shadow="md" className={classes.card} radius="md" withBorder>
+      <Card.Section py="xs" color="gray" withBorder>
+        <Title order={3} align="center" truncate weight={500}>
+          {deck.deckname}
+        </Title>
+      </Card.Section>
+
+      <Group position="center">
+        <ButtonLink to={`/deck/${deck.id}`} variant="outline">
+          Inspect
+        </ButtonLink>
+        <ButtonLink to={`/learn/${deck.id}`} color="green">
+          Learn
+        </ButtonLink>
+      </Group>
+    </Card>
   );
 };

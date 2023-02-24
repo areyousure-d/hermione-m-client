@@ -1,3 +1,5 @@
+import { Container } from "@mantine/core";
+
 export const CardPage = () => {
-  return <div>card page</div>;
+  return <Container>card page</Container>;
 };

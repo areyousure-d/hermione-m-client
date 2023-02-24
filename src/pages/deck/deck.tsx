@@ -1,4 +1,4 @@
-import { Flex, Text, Title } from "@mantine/core";
+import { Container, Flex, Text, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -43,7 +43,7 @@ export const DeckPage = () => {
   }
 
   return (
-    <div>
+    <Container>
       <Flex justify="space-between" mb="lg">
         <Title order={2}>{deck.deckname}</Title>
         <ButtonLink to={`/deck/${deckId}/create-card`}>Create Card</ButtonLink>
@@ -69,6 +69,6 @@ export const DeckPage = () => {
           </ul>
         )}
       </div>
-    </div>
+    </Container>
   );
 };

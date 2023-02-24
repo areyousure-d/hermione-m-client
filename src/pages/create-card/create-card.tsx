@@ -1,4 +1,4 @@
-import { Title } from "@mantine/core";
+import { Container, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useParams } from "react-router-dom";
 
@@ -10,14 +10,14 @@ export const CreateCardPage = () => {
   const [isAuthorized] = useUnit([$isAuthorized]);
 
   if (!isAuthorized) {
-    return <div>access denied</div>;
+    return <Container>access denied</Container>;
   }
 
   return (
-    <>
+    <Container>
       <Title order={2}>create card page</Title>
 
       <CreateCard deckId={deckId} />
-    </>
+    </Container>
   );
 };

@@ -1,3 +1,9 @@
+import { Container, Title } from "@mantine/core";
+
 export const NotFoundPage = () => {
-  return <div>not found page</div>;
+  return (
+    <Container>
+      <Title order={2}>not found page</Title>
+    </Container>
+  );
 };

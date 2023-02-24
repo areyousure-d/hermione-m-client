@@ -1,4 +1,4 @@
-import { Title } from "@mantine/core";
+import { Container, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 
 import { LearnCard } from "@/features/learn-card";
@@ -8,14 +8,14 @@ export const LearnCardPage = () => {
   const isAuthorized = useUnit($isAuthorized);
 
   if (!isAuthorized) {
-    return <div>access denied</div>;
+    return <Container>access denied</Container>;
   }
 
   return (
-    <div>
+    <Container>
       <Title order={2}>Learn card</Title>
 
       <LearnCard />
-    </div>
+    </Container>
   );
 };
