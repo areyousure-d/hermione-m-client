@@ -9,7 +9,6 @@ import {
   $modalOpened,
   $updateDeckMutationFailed,
   closeModal,
-  openModal,
   updateDeckMutation,
 } from "./model";
 
@@ -18,8 +17,11 @@ type Props = {
 };
 
 export const UpdateDeck = ({ deck }: Props) => {
-  const [openModalFn, closeModalFn, modalOpened, createDeckMutationFailed] =
-    useUnit([openModal, closeModal, $modalOpened, $updateDeckMutationFailed]);
+  const [closeModalFn, modalOpened, createDeckMutationFailed] = useUnit([
+    closeModal,
+    $modalOpened,
+    $updateDeckMutationFailed,
+  ]);
 
   const { start, pending } = useUnit(updateDeckMutation);
 
@@ -36,36 +38,32 @@ export const UpdateDeck = ({ deck }: Props) => {
   };
 
   return (
-    <>
-      <Button onClick={openModalFn}>Update deck</Button>
+    <ModalWithLoading
+      opened={modalOpened}
+      onClose={closeModalFn}
+      loading={pending}
+      title="Update deck"
+    >
+      {createDeckMutationFailed && (
+        <Text fz="md" color="red.7">
+          Update deck error
+        </Text>
+      )}
 
-      <ModalWithLoading
-        opened={modalOpened}
-        onClose={closeModalFn}
-        loading={pending}
-        title="Update deck"
-      >
-        {createDeckMutationFailed && (
-          <Text fz="md" color="red.7">
-            Update deck error
-          </Text>
-        )}
+      <form onSubmit={onSubmit}>
+        <Stack>
+          <TextInput
+            label="deckname"
+            name="deckname"
+            type="text"
+            onChange={onChange}
+            placeholder="deckname"
+            value={deckname}
+          />
 
-        <form onSubmit={onSubmit}>
-          <Stack>
-            <TextInput
-              label="deckname"
-              name="deckname"
-              type="text"
-              onChange={onChange}
-              placeholder="deckname"
-              value={deckname}
-            />
-
-            <Button type="submit">Update deck</Button>
-          </Stack>
-        </form>
-      </ModalWithLoading>
-    </>
+          <Button type="submit">Update deck</Button>
+        </Stack>
+      </form>
+    </ModalWithLoading>
   );
 };

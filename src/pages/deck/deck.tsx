@@ -6,11 +6,11 @@ import { useParams } from "react-router-dom";
 import { cardListQuery } from "@/entities/card";
 import { deckByIdQuery } from "@/entities/deck";
 import { DeleteCard } from "@/features/delete-card";
-import { DeleteDeck } from "@/features/delete-deck";
 import { UpdateCard } from "@/features/update-card";
-import { UpdateDeck } from "@/features/update-deck";
 import { $isAuthorized } from "@/shared/auth/token";
 import { ButtonLink } from "@/shared/ui/button-link";
+
+import { DeckSettings } from "./deck-settings";
 
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -34,25 +34,23 @@ export const DeckPage = () => {
     return <Text>access denied</Text>;
   }
 
-  if (!deck) {
-    return <Text>there is no such deck</Text>;
-  }
-
   if (deckByIdPending) {
     return <Text>loading</Text>;
+  }
+
+  if (!deck) {
+    return <Text>there is no such deck</Text>;
   }
 
   return (
     <Container>
       <Flex justify="space-between" mb="lg">
-        <Title order={2}>{deck.deckname}</Title>
-        <ButtonLink to={`/deck/${deckId}/create-card`}>Create Card</ButtonLink>
+        <Flex align="center">
+          <Title order={2}>{deck.deckname}</Title>
+          <DeckSettings deck={deck} />
+        </Flex>
+        <ButtonLink to={`/deck/${deckId}/create-card`}>Add Card</ButtonLink>
       </Flex>
-
-      <div>
-        <DeleteDeck deckId={deckId} />
-        <UpdateDeck deck={deck} />
-      </div>
 
       <div>
         {!cardList || cardList.length === 0 ? (
