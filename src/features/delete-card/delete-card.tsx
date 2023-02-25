@@ -1,14 +1,10 @@
-import { Button, Flex, Group, Text } from "@mantine/core";
+import { Button, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
+import { useState } from "react";
 
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import {
-  $modalOpened,
-  closeModal,
-  deleteCardMutation,
-  openModal,
-} from "./model";
+import { deleteCardMutation } from "./model";
 
 type Props = {
   cardId: number;
@@ -16,11 +12,10 @@ type Props = {
 };
 
 export const DeleteCard = ({ cardId, deckId }: Props) => {
-  const [modalOpened, openModalFn, closeModalFn] = useUnit([
-    $modalOpened,
-    openModal,
-    closeModal,
-  ]);
+  const [modalOpened, setModalOpened] = useState(false);
+
+  const openModal = () => setModalOpened(true);
+  const closeModal = () => setModalOpened(false);
 
   const { start, pending } = useUnit(deleteCardMutation);
 
@@ -28,22 +23,26 @@ export const DeleteCard = ({ cardId, deckId }: Props) => {
 
   return (
     <>
-      <Button onClick={openModalFn}>Delete card</Button>
+      <Button color="red" variant="light" size="xs" onClick={openModal}>
+        Delete card
+      </Button>
 
       <ModalWithLoading
         opened={modalOpened}
-        onClose={closeModalFn}
+        onClose={closeModal}
         loading={pending}
         title="Delete deck"
       >
-        <Text>Are you sure you want to delete this card?</Text>
+        <Text mb="lg">Are you sure you want to delete this card?</Text>
 
-        <Flex align="flex-end" w="100%">
-          <Group>
-            <Button onClick={deleteCard}>Yes</Button>
-            <Button onClick={closeModalFn}>Cancel</Button>
-          </Group>
-        </Flex>
+        <Group position="right">
+          <Button size="xs" onClick={closeModal}>
+            Cancel
+          </Button>
+          <Button size="xs" color="red" onClick={deleteCard}>
+            Yes
+          </Button>
+        </Group>
       </ModalWithLoading>
     </>
   );

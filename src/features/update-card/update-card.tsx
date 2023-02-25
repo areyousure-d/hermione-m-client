@@ -1,25 +1,23 @@
-import { Button, Stack, Text, Textarea } from "@mantine/core";
+import { Button, Group, Stack, Text, Textarea } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Card } from "@/entities/card";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import {
-  $modalOpened,
-  $updateCardMutationFailed,
-  closeModal,
-  openModal,
-  updateCardMutation,
-} from "./model";
+import { $updateCardMutationFailed, updateCardMutation } from "./model";
 
 type Props = {
   card: Card;
 };
 
 export const UpdateCard = ({ card }: Props) => {
-  const [openModalFn, closeModalFn, modalOpened, updateCardMutationFailed] =
-    useUnit([openModal, closeModal, $modalOpened, $updateCardMutationFailed]);
+  const [modalOpened, setModalOpened] = useState(false);
+
+  const openModal = () => setModalOpened(true);
+  const closeModal = () => setModalOpened(false);
+
+  const [updateCardMutationFailed] = useUnit([$updateCardMutationFailed]);
 
   const { start, pending } = useUnit(updateCardMutation);
 
@@ -44,13 +42,16 @@ export const UpdateCard = ({ card }: Props) => {
 
   return (
     <>
-      <Button onClick={openModalFn}>Update card</Button>
+      <Button color="violet" size="xs" variant="light" onClick={openModal}>
+        Update card
+      </Button>
 
       <ModalWithLoading
         opened={modalOpened}
-        onClose={closeModalFn}
+        onClose={closeModal}
         loading={pending}
         title="Update deck"
+        size="xl"
       >
         {updateCardMutationFailed && (
           <Text fz="md" color="red.7">
@@ -80,7 +81,9 @@ export const UpdateCard = ({ card }: Props) => {
               onChange={onChange}
             />
 
-            <Button type="submit">Update card</Button>
+            <Group position="right">
+              <Button type="submit">Update card</Button>
+            </Group>
           </Stack>
         </form>
       </ModalWithLoading>

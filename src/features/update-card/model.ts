@@ -2,7 +2,6 @@ import { createMutation } from "@farfetched/core";
 
 import { Card } from "@/entities/card";
 import { createRequestEffect } from "@/shared/api";
-import { createModal } from "@/shared/ui/modal-with-loading";
 
 export const updateCardMutation = createMutation({
   effect: createRequestEffect((card: Card) => ({
@@ -13,5 +12,3 @@ export const updateCardMutation = createMutation({
 });
 
 export const $updateCardMutationFailed = updateCardMutation.$failed;
-
-export const { $modalOpened, openModal, closeModal } = createModal();

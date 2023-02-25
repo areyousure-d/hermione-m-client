@@ -1,4 +1,4 @@
-import { Button, Stack, Text, TextInput } from "@mantine/core";
+import { Button, Group, Stack, Text, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -53,7 +53,7 @@ export const UpdateDeck = ({ deck }: Props) => {
       <form onSubmit={onSubmit}>
         <Stack>
           <TextInput
-            label="deckname"
+            label="Deckname"
             name="deckname"
             type="text"
             onChange={onChange}
@@ -61,7 +61,11 @@ export const UpdateDeck = ({ deck }: Props) => {
             value={deckname}
           />
 
-          <Button type="submit">Update deck</Button>
+          <Group position="right">
+            <Button size="xs" type="submit">
+              Update deck
+            </Button>
+          </Group>
         </Stack>
       </form>
     </ModalWithLoading>

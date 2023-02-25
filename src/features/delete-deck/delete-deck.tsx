@@ -1,4 +1,4 @@
-import { Button, Flex, Group, Text } from "@mantine/core";
+import { Button, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
@@ -23,14 +23,16 @@ export const DeleteDeck = ({ deckId }: Props) => {
       loading={pending}
       title="Delete deck"
     >
-      <Text>Are you sure you want to delete this deck?</Text>
+      <Text mb="lg">Are you sure you want to delete this deck?</Text>
 
-      <Flex align="flex-end" w="100%">
-        <Group>
-          <Button onClick={deleteDeck}>Yes</Button>
-          <Button onClick={closeModalFn}>Cancel</Button>
-        </Group>
-      </Flex>
+      <Group position="right">
+        <Button size="xs" onClick={closeModalFn}>
+          Cancel
+        </Button>
+        <Button size="xs" color="red" onClick={deleteDeck}>
+          Yes
+        </Button>
+      </Group>
     </ModalWithLoading>
   );
 };

@@ -22,17 +22,17 @@ export const DeckCard = ({ deck }: Props) => {
 
   return (
     <Card p="sm" shadow="md" className={classes.card} radius="md" withBorder>
-      <Card.Section py="xs" color="gray" withBorder>
+      <Card.Section p="xs" color="gray" withBorder>
         <Title order={3} align="center" truncate weight={500}>
           {deck.deckname}
         </Title>
       </Card.Section>
 
       <Group position="center">
-        <ButtonLink to={`/deck/${deck.id}`} variant="outline">
+        <ButtonLink to={`/deck/${deck.id}`} variant="outline" size="xs">
           Inspect
         </ButtonLink>
-        <ButtonLink to={`/learn/${deck.id}`} color="green">
+        <ButtonLink to={`/learn/${deck.id}`} color="green" size="xs">
           Learn
         </ButtonLink>
       </Group>

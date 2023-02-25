@@ -5,11 +5,10 @@ import { useParams } from "react-router-dom";
 
 import { cardListQuery } from "@/entities/card";
 import { deckByIdQuery } from "@/entities/deck";
-import { DeleteCard } from "@/features/delete-card";
-import { UpdateCard } from "@/features/update-card";
 import { $isAuthorized } from "@/shared/auth/token";
 import { ButtonLink } from "@/shared/ui/button-link";
 
+import { CardList } from "./card-list";
 import { DeckSettings } from "./deck-settings";
 
 export const DeckPage = () => {
@@ -31,15 +30,27 @@ export const DeckPage = () => {
   }, [deckId, startFetchCardList, isAuthorized, startFetchDeckById]);
 
   if (!isAuthorized) {
-    return <Text>access denied</Text>;
+    return (
+      <Container>
+        <Text>access denied</Text>
+      </Container>
+    );
   }
 
   if (deckByIdPending) {
-    return <Text>loading</Text>;
+    return (
+      <Container>
+        <Text>loading</Text>
+      </Container>
+    );
   }
 
   if (!deck) {
-    return <Text>there is no such deck</Text>;
+    return (
+      <Container>
+        <Text>there is no such deck</Text>
+      </Container>
+    );
   }
 
   return (
@@ -52,21 +63,11 @@ export const DeckPage = () => {
         <ButtonLink to={`/deck/${deckId}/create-card`}>Add Card</ButtonLink>
       </Flex>
 
-      <div>
-        {!cardList || cardList.length === 0 ? (
-          <Text>no card</Text>
-        ) : (
-          <ul>
-            {cardList.map((card) => (
-              <li key={card.id}>
-                <div>{card.front}</div>
-                <UpdateCard card={card} />
-                <DeleteCard deckId={deckId} cardId={card.id} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {!cardList || cardList.length === 0 ? (
+        <Text>no card</Text>
+      ) : (
+        <CardList cardList={cardList} deckId={deckId} />
+      )}
     </Container>
   );
 };
