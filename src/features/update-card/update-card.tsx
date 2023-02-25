@@ -2,10 +2,8 @@ import { Button, Group, Stack, Text, Textarea } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Card } from "@/entities/card";
+import { Card, updateCardMutation } from "@/entities/card";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
-
-import { $updateCardMutationFailed, updateCardMutation } from "./model";
 
 type Props = {
   card: Card;
@@ -17,7 +15,7 @@ export const UpdateCard = ({ card }: Props) => {
   const openModal = () => setModalOpened(true);
   const closeModal = () => setModalOpened(false);
 
-  const [updateCardMutationFailed] = useUnit([$updateCardMutationFailed]);
+  const [updateCardMutationFailed] = useUnit([updateCardMutation.$failed]);
 
   const { start, pending } = useUnit(updateCardMutation);
 

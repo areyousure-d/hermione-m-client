@@ -1,9 +1,10 @@
 import { Button, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 
+import { deleteDeckMutation } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import { $modalOpened, closeModal, deleteDeckMutation } from "./model";
+import { $modalOpened, closeModal } from "./model";
 
 type Props = {
   deckId: number;

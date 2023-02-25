@@ -2,16 +2,14 @@ import { Button, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useState } from "react";
 
+import { deleteCardMutation } from "@/entities/card";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
-
-import { deleteCardMutation } from "./model";
 
 type Props = {
   cardId: number;
-  deckId: string;
 };
 
-export const DeleteCard = ({ cardId, deckId }: Props) => {
+export const DeleteCard = ({ cardId }: Props) => {
   const [modalOpened, setModalOpened] = useState(false);
 
   const openModal = () => setModalOpened(true);
@@ -19,7 +17,7 @@ export const DeleteCard = ({ cardId, deckId }: Props) => {
 
   const { start, pending } = useUnit(deleteCardMutation);
 
-  const deleteCard = () => start({ id: cardId, deck_id: Number(deckId) });
+  const deleteCard = () => start({ id: cardId });
 
   return (
     <>

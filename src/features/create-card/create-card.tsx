@@ -2,7 +2,7 @@ import { Button, Stack, Textarea } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { createCardMutation } from "./model";
+import { createCardMutation } from "@/entities/card";
 
 const initialFormValues = {
   front: "",

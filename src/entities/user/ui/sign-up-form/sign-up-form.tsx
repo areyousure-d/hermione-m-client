@@ -52,7 +52,7 @@ export const SignUpForm = ({ submit }: Props) => {
         const name = issue.path[0];
         const message = issue.message;
 
-        if (name in errors) {
+        if (name && name in errors) {
           errors[name as keyof SignUpFormErrors] = message;
         }
       });

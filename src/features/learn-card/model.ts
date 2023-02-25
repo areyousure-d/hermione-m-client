@@ -1,30 +1,6 @@
-import { createMutation, createQuery } from "@farfetched/core";
 import { createEvent, createStore, sample } from "effector";
 
-import { Card, cardListContract } from "@/entities/card";
-import { createRequestEffect } from "@/shared/api";
-
-const fetchCardsToLearnFx = createRequestEffect((deckId: string) => ({
-  path: `/learn-card/${deckId}`,
-  method: "GET",
-}));
-
-const learnCardFx = createRequestEffect(
-  ({ cardId, rating }: { cardId: number; rating: string }) => ({
-    path: "/learn-card",
-    method: "POST",
-    body: { cardId, rating },
-  })
-);
-
-export const fetchCardsToLearnQuery = createQuery({
-  effect: fetchCardsToLearnFx,
-  contract: cardListContract,
-});
-
-export const learnCardMutation = createMutation({
-  effect: learnCardFx,
-});
+import { Card, fetchCardsToLearnQuery } from "@/entities/card";
 
 export const learnCardMutationFetched = createEvent<string>();
 

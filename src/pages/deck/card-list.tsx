@@ -6,10 +6,9 @@ import { UpdateCard } from "@/features/update-card";
 
 type Props = {
   cardList: Card[];
-  deckId: string;
 };
 
-export const CardList = ({ cardList, deckId }: Props) => {
+export const CardList = ({ cardList }: Props) => {
   return (
     <SimpleGrid
       cols={3}
@@ -23,7 +22,7 @@ export const CardList = ({ cardList, deckId }: Props) => {
       {cardList.map((card) => (
         <CardPreview key={card.id} card={card}>
           <UpdateCard card={card} />
-          <DeleteCard deckId={deckId} cardId={card.id} />
+          <DeleteCard cardId={card.id} />
         </CardPreview>
       ))}
     </SimpleGrid>

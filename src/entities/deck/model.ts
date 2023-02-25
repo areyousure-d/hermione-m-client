@@ -6,10 +6,10 @@ export type Deck = {
   created_by: number;
 };
 
-export const deck = z.object({
+export const deckSchema = z.object({
   id: z.number(),
   deckname: z.string(),
   created_by: z.number(),
 });
 
-export const deckList = z.array(deck);
+export const deckListSchema = z.array(deckSchema);

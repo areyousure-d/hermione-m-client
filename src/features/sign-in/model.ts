@@ -1,15 +1,8 @@
-import { createMutation } from "@farfetched/core";
 import { sample } from "effector";
 
-import { createUnAuthorizedRequestFx } from "@/shared/api";
+import { signInMutation } from "@/entities/user";
 import { tokenReceived } from "@/shared/auth/token";
 import { createModal } from "@/shared/ui/modal-with-loading";
-
-export const signInMutation = createMutation({
-  effect: createUnAuthorizedRequestFx({ path: "/auth", method: "POST" }),
-});
-
-export const $signInMutationFailed = signInMutation.$failed;
 
 export const { $modalOpened, openModal, closeModal } = createModal();
 
@@ -23,11 +16,3 @@ sample({
   fn: (successData) => successData.result,
   target: tokenReceived,
 });
-
-// signInMutation.finished.success.watch((s) =>
-//   console.log("signUpMutation success", s)
-// );
-
-// signInMutation.finished.failure.watch((s) =>
-//   console.log("signUpMutation failure", s)
-// );

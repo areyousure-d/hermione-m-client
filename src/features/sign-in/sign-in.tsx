@@ -1,17 +1,11 @@
 import { Button, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { SignInForm } from "@/entities/user";
+import { SignInForm, signInMutation } from "@/entities/user";
 import { $isAuthorized, tokenErased } from "@/shared/auth/token";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import {
-  $modalOpened,
-  $signInMutationFailed,
-  closeModal,
-  openModal,
-  signInMutation,
-} from "./model";
+import { $modalOpened, closeModal, openModal } from "./model";
 
 export const SignIn = () => {
   const [
@@ -27,7 +21,7 @@ export const SignIn = () => {
     $modalOpened,
     openModal,
     closeModal,
-    $signInMutationFailed,
+    signInMutation.$failed,
   ]);
 
   const { start, pending } = useUnit(signInMutation);

@@ -3,10 +3,10 @@ import { zodContract } from "@farfetched/zod";
 
 import { createRequestEffect } from "@/shared/api";
 
-import { deck, deckList } from "./model";
+import { deckListSchema, deckSchema } from "../model";
 
-const deckListContract = zodContract(deckList);
-const deckContract = zodContract(deck);
+const deckListContract = zodContract(deckListSchema);
+const deckContract = zodContract(deckSchema);
 
 const fetchDeckListFx = createRequestEffect(() => ({
   path: `/decklist`,

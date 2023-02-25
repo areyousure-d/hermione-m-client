@@ -2,19 +2,14 @@ import { Button, Stack, Text, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import { createDeckMutation } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import {
-  $createDeckMutationFailed,
-  $modalOpened,
-  closeModal,
-  createDeckMutation,
-  openModal,
-} from "./model";
+import { $modalOpened, closeModal, openModal } from "./model";
 
 export const CreateDeck = () => {
   const [openModalFn, closeModalFn, modalOpened, createDeckMutationFailed] =
-    useUnit([openModal, closeModal, $modalOpened, $createDeckMutationFailed]);
+    useUnit([openModal, closeModal, $modalOpened, createDeckMutation.$failed]);
 
   const { start, pending } = useUnit(createDeckMutation);
 

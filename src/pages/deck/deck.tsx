@@ -66,7 +66,7 @@ export const DeckPage = () => {
       {!cardList || cardList.length === 0 ? (
         <Text>no card</Text>
       ) : (
-        <CardList cardList={cardList} deckId={deckId} />
+        <CardList cardList={cardList} />
       )}
     </Container>
   );

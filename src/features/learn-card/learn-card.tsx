@@ -3,12 +3,9 @@ import { useUnit } from "effector-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import {
-  $cardToLearn,
-  fetchCardsToLearnQuery,
-  learnCardMutation,
-  learnCardMutationFetched,
-} from "./model";
+import { fetchCardsToLearnQuery, learnCardMutation } from "@/entities/card";
+
+import { $cardToLearn, learnCardMutationFetched } from "./model";
 
 export const LearnCard = () => {
   const [showBack, setShowBack] = useState(false);
