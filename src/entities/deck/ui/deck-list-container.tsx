@@ -1,5 +1,7 @@
 import { SimpleGrid, Text } from "@mantine/core";
 
+import { CardSkeleton } from "@/shared/ui/card-skeleton";
+
 import { Deck } from "../model";
 import { DeckCard } from "./deck-card";
 
@@ -8,6 +10,10 @@ type Props = {
 };
 
 export const DeckListContainer = ({ deckList }: Props) => {
+  if (deckList && deckList.length === 0) {
+    return <Text>Decklist is empty</Text>;
+  }
+
   return (
     <SimpleGrid
       cols={3}
@@ -18,10 +24,10 @@ export const DeckListContainer = ({ deckList }: Props) => {
         { maxWidth: "xs", cols: 1, spacing: "xs" },
       ]}
     >
-      {!deckList ? (
-        <Text>Decklist is empty</Text>
-      ) : (
+      {deckList ? (
         deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
+      ) : (
+        <CardSkeleton cardNumber={3} />
       )}
     </SimpleGrid>
   );
