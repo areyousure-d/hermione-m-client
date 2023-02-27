@@ -1,35 +1,26 @@
-import { Box, Button, Group, Text } from "@mantine/core";
+import { Flex } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { fetchCardsToLearnQuery, learnCardMutation } from "@/entities/card";
+import { fetchCardsToLearnQuery } from "@/entities/card";
 
-import { $cardToLearn, learnCardMutationFetched } from "./model";
+import { Buttons } from "./buttons";
+import { CardView } from "./card-view";
+import { $cardToLearn, learnCardsFetchedStarted } from "./model";
 
 export const LearnCard = () => {
-  const [showBack, setShowBack] = useState(false);
+  const [answerVisible, setAnswerVisible] = useState(false);
 
   const { deckId } = useParams();
 
   const { start: startFetchCardsToLearn } = useUnit(fetchCardsToLearnQuery);
-  const { start: learnCard } = useUnit(learnCardMutation);
-  const [cardToLearn, learnCardMutationFetchedFn] = useUnit([
+  const [cardToLearn, learnCardsFetchStartedFn] = useUnit([
     $cardToLearn,
-    learnCardMutationFetched,
+    learnCardsFetchedStarted,
   ]);
 
-  const createOnClickFn = (rating: string) => () => {
-    if (cardToLearn) {
-      learnCard({ cardId: cardToLearn.id, rating });
-      learnCardMutationFetchedFn(cardToLearn.deck_id.toString());
-      setShowBack(false);
-    }
-  };
-
-  const flipCard = () => {
-    setShowBack(true);
-  };
+  const flipCard = (isCardVisible: boolean) => setAnswerVisible(isCardVisible);
 
   useEffect(() => {
     if (deckId) {
@@ -41,27 +32,16 @@ export const LearnCard = () => {
     return <div>no card to learn</div>;
   }
 
-  if (showBack) {
-    return (
-      <div>
-        <Box>
-          <Text>question {cardToLearn.back}</Text>
-        </Box>
-
-        <Group>
-          <Button onClick={createOnClickFn("again")}>Again</Button>
-          <Button onClick={createOnClickFn("hard")}>Hard</Button>
-          <Button onClick={createOnClickFn("good")}>Good</Button>
-          <Button onClick={createOnClickFn("easy")}>Easy</Button>
-        </Group>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <Box>answer {cardToLearn.front}</Box>
-      <Button onClick={flipCard}>Show answer</Button>
-    </div>
+    <Flex direction="column" justify="space-between" h="100%">
+      <CardView showAnswer={answerVisible} card={cardToLearn} />
+
+      <Buttons
+        answerIsVisible={answerVisible}
+        flipCard={flipCard}
+        learnCardsFetchStart={learnCardsFetchStartedFn}
+        cardToLearn={cardToLearn}
+      />
+    </Flex>
   );
 };

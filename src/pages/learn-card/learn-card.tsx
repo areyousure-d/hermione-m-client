@@ -12,8 +12,15 @@ export const LearnCardPage = () => {
   }
 
   return (
-    <Container>
-      <Title order={2}>Learn card</Title>
+    <Container
+      sx={{
+        height:
+          "calc(100vh - var(--mantine-header-height, 0px) - var(--mantine-footer-height, 0px) - 96px)",
+      }}
+    >
+      <Title order={2} mb="lg" align="center">
+        Learn
+      </Title>
 
       <LearnCard />
     </Container>
