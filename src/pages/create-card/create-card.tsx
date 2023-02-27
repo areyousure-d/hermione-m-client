@@ -1,4 +1,4 @@
-import { Button, Container, Title } from "@mantine/core";
+import { Button, Container, Text, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -35,9 +35,10 @@ export const CreateCardPage = () => {
         Back
       </Button>
 
-      <Title order={2} mb="md">
-        Create card for {deck.deckname}
-      </Title>
+      <Title order={2}>Create card for</Title>
+      <Text fz="xl" maw={320} truncate mb="md">
+        {deck.deckname}
+      </Text>
 
       <CreateCard deckId={deckId} />
     </Container>

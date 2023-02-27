@@ -1,4 +1,4 @@
-import { Container, Flex, Skeleton, Text, Title } from "@mantine/core";
+import { Container, Flex, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -7,8 +7,7 @@ import { cardListQuery } from "@/entities/card";
 import { $isAuthorized } from "@/shared/auth/token";
 import { ButtonLink } from "@/shared/ui/button-link";
 
-import { CardList } from "./card-list";
-import { DeckSettings } from "./deck-settings";
+import { CardList, DecknameTitle, DeckSettingsButton } from "./components";
 import { deckByIdQuery } from "./model";
 
 export const DeckPage = () => {
@@ -20,7 +19,11 @@ export const DeckPage = () => {
     start: startFetchCardList,
     pending: cardListIsLoading,
   } = useUnit(cardListQuery);
-  const { data: deck, start: startFetchDeckById } = useUnit(deckByIdQuery);
+  const {
+    data: deck,
+    start: startFetchDeckById,
+    pending: deckByIdIsLoading,
+  } = useUnit(deckByIdQuery);
 
   useEffect(() => {
     if (deckId && isAuthorized) {
@@ -39,22 +42,15 @@ export const DeckPage = () => {
 
   return (
     <Container>
-      <Flex justify="space-between" mb="lg">
+      <Flex justify="space-between" mb="lg" wrap="wrap">
         <Flex align="center">
-          {deck ? (
-            <Title order={2} mr="xs">
-              {deck.deckname}
-            </Title>
-          ) : (
-            <Skeleton height={26} width="150px" mr="xs" />
-          )}
-          {deck ? (
-            <DeckSettings deck={deck} />
-          ) : (
-            <Skeleton height={24} circle />
-          )}
+          <DecknameTitle deck={deck} deckByIdIsLoading={deckByIdIsLoading} />
+          <DeckSettingsButton deck={deck} />
         </Flex>
-        <ButtonLink to={`/deck/${deckId}/create-card`}>Add Card</ButtonLink>
+
+        <ButtonLink to={`/deck/${deckId}/create-card`} ml="xs">
+          Add Card
+        </ButtonLink>
       </Flex>
 
       <CardList cardList={cardList} cardListIsLoading={cardListIsLoading} />

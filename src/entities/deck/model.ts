@@ -13,3 +13,8 @@ export const deckSchema = z.object({
 });
 
 export const deckListSchema = z.array(deckSchema);
+
+export const decknameSchema = z
+  .string()
+  .min(1, { message: "Deckname is required" })
+  .max(30, { message: "Deckname must be 30 or fewer characters long" });

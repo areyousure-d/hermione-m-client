@@ -9,11 +9,11 @@ import {
   ScrollArea,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 
 import { SignIn } from "@/features/sign-in";
 import { SignUp } from "@/features/sign-up";
 import { ToggleTheme } from "@/features/toggle-theme";
+import { Link } from "@/shared/ui/link";
 
 const useStyles = createStyles((theme) => ({
   hiddenMobile: {

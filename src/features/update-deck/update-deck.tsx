@@ -2,7 +2,7 @@ import { Button, Group, Stack, Text, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Deck } from "@/entities/deck";
+import { Deck, decknameSchema } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, updateDeckMutation } from "./model";
@@ -21,15 +21,26 @@ export const UpdateDeck = ({ deck }: Props) => {
   const { start, pending } = useUnit(updateDeckMutation);
 
   const [deckname, setDeckname] = useState(deck.deckname);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDeckname(event.target.value);
+    setValidationError(null);
   };
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    start({ ...deck, deckname });
-    setDeckname(deck.deckname);
+
+    const validationResult = decknameSchema.safeParse(deckname);
+
+    if (validationResult.success) {
+      start({ ...deck, deckname });
+      setDeckname(deck.deckname);
+      return;
+    }
+
+    const errorMessage = validationResult.error.issues[0]?.message;
+    setValidationError(errorMessage || null);
   };
 
   return (
@@ -54,6 +65,7 @@ export const UpdateDeck = ({ deck }: Props) => {
             onChange={onChange}
             placeholder="deckname"
             value={deckname}
+            error={validationError}
           />
 
           <Group position="right">

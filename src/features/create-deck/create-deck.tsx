@@ -2,7 +2,7 @@ import { Button, Stack, Text, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { createDeckMutation } from "@/entities/deck";
+import { createDeckMutation, decknameSchema } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";
@@ -14,15 +14,26 @@ export const CreateDeck = () => {
   const { start, pending } = useUnit(createDeckMutation);
 
   const [deckname, setDeckname] = useState("");
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDeckname(event.target.value);
+    setValidationError(null);
   };
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    start({ deckname });
-    setDeckname("");
+
+    const validationResult = decknameSchema.safeParse(deckname);
+
+    if (validationResult.success) {
+      start({ deckname });
+      setDeckname("");
+      return;
+    }
+
+    const errorMessage = validationResult.error.issues[0]?.message;
+    setValidationError(errorMessage || null);
   };
 
   return (
@@ -50,6 +61,7 @@ export const CreateDeck = () => {
               onChange={onChange}
               placeholder="deckname"
               value={deckname}
+              error={validationError}
             />
 
             <Button type="submit">Create deck</Button>

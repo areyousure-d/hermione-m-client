@@ -15,6 +15,8 @@ export const CardList = ({ cardList, cardListIsLoading }: Props) => {
     return <Text>Card list is empty</Text>;
   }
 
+  const shouldShowCard = cardList && !cardListIsLoading;
+
   return (
     <SimpleGrid
       cols={3}
@@ -25,7 +27,7 @@ export const CardList = ({ cardList, cardListIsLoading }: Props) => {
         { maxWidth: "xs", cols: 1, spacing: "xs" },
       ]}
     >
-      {cardList && !cardListIsLoading ? (
+      {shouldShowCard ? (
         cardList.map((card) => (
           <CardPreview key={card.id} card={card}>
             <UpdateCard card={card} />
