@@ -7,9 +7,10 @@ import { CardSkeleton } from "@/shared/ui/card-skeleton";
 
 type Props = {
   cardList: Card[] | null;
+  cardListIsLoading: boolean;
 };
 
-export const CardList = ({ cardList }: Props) => {
+export const CardList = ({ cardList, cardListIsLoading }: Props) => {
   if (cardList && cardList.length === 0) {
     return <Text>Card list is empty</Text>;
   }
@@ -24,7 +25,7 @@ export const CardList = ({ cardList }: Props) => {
         { maxWidth: "xs", cols: 1, spacing: "xs" },
       ]}
     >
-      {cardList ? (
+      {cardList && !cardListIsLoading ? (
         cardList.map((card) => (
           <CardPreview key={card.id} card={card}>
             <UpdateCard card={card} />

@@ -15,7 +15,11 @@ export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
 
   const [isAuthorized] = useUnit([$isAuthorized]);
-  const { data: cardList, start: startFetchCardList } = useUnit(cardListQuery);
+  const {
+    data: cardList,
+    start: startFetchCardList,
+    pending: cardListIsLoading,
+  } = useUnit(cardListQuery);
   const { data: deck, start: startFetchDeckById } = useUnit(deckByIdQuery);
 
   useEffect(() => {
@@ -53,7 +57,7 @@ export const DeckPage = () => {
         <ButtonLink to={`/deck/${deckId}/create-card`}>Add Card</ButtonLink>
       </Flex>
 
-      <CardList cardList={cardList} />
+      <CardList cardList={cardList} cardListIsLoading={cardListIsLoading} />
     </Container>
   );
 };
