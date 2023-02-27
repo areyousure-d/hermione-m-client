@@ -38,7 +38,7 @@ export const SignIn = () => {
         opened={modalOpened}
         onClose={closeModalFn}
         loading={pending}
-        title="Sign up"
+        title="Sign in"
       >
         {signInMutationFailed && (
           <Text fz="md" color="red.7">
