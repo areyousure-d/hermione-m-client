@@ -17,4 +17,5 @@ const cardSchema = z.object({
 
 const cardListSchema = z.array(cardSchema);
 
+export const cardContract = zodContract(cardSchema);
 export const cardListContract = zodContract(cardListSchema);

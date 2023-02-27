@@ -2,10 +2,10 @@ import { Button, Group, Stack, Text, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Deck, updateDeckMutation } from "@/entities/deck";
+import { Deck } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import { $modalOpened, closeModal } from "./model";
+import { $modalOpened, closeModal, updateDeckMutation } from "./model";
 
 type Props = {
   deck: Deck;

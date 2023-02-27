@@ -2,8 +2,10 @@ import { Button, Group, Stack, Text, Textarea } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Card, updateCardMutation } from "@/entities/card";
+import { Card } from "@/entities/card";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
+
+import { updateCardMutation } from "./model";
 
 type Props = {
   card: Card;
@@ -36,6 +38,7 @@ export const UpdateCard = ({ card }: Props) => {
       front: card.front,
       back: card.back,
     });
+    closeModal();
   };
 
   return (

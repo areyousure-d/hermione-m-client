@@ -7,9 +7,13 @@ import { DeckCard } from "./deck-card";
 
 type Props = {
   deckList: Deck[] | null;
+  deckListQueryPending: boolean;
 };
 
-export const DeckListContainer = ({ deckList }: Props) => {
+export const DeckListContainer = ({
+  deckList,
+  deckListQueryPending,
+}: Props) => {
   if (deckList && deckList.length === 0) {
     return <Text>Decklist is empty</Text>;
   }
@@ -24,7 +28,7 @@ export const DeckListContainer = ({ deckList }: Props) => {
         { maxWidth: "xs", cols: 1, spacing: "xs" },
       ]}
     >
-      {deckList ? (
+      {deckList && !deckListQueryPending ? (
         deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
       ) : (
         <CardSkeleton cardNumber={3} />

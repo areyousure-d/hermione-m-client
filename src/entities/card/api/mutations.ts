@@ -2,7 +2,7 @@ import { createMutation } from "@farfetched/core";
 
 import { createRequestEffect } from "@/shared/api";
 
-import { Card } from "../model";
+import { Card, cardContract } from "../model";
 
 const learnCardFx = createRequestEffect(
   ({ cardId, rating }: { cardId: number; rating: string }) => ({
@@ -40,4 +40,5 @@ export const updateCardMutation = createMutation({
     method: "PATCH",
     body: card,
   })),
+  contract: cardContract,
 });

@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { cardListQuery } from "@/entities/card";
-import { deckByIdQuery } from "@/entities/deck";
 import { $isAuthorized } from "@/shared/auth/token";
 import { ButtonLink } from "@/shared/ui/button-link";
 
 import { CardList } from "./card-list";
 import { DeckSettings } from "./deck-settings";
+import { deckByIdQuery } from "./model";
 
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -38,11 +38,11 @@ export const DeckPage = () => {
       <Flex justify="space-between" mb="lg">
         <Flex align="center">
           {deck ? (
-            <Title order={2} mr="lg">
+            <Title order={2} mr="xs">
               {deck.deckname}
             </Title>
           ) : (
-            <Skeleton height={26} width="150px" mr="lg" />
+            <Skeleton height={26} width="150px" mr="xs" />
           )}
           {deck ? (
             <DeckSettings deck={deck} />

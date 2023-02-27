@@ -6,7 +6,11 @@ import { DeckListContainer, deckListQuery } from "@/entities/deck";
 import { CreateDeck } from "@/features/create-deck";
 
 export const UserHomepage = () => {
-  const { start: startFetch, data: deckList } = useUnit(deckListQuery);
+  const {
+    start: startFetch,
+    data: deckList,
+    pending: deckListQueryPending,
+  } = useUnit(deckListQuery);
 
   useEffect(() => {
     startFetch();
@@ -19,7 +23,10 @@ export const UserHomepage = () => {
         <CreateDeck />
       </Flex>
 
-      <DeckListContainer deckList={deckList} />
+      <DeckListContainer
+        deckList={deckList}
+        deckListQueryPending={deckListQueryPending}
+      />
     </Container>
   );
 };

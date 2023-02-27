@@ -23,9 +23,5 @@ export const updateCard: ResponseResolver<
   const card = await req.json();
   updateCardEvent(card);
 
-  return res(
-    ctx.delay(2000),
-    ctx.status(200),
-    ctx.json("card successfully deleted")
-  );
+  return res(ctx.delay(2000), ctx.status(200), ctx.json(card));
 };
