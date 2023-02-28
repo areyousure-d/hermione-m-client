@@ -28,8 +28,12 @@ export const DeckListContainer = ({
         { maxWidth: "xs", cols: 1, spacing: "xs" },
       ]}
     >
-      {deckList && !deckListQueryPending ? (
-        deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
+      {!deckListQueryPending ? (
+        deckList ? (
+          deckList.map((deck) => <DeckCard key={deck.id} deck={deck} />)
+        ) : (
+          <Text>Decklist is empty</Text>
+        )
       ) : (
         <CardSkeleton cardNumber={3} />
       )}

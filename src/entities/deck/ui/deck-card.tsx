@@ -1,4 +1,4 @@
-import { Card, createStyles, Group, Title } from "@mantine/core";
+import { Card, createStyles, Group, Text, Title } from "@mantine/core";
 
 import { ButtonLink } from "@/shared/ui/button-link";
 
@@ -20,6 +20,8 @@ const useStyles = createStyles((_theme) => ({
 export const DeckCard = ({ deck }: Props) => {
   const { classes } = useStyles();
 
+  const learnButtonDisabled = deck.numberOfCardsToLearn === 0;
+
   return (
     <Card p="sm" shadow="md" className={classes.card} radius="md" withBorder>
       <Card.Section p="xs" color="gray" withBorder>
@@ -28,11 +30,19 @@ export const DeckCard = ({ deck }: Props) => {
         </Title>
       </Card.Section>
 
+      <Text align="center">Cards to learn: {deck.numberOfCardsToLearn}</Text>
+
       <Group position="center">
         <ButtonLink to={`/deck/${deck.id}`} variant="outline" size="xs">
-          Inspect
+          Open
         </ButtonLink>
-        <ButtonLink to={`/learn/${deck.id}`} color="green" size="xs">
+
+        <ButtonLink
+          to={`/learn/${deck.id}`}
+          color="green"
+          size="xs"
+          disabled={learnButtonDisabled}
+        >
           Learn
         </ButtonLink>
       </Group>

@@ -1,16 +1,13 @@
 import { z } from "zod";
 
-export type Deck = {
-  id: number;
-  deckname: string;
-  created_by: number;
-};
-
 export const deckSchema = z.object({
   id: z.number(),
   deckname: z.string(),
   created_by: z.number(),
+  numberOfCardsToLearn: z.number(),
 });
+
+export type Deck = z.infer<typeof deckSchema>;
 
 export const deckListSchema = z.array(deckSchema);
 
