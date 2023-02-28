@@ -2,10 +2,10 @@ import { Card, createStyles, Group, Text, Title } from "@mantine/core";
 
 import { ButtonLink } from "@/shared/ui/button-link";
 
-import { Deck } from "../model";
+import { DeckWithCardsInfo } from "../model";
 
 type Props = {
-  deck: Deck;
+  deck: DeckWithCardsInfo;
 };
 
 const useStyles = createStyles((_theme) => ({

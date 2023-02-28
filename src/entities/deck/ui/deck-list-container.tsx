@@ -2,11 +2,11 @@ import { SimpleGrid, Text } from "@mantine/core";
 
 import { CardSkeleton } from "@/shared/ui/card-skeleton";
 
-import { Deck } from "../model";
+import { DeckWithCardsInfo } from "../model";
 import { DeckCard } from "./deck-card";
 
 type Props = {
-  deckList: Deck[] | null;
+  deckList: DeckWithCardsInfo[] | null;
   deckListQueryPending: boolean;
 };
 

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { cardListQuery } from "@/entities/card";
 import { $isAuthorized } from "@/shared/auth/token";
+import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
 
 import { CardList, DecknameTitle, DeckSettingsButton } from "./components";
@@ -13,7 +14,10 @@ import { deckByIdQuery } from "./model";
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
 
-  const [isAuthorized] = useUnit([$isAuthorized]);
+  const [isAuthorized, deckByIdQueryFailed] = useUnit([
+    $isAuthorized,
+    deckByIdQuery.$failed,
+  ]);
   const {
     data: cardList,
     start: startFetchCardList,
@@ -36,6 +40,16 @@ export const DeckPage = () => {
     return (
       <Container>
         <Text>access denied</Text>
+      </Container>
+    );
+  }
+
+  if (deckByIdQueryFailed) {
+    return (
+      <Container>
+        <Alert variant="error" title="Error">
+          Error when fetching a deck with id {deckId}
+        </Alert>
       </Container>
     );
   }

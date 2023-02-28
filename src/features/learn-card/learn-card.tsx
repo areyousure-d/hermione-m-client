@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchCardsToLearnQuery } from "@/entities/card";
+import { Alert } from "@/shared/ui/alert";
 
 import { Buttons } from "./buttons";
 import { CardView } from "./card-view";
@@ -29,7 +30,11 @@ export const LearnCard = () => {
   }, [startFetchCardsToLearn, deckId]);
 
   if (!cardToLearn) {
-    return <div>no card to learn</div>;
+    return (
+      <Alert variant="info" title="No card">
+        No card to learn
+      </Alert>
+    );
   }
 
   return (

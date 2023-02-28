@@ -1,8 +1,9 @@
-import { SimpleGrid, Text } from "@mantine/core";
+import { SimpleGrid } from "@mantine/core";
 
 import { Card, CardPreview } from "@/entities/card";
 import { DeleteCard } from "@/features/delete-card";
 import { UpdateCard } from "@/features/update-card";
+import { Alert } from "@/shared/ui/alert";
 import { CardSkeleton } from "@/shared/ui/card-skeleton";
 
 type Props = {
@@ -12,7 +13,11 @@ type Props = {
 
 export const CardList = ({ cardList, cardListIsLoading }: Props) => {
   if (cardList && cardList.length === 0) {
-    return <Text>Card list is empty</Text>;
+    return (
+      <Alert variant="info" title="Empty">
+        Card list is empty
+      </Alert>
+    );
   }
 
   const shouldShowCard = cardList && !cardListIsLoading;

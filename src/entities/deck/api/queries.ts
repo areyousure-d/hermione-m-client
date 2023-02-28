@@ -1,11 +1,14 @@
 import { createQuery } from "@farfetched/core";
 import { zodContract } from "@farfetched/zod";
+import { z } from "zod";
 
 import { createRequestEffect } from "@/shared/api";
 
-import { deckListSchema, deckSchema } from "../model";
+import { deckSchema, deckSchemaWithCardsInfo } from "../model";
 
-const deckListContract = zodContract(deckListSchema);
+const deckListWithCardsInfoContract = zodContract(
+  z.array(deckSchemaWithCardsInfo)
+);
 const deckContract = zodContract(deckSchema);
 
 const fetchDeckListFx = createRequestEffect(() => ({
@@ -20,7 +23,7 @@ const getDeckByIdFx = createRequestEffect((deckId: number) => ({
 
 export const deckListQuery = createQuery({
   effect: fetchDeckListFx,
-  contract: deckListContract,
+  contract: deckListWithCardsInfoContract,
 });
 
 export const deckByIdQuery = createQuery({

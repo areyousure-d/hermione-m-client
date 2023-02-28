@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deckByIdQuery } from "@/entities/deck";
 import { CreateCard } from "@/features/create-card";
 import { $isAuthorized } from "@/shared/auth/token";
+import { Alert } from "@/shared/ui/alert";
 
 export const CreateCardPage = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -26,7 +27,13 @@ export const CreateCardPage = () => {
   }
 
   if (!deck) {
-    return <Container>Error. Failed to load deck with id {deckId}</Container>;
+    return (
+      <Container>
+        <Alert title="Error" variant="error">
+          Failed to load deck with id {deckId}
+        </Alert>
+      </Container>
+    );
   }
 
   return (
