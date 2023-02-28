@@ -4,10 +4,14 @@ import { Card } from "@/entities/card";
 
 type Props = {
   showAnswer: boolean;
-  card: Card;
+  card: Card | null;
 };
 
 export const CardView = ({ showAnswer, card }: Props) => {
+  if (card === null) {
+    return null;
+  }
+
   return (
     <Box
       sx={(theme) => ({
@@ -21,14 +25,14 @@ export const CardView = ({ showAnswer, card }: Props) => {
     >
       <Divider size="lg" />
       <Box p="sm">
-        <Text align="center">question {card.front}</Text>
+        <Text align="center">{card.front}</Text>
       </Box>
 
       <Divider size="lg" />
 
       {showAnswer ? (
         <Box p="sm">
-          <Text align="center">answer {card.back}</Text>
+          <Text align="center">{card.back}</Text>
         </Box>
       ) : null}
     </Box>
