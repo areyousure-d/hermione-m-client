@@ -1,9 +1,11 @@
-import { Container, Title } from "@mantine/core";
+import { Center, Container, Text } from "@mantine/core";
 
 export const NotFoundPage = () => {
   return (
     <Container>
-      <Title order={2}>not found page</Title>
+      <Center h={300}>
+        <Text fz="lg">404. This page could not be found</Text>
+      </Center>
     </Container>
   );
 };

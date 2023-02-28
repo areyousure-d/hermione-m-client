@@ -61,7 +61,7 @@ export const Header = () => {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
+        title="Menu"
         className={classes.hiddenDesktop}
         zIndex={100}
       >

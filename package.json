@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "test": "vitest",
     "test:run": "vitest run",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "lint": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --ext .ts,.tsx src --fix",
     "prepare": "husky install"
