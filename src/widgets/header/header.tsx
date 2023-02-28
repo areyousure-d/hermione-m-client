@@ -39,14 +39,6 @@ export const Header = () => {
         <Group position="apart" sx={{ height: "100%" }}>
           <Link to="/">hermione-m</Link>
 
-          <Group
-            sx={{ height: "100%" }}
-            spacing="md"
-            className={classes.hiddenMobile}
-          >
-            <div>navigation</div>
-          </Group>
-
           <Group>
             <ToggleTheme />
 
@@ -74,13 +66,6 @@ export const Header = () => {
         zIndex={100}
       >
         <ScrollArea sx={{ height: "calc(100vh - 60px)" }} mx="-md">
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
-
-          <div>navigation</div>
-
           <Divider
             my="sm"
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}

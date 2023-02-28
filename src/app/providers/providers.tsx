@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 import { MantineProvider } from "./mantine-provider";
+import { NotificationsProvider } from "./notifications-provider";
 import { RouterProvider } from "./router-provider";
 
 type Props = {
@@ -10,7 +11,9 @@ type Props = {
 export const Providers = ({ children }: Props) => {
   return (
     <MantineProvider>
-      <RouterProvider>{children}</RouterProvider>
+      <NotificationsProvider>
+        <RouterProvider>{children}</RouterProvider>
+      </NotificationsProvider>
     </MantineProvider>
   );
 };

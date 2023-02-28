@@ -19,6 +19,7 @@
     "@farfetched/zod": "^0.7.2",
     "@mantine/core": "^5.10.3",
     "@mantine/hooks": "^5.10.3",
+    "@mantine/notifications": "^5.10.5",
     "@tabler/icons": "^1.119.0",
     "base-64": "^1.0.0",
     "effector": "^22.5.0",

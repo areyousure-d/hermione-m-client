@@ -2,8 +2,9 @@ import { Button, Group, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useState } from "react";
 
-import { deleteCardMutation } from "@/entities/card";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
+
+import { deleteCardMutation } from "./model";
 
 type Props = {
   cardId: number;

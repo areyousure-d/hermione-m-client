@@ -2,9 +2,8 @@ import { Button, Group, Stack, Textarea } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { createCardMutation } from "@/entities/card";
-
 import { createCardFormSchema } from "./create-card-form-schema";
+import { createCardMutation } from "./model";
 
 type CreateCardFormErrors = {
   front: string | null;
