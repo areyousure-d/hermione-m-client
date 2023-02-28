@@ -1,1 +1,0 @@
-export { CardPage } from "./card";

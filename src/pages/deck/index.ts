@@ -1,1 +1,0 @@
-export { DeckPage } from "./deck";
