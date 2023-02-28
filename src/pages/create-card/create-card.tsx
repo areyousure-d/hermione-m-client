@@ -5,12 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { deckByIdQuery } from "@/entities/deck";
 import { CreateCard } from "@/features/create-card";
-import { $isAuthorized } from "@/shared/auth/token";
 import { Alert } from "@/shared/ui/alert";
 
 export const CreateCardPage = () => {
   const { deckId } = useParams() as { deckId: string };
-  const [isAuthorized] = useUnit([$isAuthorized]);
   const { start: getDeckById, data: deck } = useUnit(deckByIdQuery);
   const navigate = useNavigate();
 
@@ -21,10 +19,6 @@ export const CreateCardPage = () => {
       getDeckById(Number(deckId));
     }
   }, [deckId, getDeckById]);
-
-  if (!isAuthorized) {
-    return <Container>access denied</Container>;
-  }
 
   if (!deck) {
     return (

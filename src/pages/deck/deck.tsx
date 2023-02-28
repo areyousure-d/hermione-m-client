@@ -1,4 +1,4 @@
-import { Container, Flex, Text } from "@mantine/core";
+import { Container, Flex } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -35,14 +35,6 @@ export const DeckPage = () => {
       startFetchDeckById(Number(deckId));
     }
   }, [deckId, startFetchCardList, isAuthorized, startFetchDeckById]);
-
-  if (!isAuthorized) {
-    return (
-      <Container>
-        <Text>access denied</Text>
-      </Container>
-    );
-  }
 
   if (deckByIdQueryFailed) {
     return (

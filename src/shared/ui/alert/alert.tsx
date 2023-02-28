@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
-  title: string;
+  title: ReactNode;
   variant: "error" | "info";
 };
 
