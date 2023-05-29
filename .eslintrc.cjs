@@ -9,7 +9,7 @@ module.exports = configure({
       },
       alias: {
         root: "./src",
-        "@": "./",
+        paths: { "@": "./" },
       },
     }),
     presets.typescript({
