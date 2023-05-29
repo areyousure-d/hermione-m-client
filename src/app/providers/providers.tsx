@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 
+import { MantineProvider } from "./mantine-provider";
 import { RouterProvider } from "./router-provider";
 
 interface Props {
@@ -7,5 +8,9 @@ interface Props {
 }
 
 export const Providers = ({ children }: Props) => {
-  return <RouterProvider>{children}</RouterProvider>;
+  return (
+    <MantineProvider>
+      <RouterProvider>{children}</RouterProvider>
+    </MantineProvider>
+  );
 };
