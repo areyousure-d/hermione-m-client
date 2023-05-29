@@ -11,6 +11,8 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 
+import { ToggleTheme } from "@/features/toggle-theme";
+
 const useStyles = createStyles((theme) => ({
   hiddenMobile: {
     [theme.fn.smallerThan("sm")]: {
@@ -36,6 +38,8 @@ export const Header = () => {
           <Link to="/">hermione-m</Link>
 
           <Group>
+            <ToggleTheme />
+
             <Group className={classes.hiddenMobile}>
               <Button>login</Button>
               <Button>sign in</Button>
