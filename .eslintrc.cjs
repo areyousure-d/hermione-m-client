@@ -20,4 +20,10 @@ module.exports = configure({
       version: "18.0",
     }),
   ],
+
+  extend: {
+    rules: {
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    },
+  },
 });

@@ -1,7 +1,6 @@
 import {
   Box,
   Burger,
-  Button,
   createStyles,
   Drawer,
   Group,
@@ -9,9 +8,10 @@ import {
   ScrollArea,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 
 import { ToggleTheme } from "@/features/toggle-theme";
+import { ButtonLink } from "@/shared/ui/button-link";
+import { Link } from "@/shared/ui/link";
 
 const useStyles = createStyles((theme) => ({
   hiddenMobile: {
@@ -41,8 +41,8 @@ export const Header = () => {
             <ToggleTheme />
 
             <Group className={classes.hiddenMobile}>
-              <Button>login</Button>
-              <Button>sign in</Button>
+              <ButtonLink to="/login">login</ButtonLink>
+              <ButtonLink to="/sign-up">sign in</ButtonLink>
             </Group>
 
             <Burger
@@ -64,8 +64,8 @@ export const Header = () => {
       >
         <ScrollArea sx={{ height: "calc(100vh - 6em)" }} mx="md">
           <Group position="center" grow pb="xl" px="md">
-            <Button>login in</Button>
-            <Button>sign up</Button>
+            <ButtonLink to="/login">login in</ButtonLink>
+            <ButtonLink to="/sign-up">sign up</ButtonLink>
           </Group>
         </ScrollArea>
       </Drawer>
