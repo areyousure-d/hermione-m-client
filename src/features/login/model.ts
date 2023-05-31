@@ -5,7 +5,7 @@ import { tokenReceived } from "@/shared/auth/token";
 
 sample({
   clock: loginMutation.finished.success,
-  fn: (successData) => successData.result,
+  fn: (successData) => successData.result.accessToken,
   target: tokenReceived,
 });
 

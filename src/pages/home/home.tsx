@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { useUnit } from "effector-react";
+
+import { $isAuthorized } from "@/shared/auth/token";
+
+import { GuestHomepage } from "./quest-homepage";
+import { UserHomepage } from "./user-homepage";
 
 export const HomePage = () => {
-  return (
-    <div>
-      <div>home page</div>
-      <div>
-        <Link to="/test">to test page</Link>
-      </div>
-    </div>
-  );
+  const isAuthorized = useUnit($isAuthorized);
+
+  if (isAuthorized) {
+    return <UserHomepage />;
+  }
+
+  return <GuestHomepage />;
 };

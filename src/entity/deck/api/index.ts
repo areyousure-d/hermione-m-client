@@ -1,0 +1,1 @@
+export { deckListQuery } from "./queries";

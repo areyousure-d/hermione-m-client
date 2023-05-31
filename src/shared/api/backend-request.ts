@@ -1,5 +1,6 @@
 import { attach, createEffect } from "effector";
 
+import { $token } from "../auth/token";
 import { API_URL } from "./api-url";
 
 type RequestParams = {
@@ -47,5 +48,27 @@ export const createUnAuthorizedRequestFx = ({
       path,
       method,
     }),
+  });
+};
+
+const authorizedRequestFx = attach({
+  effect: backendRequestFx,
+  source: $token,
+  mapParams: (requestParams: Omit<RequestParams, "token">, token) => ({
+    ...requestParams,
+    token,
+  }),
+});
+
+type MapParamsCallback<T> = (
+  params: T
+) => Pick<RequestParams, "path" | "method" | "body">;
+
+export const createRequestEffect = <T = void>(
+  mapParams: MapParamsCallback<T>
+) => {
+  return attach({
+    effect: authorizedRequestFx,
+    mapParams,
   });
 };
