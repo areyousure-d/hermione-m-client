@@ -1,1 +1,1 @@
-export { cardListQuery } from "./api";
+export { cardListQuery, deleteCardMutation } from "./api";

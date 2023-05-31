@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { cardListQuery } from "@/entity/card";
 import { CardPreview } from "@/entity/card/ui";
+import { DeleteCard } from "@/features/card/delete-card";
 
 export const Cards = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -40,8 +41,8 @@ export const Cards = () => {
         {cardList?.map((card) => {
           return (
             <CardPreview key={card.id} card={card}>
+              <DeleteCard />
               <Button size="xs">Update</Button>
-              <Button size="xs">Delete</Button>
             </CardPreview>
           );
         })}
