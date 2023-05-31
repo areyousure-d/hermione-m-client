@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { MantineProvider } from "./mantine-provider";
 import { RouterProvider } from "./router-provider";
 
-interface Props {
+type Props = {
   children: ReactNode;
 }
 

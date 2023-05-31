@@ -1,7 +1,7 @@
 import { AppShell } from "@mantine/core";
 import { ReactElement, ReactNode } from "react";
 
-interface Props {
+type Props = {
   children: ReactNode;
   header: ReactElement;
 }

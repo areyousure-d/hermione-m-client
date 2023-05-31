@@ -6,7 +6,7 @@ import {
 import { useColorScheme } from "@mantine/hooks";
 import { ReactNode, useState } from "react";
 
-interface Props {
+type Props = {
   children: ReactNode;
 }
 
