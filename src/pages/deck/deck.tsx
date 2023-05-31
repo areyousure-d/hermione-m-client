@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { deckByIdQuery } from "@/entity/deck";
-import { DeleteDeck } from "@/features/delete-deck";
-import { UpdateDeck } from "@/features/update-deck";
+import { DeleteDeck } from "@/features/deck/delete-deck";
+import { UpdateDeck } from "@/features/deck/update-deck";
 import { Alert } from "@/shared/ui/alert";
 
 export const DeckPage = () => {

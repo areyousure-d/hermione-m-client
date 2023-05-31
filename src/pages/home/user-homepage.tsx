@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
 import { DeckCard, DeckList, deckListQuery } from "@/entity/deck";
-import { CreateDeck } from "@/features/create-deck";
+import { CreateDeck } from "@/features/deck/create-deck";
 
 export const UserHomepage = () => {
   const {
