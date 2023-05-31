@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { deckByIdQuery } from "@/entity/deck";
+import { DeleteDeck } from "@/features/delete-deck";
 import { UpdateDeck } from "@/features/update-deck";
 import { Alert } from "@/shared/ui/alert";
 
@@ -35,7 +36,11 @@ export const DeckPage = () => {
     <Container>
       <Group position="apart">
         <Title order={2}>{deck?.deckname}</Title>
-        <UpdateDeck />
+
+        <Group>
+          <DeleteDeck />
+          <UpdateDeck />
+        </Group>
       </Group>
     </Container>
   );

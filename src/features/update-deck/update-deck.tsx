@@ -1,7 +1,6 @@
-import { Button } from "@mantine/core";
+import { Button, Modal } from "@mantine/core";
 import { useState } from "react";
 
-import { Modal } from "./modal";
 import { UpdateDeckForm } from "./update-deck-form";
 
 export const UpdateDeck = () => {
@@ -16,7 +15,7 @@ export const UpdateDeck = () => {
         Update
       </Button>
 
-      <Modal opened={modalOpened} onClose={onClose}>
+      <Modal opened={modalOpened} onClose={onClose} title="Update deck">
         <UpdateDeckForm />
       </Modal>
     </>
