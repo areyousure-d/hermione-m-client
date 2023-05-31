@@ -1,9 +1,10 @@
-import { Container, Title } from "@mantine/core";
+import { Container, Group, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { deckByIdQuery } from "@/entity/deck";
+import { UpdateDeck } from "@/features/update-deck";
 import { Alert } from "@/shared/ui/alert";
 
 export const DeckPage = () => {
@@ -32,7 +33,10 @@ export const DeckPage = () => {
 
   return (
     <Container>
-      <Title order={2}>{deck?.deckname}</Title>
+      <Group position="apart">
+        <Title order={2}>{deck?.deckname}</Title>
+        <UpdateDeck />
+      </Group>
     </Container>
   );
 };
