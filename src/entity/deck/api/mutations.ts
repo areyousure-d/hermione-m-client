@@ -23,3 +23,12 @@ export const deleteDeckMutation = createMutation({
   })),
   contract: deckContract,
 });
+
+export const createDeckMutation = createMutation({
+  effect: createRequestEffect((deck: Pick<Deck, "deckname">) => ({
+    path: `/decks`,
+    method: "POST",
+    body: deck,
+  })),
+  contract: deckContract,
+});

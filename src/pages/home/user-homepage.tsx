@@ -1,8 +1,9 @@
-import { Container } from "@mantine/core";
+import { Container, Group } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
 import { DeckCard, DeckList, deckListQuery } from "@/entity/deck";
+import { CreateDeck } from "@/features/create-deck";
 
 export const UserHomepage = () => {
   const {
@@ -21,6 +22,10 @@ export const UserHomepage = () => {
 
   return (
     <Container>
+      <Group position="right">
+        <CreateDeck />
+      </Group>
+
       <DeckList>
         {deckList?.map((deck) => (
           <DeckCard key={deck.id} deck={deck} />

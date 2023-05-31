@@ -1,4 +1,5 @@
 export {
+  createDeckMutation,
   deckByIdQuery,
   deckListQuery,
   deleteDeckMutation,
