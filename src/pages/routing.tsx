@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 
+import { DeckPage } from "./deck";
 import { HomePage } from "./home";
 import { LoginPage } from "./login";
 import { NotFoundPage } from "./not-found";
 import { SignUpPage } from "./sign-up";
-import { TestPage } from "./test";
 
 export const Routing = () => {
   return (
@@ -12,7 +12,7 @@ export const Routing = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
-      <Route path="/test" element={<TestPage />} />
+      <Route path="/deck/:deckId" element={<DeckPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

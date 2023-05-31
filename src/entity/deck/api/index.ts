@@ -1,1 +1,1 @@
-export { deckListQuery } from "./queries";
+export { deckByIdQuery, deckListQuery } from "./queries";

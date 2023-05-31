@@ -10,9 +10,21 @@ const fetchDeckListFx = createRequestEffect(() => ({
   method: "GET",
 }));
 
-const deckContract = zodContract(deckSchema.array());
+const deckListContract = zodContract(deckSchema.array());
 
 export const deckListQuery = createQuery({
   effect: fetchDeckListFx,
-  contract: deckContract,
+  contract: deckListContract,
+});
+
+const fetchDeckByIdFx = createRequestEffect((deckId: string) => ({
+  path: `decks/${deckId}`,
+  method: "GET",
+}));
+
+const deckByIdContract = zodContract(deckSchema);
+
+export const deckByIdQuery = createQuery({
+  effect: fetchDeckByIdFx,
+  contract: deckByIdContract,
 });
