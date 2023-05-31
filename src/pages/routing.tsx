@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+import { Cards } from "./cards";
 import { DeckPage } from "./deck";
 import { HomePage } from "./home";
 import { LoginPage } from "./login";
@@ -13,6 +14,7 @@ export const Routing = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/deck/:deckId" element={<DeckPage />} />
+      <Route path="/deck/:deckId/cards" element={<Cards />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

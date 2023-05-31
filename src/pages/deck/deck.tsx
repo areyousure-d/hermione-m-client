@@ -7,6 +7,7 @@ import { deckByIdQuery } from "@/entity/deck";
 import { DeleteDeck } from "@/features/deck/delete-deck";
 import { UpdateDeck } from "@/features/deck/update-deck";
 import { Alert } from "@/shared/ui/alert";
+import { ButtonLink } from "@/shared/ui/button-link";
 
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -38,6 +39,7 @@ export const DeckPage = () => {
         <Title order={2}>{deck?.deckname}</Title>
 
         <Group>
+          <ButtonLink to={`/deck/${deckId}/cards`}>Cards</ButtonLink>
           <DeleteDeck />
           <UpdateDeck />
         </Group>
