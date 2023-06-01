@@ -1,45 +1,52 @@
-import { Button, Group, LoadingOverlay, Modal, Text } from "@mantine/core";
+import { Button, Group, Stack, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { deleteCardMutation } from "@/entity/card";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
+
+import { $modalOpened, closeModal, openModal } from "./model";
 
 type Props = {
   cardId: number;
 };
 
 export const DeleteCard = ({ cardId }: Props) => {
-  const [modalOpened, setModalOpened] = useState(false);
-
-  const onClose = () => setModalOpened(false);
-  const onOpen = () => setModalOpened(true);
-
   const { deckId } = useParams() as { deckId: string };
   const { start: deleteCardFn, pending } = useUnit(deleteCardMutation);
+  const [modalOpened, openModalFn, closeModalFn] = useUnit([
+    $modalOpened,
+    openModal,
+    closeModal,
+  ]);
 
   const deleteCard = () => deleteCardFn({ deckId: Number(deckId), cardId });
 
   return (
     <>
-      <Button onClick={onOpen} color="red" size="xs">
+      <Button onClick={openModalFn} color="red" size="xs">
         Delete card
       </Button>
 
-      <Modal opened={modalOpened} onClose={onClose} title="Delete card">
-        <LoadingOverlay visible={pending} overlayBlur={3} />
+      <ModalWithLoading
+        title="Delete card"
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
+      >
+        <Stack>
+          <Text>Are you sure you want to delete this card?</Text>
 
-        <Text mb="lg">Are you sure you want to delete this card?</Text>
-
-        <Group position="right">
-          <Button size="xs" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button size="xs" onClick={deleteCard}>
-            Yes
-          </Button>
-        </Group>
-      </Modal>
+          <Group position="right">
+            <Button size="xs" onClick={closeModalFn}>
+              Cancel
+            </Button>
+            <Button size="xs" onClick={deleteCard}>
+              Yes
+            </Button>
+          </Group>
+        </Stack>
+      </ModalWithLoading>
     </>
   );
 };

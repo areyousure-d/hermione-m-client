@@ -1,25 +1,22 @@
-import {
-  Button,
-  Group,
-  LoadingOverlay,
-  Modal,
-  Stack,
-  TextInput,
-} from "@mantine/core";
+import { Button, Group, Stack, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { createDeckMutation } from "@/entity/deck";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
+
+import { $modalOpened, closeModal, openModal } from "./model";
 
 export const CreateDeck = () => {
   const [deckname, setDeckname] = useState("");
   const [decknameError, setDecknameError] = useState<string | null>(null);
-  const [modalOpened, setModalOpened] = useState(false);
 
   const { start: createDeck, pending } = useUnit(createDeckMutation);
-
-  const onClose = () => setModalOpened(false);
-  const onOpen = () => setModalOpened(true);
+  const [modalOpened, openModalFn, closeModalFn] = useUnit([
+    $modalOpened,
+    openModal,
+    closeModal,
+  ]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDeckname(event.target.value);
@@ -38,11 +35,14 @@ export const CreateDeck = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Create Deck</Button>
+      <Button onClick={openModalFn}>Create Deck</Button>
 
-      <Modal opened={modalOpened} onClose={onClose} title="Create deck">
-        <LoadingOverlay visible={pending} overlayBlur={3} />
-
+      <ModalWithLoading
+        opened={modalOpened}
+        onClose={closeModalFn}
+        title="Create deck"
+        loading={pending}
+      >
         <form onSubmit={onSubmit}>
           <Stack>
             <TextInput
@@ -65,7 +65,7 @@ export const CreateDeck = () => {
             </Group>
           </Stack>
         </form>
-      </Modal>
+      </ModalWithLoading>
     </>
   );
 };

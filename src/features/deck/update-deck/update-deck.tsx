@@ -1,6 +1,11 @@
-import { Button, Modal } from "@mantine/core";
-import { useState } from "react";
+import { Button } from "@mantine/core";
+import { useUnit } from "effector-react";
+import { useParams } from "react-router-dom";
 
+import { Deck, updateDeckMutation } from "@/entity/deck";
+import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
+
+import { $modalOpened, closeModal, openModal } from "./model";
 import { UpdateDeckForm } from "./update-deck-form";
 
 type Props = {
@@ -8,20 +13,32 @@ type Props = {
 };
 
 export const UpdateDeck = ({ deckname }: Props) => {
-  const [modalOpened, setModalOpened] = useState(false);
+  const [modalOpened, openModalFn, closeModalFn] = useUnit([
+    $modalOpened,
+    openModal,
+    closeModal,
+  ]);
+  const { deckId } = useParams() as { deckId: string };
+  const { start: startUpdateDeck, pending } = useUnit(updateDeckMutation);
 
-  const onClose = () => setModalOpened(false);
-  const onOpen = () => setModalOpened(true);
+  const updateDeck = ({ deckname }: Pick<Deck, "deckname">) => {
+    startUpdateDeck({ id: Number(deckId), deckname });
+  };
 
   return (
     <>
-      <Button onClick={onOpen} color="green">
+      <Button onClick={openModalFn} color="green">
         Update
       </Button>
 
-      <Modal opened={modalOpened} onClose={onClose} title="Update deck">
-        <UpdateDeckForm initialDeckname={deckname} />
-      </Modal>
+      <ModalWithLoading
+        title="Update deck"
+        opened={modalOpened}
+        onClose={closeModalFn}
+        loading={pending}
+      >
+        <UpdateDeckForm initialDeckname={deckname} updateDeck={updateDeck} />
+      </ModalWithLoading>
     </>
   );
 };
