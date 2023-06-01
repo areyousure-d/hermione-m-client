@@ -1,1 +1,6 @@
-export { cardListQuery, createCardMutation, deleteCardMutation } from "./api";
+export {
+  cardListQuery,
+  createCardMutation,
+  deleteCardMutation,
+  updateCardMutation,
+} from "./api";

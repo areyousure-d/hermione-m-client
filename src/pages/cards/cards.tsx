@@ -1,4 +1,4 @@
-import { Button, Container, SimpleGrid, Title } from "@mantine/core";
+import { Container, SimpleGrid, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { cardListQuery } from "@/entity/card";
 import { CardPreview } from "@/entity/card/ui";
 import { DeleteCard } from "@/features/card/delete-card";
+import { ButtonLink } from "@/shared/ui/button-link";
 
 export const Cards = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -43,7 +44,12 @@ export const Cards = () => {
           return (
             <CardPreview key={card.id} card={card}>
               <DeleteCard cardId={card.id} />
-              <Button size="xs">Update</Button>
+              <ButtonLink
+                to={`/decks/${deckId}/update-card/${card.id}`}
+                size="xs"
+              >
+                Update
+              </ButtonLink>
             </CardPreview>
           );
         })}

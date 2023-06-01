@@ -7,6 +7,7 @@ import { HomePage } from "./home";
 import { LoginPage } from "./login";
 import { NotFoundPage } from "./not-found";
 import { SignUpPage } from "./sign-up";
+import { UpdateCardPage } from "./update-card";
 
 export const Routing = () => {
   return (
@@ -17,6 +18,10 @@ export const Routing = () => {
       <Route path="/decks/:deckId" element={<DeckPage />} />
       <Route path="/decks/:deckId/cards" element={<Cards />} />
       <Route path="/decks/:deckId/create-card" element={<CreateCardPage />} />
+      <Route
+        path="/decks/:deckId/update-card/:cardId"
+        element={<UpdateCardPage />}
+      />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

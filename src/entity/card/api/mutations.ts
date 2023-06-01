@@ -18,17 +18,31 @@ export const deleteCardMutation = createMutation({
   contract: cardContract,
 });
 
+type CreateCardMutationParams = {
+  deckId: Deck["id"];
+  body: Pick<Card, "front" | "back">;
+};
+
 export const createCardMutation = createMutation({
+  effect: createRequestEffect(({ deckId, body }: CreateCardMutationParams) => ({
+    path: `/decks/${deckId}/cards`,
+    method: "POST",
+    body,
+  })),
+  contract: cardContract,
+});
+
+type UpdateCardMutationParams = {
+  cardId: Card["id"];
+  deckId: Deck["id"];
+  body: Pick<Card, "front" | "back">;
+};
+
+export const updateCardMutation = createMutation({
   effect: createRequestEffect(
-    ({
-      deckId,
-      body,
-    }: {
-      deckId: Deck["id"];
-      body: Pick<Card, "front" | "back">;
-    }) => ({
-      path: `/decks/${deckId}/cards`,
-      method: "POST",
+    ({ cardId, deckId, body }: UpdateCardMutationParams) => ({
+      path: `/decks/${deckId}/cards/${cardId}`,
+      method: "PATCH",
       body,
     })
   ),
