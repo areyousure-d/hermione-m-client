@@ -6,7 +6,7 @@ import { createRequestEffect } from "@/shared/api";
 import { deckSchema } from "../deck.schema";
 
 const fetchDeckListFx = createRequestEffect(() => ({
-  path: "decks",
+  path: "/decks",
   method: "GET",
 }));
 
@@ -18,7 +18,7 @@ export const deckListQuery = createQuery({
 });
 
 const fetchDeckByIdFx = createRequestEffect((deckId: string) => ({
-  path: `decks/${deckId}`,
+  path: `/decks/${deckId}`,
   method: "GET",
 }));
 

@@ -8,7 +8,7 @@ import { cardSchema } from "../card.schema";
 const cardListContract = zodContract(cardSchema.array());
 
 const fetchCardListFx = createRequestEffect((deckId: string) => ({
-  path: `decks/${deckId}/cards`,
+  path: `/decks/${deckId}/cards`,
   method: "GET",
 }));
 

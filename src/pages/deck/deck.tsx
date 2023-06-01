@@ -39,8 +39,8 @@ export const DeckPage = () => {
         <Title order={2}>{deck?.deckname}</Title>
 
         <Group>
-          <ButtonLink to={`/deck/${deckId}/create-card`}>Add Card</ButtonLink>
-          <ButtonLink to={`/deck/${deckId}/cards`}>Cards</ButtonLink>
+          <ButtonLink to={`/decks/${deckId}/create-card`}>Add Card</ButtonLink>
+          <ButtonLink to={`/decks/${deckId}/cards`}>Cards</ButtonLink>
           <DeleteDeck />
           <UpdateDeck />
         </Group>
