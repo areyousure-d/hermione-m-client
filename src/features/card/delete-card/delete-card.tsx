@@ -5,17 +5,20 @@ import { useParams } from "react-router-dom";
 
 import { deleteCardMutation } from "@/entity/card";
 
-export const DeleteCard = () => {
+type Props = {
+  cardId: number;
+};
+
+export const DeleteCard = ({ cardId }: Props) => {
   const [modalOpened, setModalOpened] = useState(false);
 
   const onClose = () => setModalOpened(false);
   const onOpen = () => setModalOpened(true);
 
-  const { deckId, cardId } = useParams() as { deckId: string; cardId: string };
+  const { deckId } = useParams() as { deckId: string };
   const { start: deleteCardFn, pending } = useUnit(deleteCardMutation);
 
-  const deleteCard = () =>
-    deleteCardFn({ deckId: Number(deckId), cardId: Number(cardId) });
+  const deleteCard = () => deleteCardFn({ deckId: Number(deckId), cardId });
 
   return (
     <>

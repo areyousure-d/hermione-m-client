@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import { Cards } from "./cards";
+import { CreateCardPage } from "./create-card";
 import { DeckPage } from "./deck";
 import { HomePage } from "./home";
 import { LoginPage } from "./login";
@@ -15,6 +16,7 @@ export const Routing = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/deck/:deckId" element={<DeckPage />} />
       <Route path="/deck/:deckId/cards" element={<Cards />} />
+      <Route path="/deck/:deckId/create-card" element={<CreateCardPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

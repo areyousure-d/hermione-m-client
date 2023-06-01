@@ -9,6 +9,7 @@ import { DeleteCard } from "@/features/card/delete-card";
 
 export const Cards = () => {
   const { deckId } = useParams() as { deckId: string };
+
   const {
     start: startFetchCardList,
     data: cardList,
@@ -41,7 +42,7 @@ export const Cards = () => {
         {cardList?.map((card) => {
           return (
             <CardPreview key={card.id} card={card}>
-              <DeleteCard />
+              <DeleteCard cardId={card.id} />
               <Button size="xs">Update</Button>
             </CardPreview>
           );

@@ -11,8 +11,25 @@ const cardContract = zodContract(cardSchema);
 export const deleteCardMutation = createMutation({
   effect: createRequestEffect(
     ({ cardId, deckId }: { cardId: Card["id"]; deckId: Deck["id"] }) => ({
-      path: `/decks/${deckId}/cards/${cardId}`,
+      path: `decks/${deckId}/cards/${cardId}`,
       method: "DELETE",
+    })
+  ),
+  contract: cardContract,
+});
+
+export const createCardMutation = createMutation({
+  effect: createRequestEffect(
+    ({
+      deckId,
+      body,
+    }: {
+      deckId: Deck["id"];
+      body: Pick<Card, "front" | "back">;
+    }) => ({
+      path: `decks/${deckId}/cards`,
+      method: "POST",
+      body,
     })
   ),
   contract: cardContract,
