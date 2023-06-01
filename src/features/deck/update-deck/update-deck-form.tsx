@@ -5,8 +5,12 @@ import { useParams } from "react-router-dom";
 
 import { updateDeckMutation } from "@/entity/deck";
 
-export const UpdateDeckForm = () => {
-  const [deckname, setDeckname] = useState("");
+type Props = {
+  initialDeckname: string;
+};
+
+export const UpdateDeckForm = ({ initialDeckname }: Props) => {
+  const [deckname, setDeckname] = useState(initialDeckname);
   const [error, setError] = useState<string | null>(null);
 
   const { deckId } = useParams() as { deckId: string };
@@ -27,6 +31,10 @@ export const UpdateDeckForm = () => {
     updateDeck({ deckname, id: Number(deckId) });
   };
 
+  const onReset = () => {
+    setDeckname(initialDeckname);
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <LoadingOverlay visible={pending} overlayBlur={3} />
@@ -43,7 +51,7 @@ export const UpdateDeckForm = () => {
         />
 
         <Group position="right">
-          <Button type="reset">Reset</Button>
+          <Button onClick={onReset}>Reset</Button>
           <Button type="submit">Update</Button>
         </Group>
       </Stack>

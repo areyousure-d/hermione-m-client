@@ -3,7 +3,11 @@ import { useState } from "react";
 
 import { UpdateDeckForm } from "./update-deck-form";
 
-export const UpdateDeck = () => {
+type Props = {
+  deckname: string;
+};
+
+export const UpdateDeck = ({ deckname }: Props) => {
   const [modalOpened, setModalOpened] = useState(false);
 
   const onClose = () => setModalOpened(false);
@@ -16,7 +20,7 @@ export const UpdateDeck = () => {
       </Button>
 
       <Modal opened={modalOpened} onClose={onClose} title="Update deck">
-        <UpdateDeckForm />
+        <UpdateDeckForm initialDeckname={deckname} />
       </Modal>
     </>
   );

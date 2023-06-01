@@ -23,7 +23,7 @@ export const DeckPage = () => {
     return <div>loading</div>;
   }
 
-  if (deckByIdQueryFailed) {
+  if (deckByIdQueryFailed || !deck) {
     return (
       <Container>
         <Alert variant="error" title="Error">
@@ -36,13 +36,13 @@ export const DeckPage = () => {
   return (
     <Container>
       <Group position="apart">
-        <Title order={2}>{deck?.deckname}</Title>
+        <Title order={2}>{deck.deckname}</Title>
 
         <Group>
           <ButtonLink to={`/decks/${deckId}/create-card`}>Add Card</ButtonLink>
           <ButtonLink to={`/decks/${deckId}/cards`}>Cards</ButtonLink>
           <DeleteDeck />
-          <UpdateDeck />
+          <UpdateDeck deckname={deck.deckname} />
         </Group>
       </Group>
     </Container>
