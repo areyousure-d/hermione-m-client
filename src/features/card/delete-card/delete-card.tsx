@@ -3,6 +3,7 @@ import { useUnit } from "effector-react";
 import { useParams } from "react-router-dom";
 
 import { deleteCardMutation } from "@/entity/card";
+import { Icon } from "@/shared/ui/icon";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";
@@ -24,7 +25,12 @@ export const DeleteCard = ({ cardId }: Props) => {
 
   return (
     <>
-      <Button onClick={openModalFn} color="red" size="xs">
+      <Button
+        onClick={openModalFn}
+        color="red"
+        size="xs"
+        leftIcon={<Icon type="common" name="trash" width={18} height={18} />}
+      >
         Delete card
       </Button>
 

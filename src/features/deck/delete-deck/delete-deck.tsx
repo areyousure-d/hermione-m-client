@@ -3,6 +3,7 @@ import { useUnit } from "effector-react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { deleteDeckMutation } from "@/entity/deck";
+import { Icon } from "@/shared/ui/icon";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";
@@ -24,7 +25,11 @@ export const DeleteDeck = () => {
 
   return (
     <>
-      <Button onClick={openModalFn} color="red">
+      <Button
+        onClick={openModalFn}
+        color="red"
+        leftIcon={<Icon type="common" name="trash" width={18} height={18} />}
+      >
         Delete deck
       </Button>
 
