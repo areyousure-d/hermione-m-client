@@ -4,10 +4,13 @@ export type SpritesMap = {
     | "edit"
     | "exclamation-circle"
     | "info-circle"
+    | "logout"
     | "moon"
     | "settings"
     | "sun-high"
     | "trash"
+    | "user-circle"
+    | "user"
     | "x";
 };
 
@@ -17,10 +20,13 @@ export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
     "edit",
     "exclamation-circle",
     "info-circle",
+    "logout",
     "moon",
     "settings",
     "sun-high",
     "trash",
+    "user-circle",
+    "user",
     "x",
   ],
 };

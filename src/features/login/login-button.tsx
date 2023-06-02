@@ -1,19 +1,16 @@
-import { Button } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { $isAuthorized, tokenErased } from "@/shared/auth/token";
+import { $isAuthorized } from "@/shared/auth/token";
 import { ButtonLink } from "@/shared/ui/button-link";
 
+import { UserAvatar } from "./user-avatar";
+
 export const LoginButton = () => {
-  const [isAuthorized, tokenErasedFn] = useUnit([$isAuthorized, tokenErased]);
+  const [isAuthorized] = useUnit([$isAuthorized]);
 
   if (isAuthorized) {
-    return <Button onClick={tokenErasedFn}>Logout</Button>;
+    return <UserAvatar />;
   }
 
-  return (
-    <>
-      <ButtonLink to="/login">Login</ButtonLink>
-    </>
-  );
+  return <ButtonLink to="/login">Login</ButtonLink>;
 };
