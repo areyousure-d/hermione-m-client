@@ -9,9 +9,9 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-import { LoginButton } from "@/features/login";
-import { SignUpButton } from "@/features/sign-up";
 import { ToggleTheme } from "@/features/toggle-theme";
+import { LoginButton } from "@/features/user/login";
+import { SignUpButton } from "@/features/user/sign-up";
 import { Link } from "@/shared/ui/link";
 
 const useStyles = createStyles((theme) => ({
