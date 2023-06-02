@@ -42,7 +42,7 @@ export const Header = () => {
 
             <Group className={classes.hiddenMobile}>
               <ButtonLink to="/login">login</ButtonLink>
-              <ButtonLink to="/sign-up">sign in</ButtonLink>
+              <ButtonLink to="/sign-up">sign up</ButtonLink>
             </Group>
 
             <Burger

@@ -2,6 +2,11 @@ import { update } from "@farfetched/core";
 import { sample } from "effector";
 
 import { createDeckMutation, deckListQuery } from "@/entity/deck";
+import {
+  showErrorNotification,
+  showLoadingNotification,
+  showSuccessNotification,
+} from "@/shared/lib/notification-helpers";
 import { createModalModel } from "@/shared/ui/modal-with-loading";
 
 export const { $modalOpened, openModal, closeModal } = createModalModel();
@@ -26,4 +31,22 @@ update(deckListQuery, {
       };
     },
   },
+});
+
+createDeckMutation.start.watch(() => {
+  showLoadingNotification({ id: "create-deck", message: "Creating a deck" });
+});
+
+createDeckMutation.finished.success.watch(() => {
+  showSuccessNotification({
+    id: "create-deck",
+    message: "Deck created!",
+  });
+});
+
+createDeckMutation.finished.failure.watch(() => {
+  showErrorNotification({
+    id: "create-deck",
+    message: "Failed to create a deck",
+  });
 });

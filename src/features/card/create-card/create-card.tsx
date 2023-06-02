@@ -3,9 +3,8 @@ import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { createCardMutation } from "@/entity/card";
-
 import { createCardFormSchema } from "./create-card.schema";
+import { createCardMutation } from "./model";
 
 type CreateCardFormErrors = { front: string | null; back: string | null };
 

@@ -1,9 +1,10 @@
 import { Box, LoadingOverlay } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { signUpMutation, User } from "@/entity/user";
+import { User } from "@/entity/user";
 import { Link } from "@/shared/ui/link";
 
+import { signUpMutation } from "./model";
 import { SignUpForm } from "./sign-up-form";
 
 export const SignUp = () => {
