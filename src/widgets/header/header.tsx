@@ -9,8 +9,9 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
+import { LoginButton } from "@/features/login";
+import { SignUpButton } from "@/features/sign-up";
 import { ToggleTheme } from "@/features/toggle-theme";
-import { ButtonLink } from "@/shared/ui/button-link";
 import { Link } from "@/shared/ui/link";
 
 const useStyles = createStyles((theme) => ({
@@ -41,8 +42,8 @@ export const Header = () => {
             <ToggleTheme />
 
             <Group className={classes.hiddenMobile}>
-              <ButtonLink to="/login">login</ButtonLink>
-              <ButtonLink to="/sign-up">sign up</ButtonLink>
+              <LoginButton />
+              <SignUpButton />
             </Group>
 
             <Burger
@@ -64,8 +65,8 @@ export const Header = () => {
       >
         <ScrollArea sx={{ height: "calc(100vh - 6em)" }} mx="md">
           <Group position="center" grow pb="xl" px="md">
-            <ButtonLink to="/login">login in</ButtonLink>
-            <ButtonLink to="/sign-up">sign up</ButtonLink>
+            <LoginButton />
+            <SignUpButton />
           </Group>
         </ScrollArea>
       </Drawer>
