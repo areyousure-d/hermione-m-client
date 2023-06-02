@@ -8,6 +8,7 @@ import { LoginPage } from "./login";
 import { NotFoundPage } from "./not-found";
 import { SignUpPage } from "./sign-up";
 import { UpdateCardPage } from "./update-card";
+import { UserAuth } from "./user-auth";
 
 export const Routing = () => {
   return (
@@ -15,12 +16,37 @@ export const Routing = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
-      <Route path="/decks/:deckId" element={<DeckPage />} />
-      <Route path="/decks/:deckId/cards" element={<Cards />} />
-      <Route path="/decks/:deckId/create-card" element={<CreateCardPage />} />
+      <Route
+        path="/decks/:deckId"
+        element={
+          <UserAuth>
+            <DeckPage />
+          </UserAuth>
+        }
+      />
+      <Route
+        path="/decks/:deckId/cards"
+        element={
+          <UserAuth>
+            <Cards />
+          </UserAuth>
+        }
+      />
+      <Route
+        path="/decks/:deckId/create-card"
+        element={
+          <UserAuth>
+            <CreateCardPage />
+          </UserAuth>
+        }
+      />
       <Route
         path="/decks/:deckId/update-card/:cardId"
-        element={<UpdateCardPage />}
+        element={
+          <UserAuth>
+            <UpdateCardPage />
+          </UserAuth>
+        }
       />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
