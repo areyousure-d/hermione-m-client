@@ -10,14 +10,17 @@ type LoginFormErrors = {
   password: string | null;
 };
 
-const initialFormValues = { username: "", password: "" };
 const initialFormErrors: LoginFormErrors = { username: null, password: null };
 
 type Props = {
   submit: ({ body }: { body: UserLoginDto }) => void;
-};
+} & (
+  | { isUpdate?: false; username?: undefined }
+  | { isUpdate: true; username: string }
+);
 
-export const LoginForm = ({ submit }: Props) => {
+export const LoginForm = ({ submit, username, isUpdate }: Props) => {
+  const initialFormValues = { username: username ?? "", password: "" };
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
@@ -75,7 +78,7 @@ export const LoginForm = ({ submit }: Props) => {
 
         <Group position="right">
           <Button type="reset">Reset</Button>
-          <Button type="submit">Login</Button>
+          <Button type="submit">{isUpdate ? "Update" : "Login"}</Button>
         </Group>
       </Stack>
     </form>

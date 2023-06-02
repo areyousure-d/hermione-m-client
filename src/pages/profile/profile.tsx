@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import { userQuery } from "@/entity/user";
 import { formatDate } from "@/shared/lib/format-date";
+import { UpdateUser } from "@/features/user/update-user";
 
 export const ProfilePage = () => {
   const { start: startUserQuery, pending, data: user } = useUnit(userQuery);
@@ -30,7 +31,7 @@ export const ProfilePage = () => {
           <Title>{user.username}</Title>
 
           <Group>
-            <Button>Edit</Button>
+            <UpdateUser username={user.username} />
             <Button>Delete</Button>
           </Group>
         </Group>

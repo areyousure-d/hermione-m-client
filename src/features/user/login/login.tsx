@@ -3,9 +3,9 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { LoginForm } from "@/entity/user";
 import { $isAuthorized } from "@/shared/auth/token";
 
-import { LoginForm } from "./login-form";
 import { loginMutation } from "./model";
 
 export const Login = () => {
