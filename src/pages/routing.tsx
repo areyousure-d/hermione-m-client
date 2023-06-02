@@ -6,6 +6,7 @@ import { DeckPage } from "./deck";
 import { HomePage } from "./home";
 import { LoginPage } from "./login";
 import { NotFoundPage } from "./not-found";
+import { ProfilePage } from "./profile";
 import { SignUpPage } from "./sign-up";
 import { UpdateCardPage } from "./update-card";
 import { UserAuth } from "./user-auth";
@@ -48,6 +49,15 @@ export const Routing = () => {
           </UserAuth>
         }
       />
+      <Route
+        path="/profile"
+        element={
+          <UserAuth>
+            <ProfilePage />
+          </UserAuth>
+        }
+      />
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

@@ -1,7 +1,7 @@
 import { Box, LoadingOverlay } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { User } from "@/entity/user";
+import { UserLoginDto } from "@/entity/user";
 import { Link } from "@/shared/ui/link";
 
 import { signUpMutation } from "./model";
@@ -11,7 +11,7 @@ export const SignUp = () => {
   const [signUpSuccess] = useUnit([signUpMutation.$succeeded]);
   const { start, pending } = useUnit(signUpMutation);
 
-  const submit = ({ body }: { body: User }) => {
+  const submit = ({ body }: { body: UserLoginDto }) => {
     start({ body });
   };
 

@@ -1,7 +1,7 @@
 import { Button, Group, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { User } from "@/entity/user";
+import { UserLoginDto } from "@/entity/user";
 
 import { signUpFormSchema } from "./sign-up-form.schema";
 
@@ -19,7 +19,7 @@ const initialFormErrors: SignUpFormErrors = {
 };
 
 type Props = {
-  submit: ({ body }: { body: User }) => void;
+  submit: ({ body }: { body: UserLoginDto }) => void;
 };
 
 export const SignUpForm = ({ submit }: Props) => {
