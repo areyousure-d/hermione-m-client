@@ -1,3 +1,5 @@
+import { sample } from "effector";
+
 import { updateUserMutation } from "@/entity/user";
 import {
   showErrorNotification,
@@ -5,7 +7,6 @@ import {
   showSuccessNotification,
 } from "@/shared/lib/notification-helpers";
 import { createModalModel } from "@/shared/ui/modal-with-loading";
-import { sample } from "effector";
 
 export const { $modalOpened, openModal, closeModal } = createModalModel();
 

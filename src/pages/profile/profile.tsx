@@ -3,8 +3,8 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
 import { userQuery } from "@/entity/user";
-import { formatDate } from "@/shared/lib/format-date";
 import { UpdateUser } from "@/features/user/update-user";
+import { formatDate } from "@/shared/lib/format-date";
 
 export const ProfilePage = () => {
   const { start: startUserQuery, pending, data: user } = useUnit(userQuery);

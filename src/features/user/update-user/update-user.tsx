@@ -1,9 +1,10 @@
 import { Button } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { LoginForm, UserLoginDto, updateUserMutation } from "@/entity/user";
+import { LoginForm, updateUserMutation,UserLoginDto } from "@/entity/user";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
-import { $modalOpened, openModal, closeModal } from "./model";
+
+import { $modalOpened, closeModal,openModal } from "./model";
 
 type Props = {
   username: string;
