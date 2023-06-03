@@ -1,4 +1,5 @@
 export {
+  deleteUserMutation,
   loginMutation,
   signUpMutation,
   updateUserMutation,

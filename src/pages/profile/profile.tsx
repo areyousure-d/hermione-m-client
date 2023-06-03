@@ -1,8 +1,9 @@
-import { Box, Button, Container, Group, Stack, Title } from "@mantine/core";
+import { Box, Container, Group, Stack, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
 import { userQuery } from "@/entity/user";
+import { DeleteUser } from "@/features/user/delete-user";
 import { UpdateUser } from "@/features/user/update-user";
 import { formatDate } from "@/shared/lib/format-date";
 
@@ -32,7 +33,7 @@ export const ProfilePage = () => {
 
           <Group>
             <UpdateUser username={user.username} />
-            <Button>Delete</Button>
+            <DeleteUser />
           </Group>
         </Group>
 

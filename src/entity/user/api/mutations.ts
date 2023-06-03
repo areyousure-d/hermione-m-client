@@ -17,6 +17,14 @@ export const updateUserMutation = createMutation({
   contract: userContract,
 });
 
+export const deleteUserMutation = createMutation({
+  effect: createRequestEffect(() => ({
+    path: "/user",
+    method: "DELETE",
+  })),
+  contract: userContract,
+});
+
 export const signUpMutation = createMutation({
   effect: createUnAuthorizedRequestFx({ path: "/auth/signup", method: "POST" }),
 });
