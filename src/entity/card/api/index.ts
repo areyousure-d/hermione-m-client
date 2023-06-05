@@ -1,6 +1,7 @@
 export {
   createCardMutation,
   deleteCardMutation,
+  learnCardMutation,
   updateCardMutation,
 } from "./mutations";
-export { cardListQuery } from "./queries";
+export { cardListQuery, cardsToLearnQuery } from "./queries";

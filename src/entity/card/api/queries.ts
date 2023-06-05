@@ -16,3 +16,11 @@ export const cardListQuery = createQuery({
   effect: fetchCardListFx,
   contract: cardListContract,
 });
+
+export const cardsToLearnQuery = createQuery({
+  effect: createRequestEffect((deckId: string) => ({
+    path: `/learn/${deckId}/cards`,
+    method: "GET",
+  })),
+  contract: cardListContract,
+});

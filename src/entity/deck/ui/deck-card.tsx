@@ -29,6 +29,7 @@ export const DeckCard = ({ deck }: Props) => {
       </Card.Section>
 
       <Group position="right">
+        <ButtonLink to={`/learn/${deck.id}`}>Learn</ButtonLink>
         <ButtonLink to={`/decks/${deck.id}`}>open</ButtonLink>
       </Group>
     </Card>

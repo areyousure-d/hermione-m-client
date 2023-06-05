@@ -4,6 +4,7 @@ import { Cards } from "./cards";
 import { CreateCardPage } from "./create-card";
 import { DeckPage } from "./deck";
 import { HomePage } from "./home";
+import { LearnCardPage } from "./learn-card";
 import { LoginPage } from "./login";
 import { NotFoundPage } from "./not-found";
 import { ProfilePage } from "./profile";
@@ -54,6 +55,14 @@ export const Routing = () => {
         element={
           <UserAuth>
             <ProfilePage />
+          </UserAuth>
+        }
+      />
+      <Route
+        path="/learn/:deckId"
+        element={
+          <UserAuth>
+            <LearnCardPage />
           </UserAuth>
         }
       />

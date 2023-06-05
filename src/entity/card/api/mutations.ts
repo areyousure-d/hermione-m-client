@@ -5,6 +5,7 @@ import { Deck } from "@/entity/deck";
 import { createRequestEffect } from "@/shared/api";
 
 import { Card, cardSchema } from "../card.schema";
+import { Rating } from "../types";
 
 const cardContract = zodContract(cardSchema);
 
@@ -44,6 +45,25 @@ export const updateCardMutation = createMutation({
       path: `/decks/${deckId}/cards/${cardId}`,
       method: "PATCH",
       body,
+    })
+  ),
+  contract: cardContract,
+});
+
+export const learnCardMutation = createMutation({
+  effect: createRequestEffect(
+    ({
+      cardId,
+      deckId,
+      rating,
+    }: {
+      cardId: Card["id"];
+      deckId: Deck["id"];
+      rating: Rating;
+    }) => ({
+      path: `/learn/${deckId}/learn-card/${cardId}`,
+      method: "POST",
+      body: { rating },
     })
   ),
   contract: cardContract,
