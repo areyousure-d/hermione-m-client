@@ -1,7 +1,7 @@
 import { Box, LoadingOverlay } from "@mantine/core";
 import { useUnit } from "effector-react";
 
-import { UserLoginDto } from "@/entity/user";
+import { UserLoginDto } from "@/entities/user";
 import { Link } from "@/shared/ui/link";
 
 import { signUpMutation } from "./model";

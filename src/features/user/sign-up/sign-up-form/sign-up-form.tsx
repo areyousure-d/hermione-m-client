@@ -1,7 +1,7 @@
 import { Button, Group, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { UserLoginDto } from "@/entity/user";
+import { UserLoginDto } from "@/entities/user";
 
 import { signUpFormSchema } from "./sign-up-form.schema";
 

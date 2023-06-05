@@ -1,7 +1,7 @@
 import { update } from "@farfetched/core";
 import { sample } from "effector";
 
-import { deckListQuery, deleteDeckMutation } from "@/entity/deck";
+import { deckListQuery, deleteDeckMutation } from "@/entities/deck";
 import {
   showErrorNotification,
   showLoadingNotification,

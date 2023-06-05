@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { cardsToLearnQuery } from "@/entity/card";
+import { cardsToLearnQuery } from "@/entities/card";
 import { Alert } from "@/shared/ui/alert";
 
 import { Buttons } from "./buttons";

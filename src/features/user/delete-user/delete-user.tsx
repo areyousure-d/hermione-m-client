@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { deleteUserMutation } from "@/entity/user";
+import { deleteUserMutation } from "@/entities/user";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";

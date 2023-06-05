@@ -2,7 +2,7 @@ import { Button, Group, Stack, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { deleteDeckMutation } from "@/entity/deck";
+import { deleteDeckMutation } from "@/entities/deck";
 import { Icon } from "@/shared/ui/icon";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 

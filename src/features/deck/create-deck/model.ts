@@ -1,7 +1,7 @@
 import { update } from "@farfetched/core";
 import { sample } from "effector";
 
-import { createDeckMutation, deckListQuery } from "@/entity/deck";
+import { createDeckMutation, deckListQuery } from "@/entities/deck";
 import {
   showErrorNotification,
   showLoadingNotification,

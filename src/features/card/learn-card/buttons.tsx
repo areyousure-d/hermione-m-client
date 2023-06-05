@@ -2,7 +2,7 @@ import { Box, Button, Group } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useParams } from "react-router-dom";
 
-import { Card, learnCardMutation, Rating } from "@/entity/card";
+import { Card, learnCardMutation, Rating } from "@/entities/card";
 
 type Props = {
   setIsAnswerVisible: (isCardVisible: boolean) => void;

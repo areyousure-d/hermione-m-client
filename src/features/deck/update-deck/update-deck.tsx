@@ -2,7 +2,7 @@ import { Button } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useParams } from "react-router-dom";
 
-import { Deck, updateDeckMutation } from "@/entity/deck";
+import { Deck, updateDeckMutation } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";

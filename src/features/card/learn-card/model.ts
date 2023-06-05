@@ -1,6 +1,6 @@
 import { createEvent, createStore, sample } from "effector";
 
-import { Card, cardsToLearnQuery } from "@/entity/card";
+import { Card, cardsToLearnQuery } from "@/entities/card";
 
 export const fetchCardsToLearn = createEvent<string>();
 

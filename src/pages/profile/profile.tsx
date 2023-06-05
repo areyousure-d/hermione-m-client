@@ -2,7 +2,7 @@ import { Box, Container, Group, Stack, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
-import { userQuery } from "@/entity/user";
+import { userQuery } from "@/entities/user";
 import { DeleteUser } from "@/features/user/delete-user";
 import { UpdateUser } from "@/features/user/update-user";
 import { formatDate } from "@/shared/lib/format-date";

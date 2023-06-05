@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { LoginForm } from "@/entity/user";
+import { LoginForm } from "@/entities/user";
 import { $isAuthorized } from "@/shared/auth/token";
 
 import { loginMutation } from "./model";

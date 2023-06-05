@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { cardListQuery } from "@/entity/card";
+import { cardListQuery } from "@/entities/card";
 
 import { updateCardMutation } from "./model";
 import { updateCardFormSchema } from "./update-card.schema";

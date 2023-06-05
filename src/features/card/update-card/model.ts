@@ -1,6 +1,6 @@
 import { update } from "@farfetched/core";
 
-import { cardListQuery, updateCardMutation } from "@/entity/card";
+import { cardListQuery, updateCardMutation } from "@/entities/card";
 import {
   showErrorNotification,
   showLoadingNotification,

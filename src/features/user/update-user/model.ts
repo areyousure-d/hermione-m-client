@@ -1,6 +1,6 @@
 import { sample } from "effector";
 
-import { updateUserMutation } from "@/entity/user";
+import { updateUserMutation } from "@/entities/user";
 import {
   showErrorNotification,
   showLoadingNotification,

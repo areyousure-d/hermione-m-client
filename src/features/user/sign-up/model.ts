@@ -1,4 +1,4 @@
-import { signUpMutation } from "@/entity/user";
+import { signUpMutation } from "@/entities/user";
 import {
   showErrorNotification,
   showLoadingNotification,

@@ -1,6 +1,6 @@
 import { sample } from "effector";
 
-import { deleteUserMutation } from "@/entity/user";
+import { deleteUserMutation } from "@/entities/user";
 import { tokenErased } from "@/shared/auth/token";
 import { createModalModel } from "@/shared/ui/modal-with-loading";
 

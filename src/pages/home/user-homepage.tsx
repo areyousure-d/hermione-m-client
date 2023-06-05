@@ -2,7 +2,7 @@ import { Container, Group } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
-import { DeckCard, DeckList, deckListQuery } from "@/entity/deck";
+import { DeckCard, DeckList, deckListQuery } from "@/entities/deck";
 import { CreateDeck } from "@/features/deck/create-deck";
 
 export const UserHomepage = () => {

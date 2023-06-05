@@ -2,7 +2,7 @@ import { Button, Group, Stack, TextInput } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { createDeckMutation } from "@/entity/deck";
+import { createDeckMutation } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";

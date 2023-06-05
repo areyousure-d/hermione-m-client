@@ -2,7 +2,7 @@ import { Button, Group, Stack, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useParams } from "react-router-dom";
 
-import { deleteCardMutation } from "@/entity/card";
+import { deleteCardMutation } from "@/entities/card";
 import { Icon } from "@/shared/ui/icon";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 

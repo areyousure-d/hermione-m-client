@@ -1,7 +1,7 @@
 import { Button, Group, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Deck } from "@/entity/deck";
+import { Deck } from "@/entities/deck";
 
 type Props = {
   initialDeckname: string;

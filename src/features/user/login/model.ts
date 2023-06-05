@@ -1,6 +1,6 @@
 import { sample } from "effector";
 
-import { loginMutation } from "@/entity/user";
+import { loginMutation } from "@/entities/user";
 import { tokenReceived } from "@/shared/auth/token";
 import {
   showErrorNotification,

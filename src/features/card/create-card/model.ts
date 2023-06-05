@@ -1,4 +1,4 @@
-import { createCardMutation } from "@/entity/card";
+import { createCardMutation } from "@/entities/card";
 import {
   showErrorNotification,
   showLoadingNotification,

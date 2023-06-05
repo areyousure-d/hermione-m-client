@@ -1,7 +1,7 @@
 import { update } from "@farfetched/core";
 import { sample } from "effector";
 
-import { cardListQuery, deleteCardMutation } from "@/entity/card";
+import { cardListQuery, deleteCardMutation } from "@/entities/card";
 import {
   showErrorNotification,
   showLoadingNotification,

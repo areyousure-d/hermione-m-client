@@ -1,7 +1,7 @@
 import { createMutation } from "@farfetched/core";
 import { zodContract } from "@farfetched/zod";
 
-import { Deck } from "@/entity/deck";
+import { Deck } from "@/entities/deck";
 import { createRequestEffect } from "@/shared/api";
 
 import { Card, cardSchema } from "../card.schema";

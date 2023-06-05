@@ -3,8 +3,8 @@ import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { cardListQuery } from "@/entity/card";
-import { CardPreview } from "@/entity/card/ui";
+import { cardListQuery } from "@/entities/card";
+import { CardPreview } from "@/entities/card/ui";
 import { DeleteCard } from "@/features/card/delete-card";
 import { ButtonLink } from "@/shared/ui/button-link";
 

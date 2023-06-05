@@ -1,6 +1,6 @@
 import { Box, Divider, Text } from "@mantine/core";
 
-import { Card } from "@/entity/card";
+import { Card } from "@/entities/card";
 
 type Props = {
   answerIsVisible: boolean;
