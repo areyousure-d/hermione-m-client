@@ -20,7 +20,7 @@ export const Login = () => {
   }, [isAuthorized, navigate]);
 
   return (
-    <Box sx={{ width: "320px", margin: "auto" }}>
+    <Box sx={{ maxWidth: "320px", margin: "auto" }}>
       <LoadingOverlay visible={pending} overlayBlur={3} />
       <LoginForm submit={start} />
     </Box>

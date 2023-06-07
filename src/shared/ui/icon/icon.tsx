@@ -14,7 +14,7 @@ export const Icon = <Group extends keyof SpritesMap = "common">({
 }: Props<Group>) => {
   return (
     <svg {...svgProps}>
-      <use xlinkHref={`/public/${type}.svg#${name}`} />
+      <use xlinkHref={`/${type}.svg#${name}`} />
     </svg>
   );
 };

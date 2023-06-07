@@ -5,12 +5,20 @@ import { ButtonLink } from "@/shared/ui/button-link";
 
 import { UserAvatar } from "./user-avatar";
 
-export const LoginButton = () => {
+type Props = {
+  closeDrawer?: () => void;
+};
+
+export const LoginButton = ({ closeDrawer }: Props) => {
   const [isAuthorized] = useUnit([$isAuthorized]);
 
   if (isAuthorized) {
     return <UserAvatar />;
   }
 
-  return <ButtonLink to="/login">Login</ButtonLink>;
+  return (
+    <ButtonLink to="/login" onClick={closeDrawer}>
+      Login
+    </ButtonLink>
+  );
 };
