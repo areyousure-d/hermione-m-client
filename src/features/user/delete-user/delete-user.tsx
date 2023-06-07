@@ -30,7 +30,7 @@ export const DeleteUser = () => {
       </Button>
 
       <ModalWithLoading
-        title="Delete account"
+        title="Delete your account"
         opened={modalOpened}
         onClose={closeModalFn}
         loading={pending}

@@ -49,6 +49,8 @@ export const CreateCard = () => {
     setFormErrors(errors);
   };
 
+  const resetForm = () => setFormValues(initialFormValues);
+
   return (
     <form onSubmit={onSubmit}>
       <Stack>
@@ -75,7 +77,7 @@ export const CreateCard = () => {
         />
 
         <Group position="right">
-          <Button type="reset">Reset</Button>
+          <Button onClick={resetForm}>Reset</Button>
           <Button type="submit">Create card</Button>
         </Group>
       </Stack>

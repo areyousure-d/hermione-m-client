@@ -33,6 +33,11 @@ export const CreateDeck = () => {
     createDeck({ deckname });
   };
 
+  const resetForm = () => {
+    setDeckname("");
+    setDecknameError(null);
+  };
+
   return (
     <>
       <Button onClick={openModalFn}>Create Deck</Button>
@@ -40,7 +45,7 @@ export const CreateDeck = () => {
       <ModalWithLoading
         opened={modalOpened}
         onClose={closeModalFn}
-        title="Create deck"
+        title="Create new deck"
         loading={pending}
       >
         <form onSubmit={onSubmit}>
@@ -56,7 +61,7 @@ export const CreateDeck = () => {
             />
 
             <Group position="right">
-              <Button type="reset" size="xs">
+              <Button onClick={resetForm} size="xs">
                 Reset
               </Button>
               <Button type="submit" size="xs">

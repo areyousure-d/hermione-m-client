@@ -21,7 +21,8 @@ export const UpdateDeckForm = ({ initialDeckname, updateDeck }: Props) => {
     event.preventDefault();
 
     if (deckname.length === 0) {
-      setError("Deck name cannot be empty");
+      setError("Deckname cannot be empty");
+      return;
     }
 
     updateDeck({ deckname });

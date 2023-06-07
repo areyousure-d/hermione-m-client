@@ -68,6 +68,8 @@ export const SignUpForm = ({ submit }: Props) => {
     setFormErrors(errors);
   };
 
+  const resetForm = () => setFormValues(initialFormValues);
+
   return (
     <form onSubmit={onSubmit}>
       <Stack>
@@ -100,7 +102,7 @@ export const SignUpForm = ({ submit }: Props) => {
         />
 
         <Group position="right">
-          <Button type="reset">Reset</Button>
+          <Button onClick={resetForm}>Reset</Button>
           <Button type="submit">Sign up</Button>
         </Group>
       </Stack>
