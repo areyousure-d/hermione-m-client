@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 
-import { Card } from "..";
-import { CardPreview } from ".";
+import { Card } from "../..";
+import { CardPreview } from "..";
 
 const card: Card = {
   id: 1,
