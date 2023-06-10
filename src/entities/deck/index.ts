@@ -6,4 +6,4 @@ export {
   updateDeckMutation,
 } from "./api";
 export type { Deck } from "./deck.schema";
-export { DeckCard, DeckList } from "./ui";
+export { DeckCard, DeckEditForm, DeckList } from "./ui";

@@ -1,14 +1,12 @@
 import { Button, Group, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Deck } from "@/entities/deck";
-
 type Props = {
-  initialDeckname: string;
-  updateDeck: (params: Pick<Deck, "deckname">) => void;
+  initialDeckname?: string;
+  submit: (deckname: string) => void;
 };
 
-export const UpdateDeckForm = ({ initialDeckname, updateDeck }: Props) => {
+export const DeckEditForm = ({ initialDeckname = "", submit }: Props) => {
   const [deckname, setDeckname] = useState(initialDeckname);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,12 +23,15 @@ export const UpdateDeckForm = ({ initialDeckname, updateDeck }: Props) => {
       return;
     }
 
-    updateDeck({ deckname });
+    submit(deckname);
   };
 
   const onReset = () => {
     setDeckname(initialDeckname);
   };
+
+  const submitButtonText =
+    initialDeckname === "" ? "Create deck" : "Update deck";
 
   return (
     <form onSubmit={onSubmit}>
@@ -46,8 +47,12 @@ export const UpdateDeckForm = ({ initialDeckname, updateDeck }: Props) => {
         />
 
         <Group position="right">
-          <Button onClick={onReset}>Reset</Button>
-          <Button type="submit">Update</Button>
+          <Button onClick={onReset} size="xs">
+            Reset
+          </Button>
+          <Button type="submit" size="xs">
+            {submitButtonText}
+          </Button>
         </Group>
       </Stack>
     </form>

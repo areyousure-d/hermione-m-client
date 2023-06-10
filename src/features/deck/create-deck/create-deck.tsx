@@ -1,16 +1,12 @@
-import { Button, Group, Stack, TextInput } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { useUnit } from "effector-react";
-import { ChangeEvent, FormEvent, useState } from "react";
 
-import { createDeckMutation } from "@/entities/deck";
+import { createDeckMutation, Deck, DeckEditForm } from "@/entities/deck";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";
 
 export const CreateDeck = () => {
-  const [deckname, setDeckname] = useState("");
-  const [decknameError, setDecknameError] = useState<string | null>(null);
-
   const { start: createDeck, pending } = useUnit(createDeckMutation);
   const [modalOpened, openModalFn, closeModalFn] = useUnit([
     $modalOpened,
@@ -18,24 +14,8 @@ export const CreateDeck = () => {
     closeModal,
   ]);
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setDeckname(event.target.value);
-  };
-
-  const onSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
-    if (deckname.length === 0) {
-      setDecknameError("Deck name cannot be empty");
-      return;
-    }
-
+  const submit = (deckname: Deck["deckname"]) => {
     createDeck({ deckname });
-  };
-
-  const resetForm = () => {
-    setDeckname("");
-    setDecknameError(null);
   };
 
   return (
@@ -48,28 +28,7 @@ export const CreateDeck = () => {
         title="Create new deck"
         loading={pending}
       >
-        <form onSubmit={onSubmit}>
-          <Stack>
-            <TextInput
-              type="text"
-              name="deckname"
-              label="Deckname"
-              placeholder="deckname"
-              value={deckname}
-              onChange={onChange}
-              error={decknameError}
-            />
-
-            <Group position="right">
-              <Button onClick={resetForm} size="xs">
-                Reset
-              </Button>
-              <Button type="submit" size="xs">
-                Create
-              </Button>
-            </Group>
-          </Stack>
-        </form>
+        <DeckEditForm submit={submit} />
       </ModalWithLoading>
     </>
   );
