@@ -21,15 +21,17 @@ export const UserAvatar = () => {
       <Menu.Target>
         <ActionIcon
           size="lg"
+          variant="outline"
+          color="blue"
           sx={(theme) => ({
             backgroundColor:
               theme.colorScheme === "dark"
                 ? theme.colors.dark[4]
-                : theme.colors.gray[1],
+                : theme.colors.black,
             color:
               theme.colorScheme === "dark"
                 ? theme.colors.blue[4]
-                : theme.colors.dark[6],
+                : theme.colors.blue[6],
           })}
         >
           <Icon type="common" name="user-circle" width={24} height={24} />
