@@ -1,4 +1,4 @@
-import { Container, Group } from "@mantine/core";
+import { Container, Group, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 
@@ -22,7 +22,10 @@ export const UserHomepage = () => {
 
   return (
     <Container>
-      <Group position="right">
+      <Group position="apart" mb="lg">
+        <Title order={2} fw="500">
+          Decks
+        </Title>
         <CreateDeck />
       </Group>
 

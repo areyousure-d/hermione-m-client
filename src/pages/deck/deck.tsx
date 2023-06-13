@@ -9,6 +9,9 @@ import { UpdateDeck } from "@/features/deck/update-deck";
 import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
 
+import { CardList } from "./card-list";
+import { DeckInfo } from "./deck-info";
+
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
 
@@ -35,17 +38,20 @@ export const DeckPage = () => {
 
   return (
     <Container>
-      <Group position="apart">
-        <Title order={2}>{deck.deckname}</Title>
+      <Group position="apart" mb="lg">
+        <Title order={1}>{deck.deckname}</Title>
 
         <Group>
           <ButtonLink to={`/learn/${deck.id}`}>Learn</ButtonLink>
           <ButtonLink to={`/decks/${deckId}/create-card`}>Add Card</ButtonLink>
-          <ButtonLink to={`/decks/${deckId}/cards`}>Cards</ButtonLink>
           <DeleteDeck />
           <UpdateDeck deckname={deck.deckname} />
         </Group>
       </Group>
+
+      <DeckInfo deck={deck} />
+
+      <CardList />
     </Container>
   );
 };

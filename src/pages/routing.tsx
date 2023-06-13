@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 
-import { Cards } from "./cards";
 import { CreateCardPage } from "./create-card";
 import { DeckPage } from "./deck";
 import { HomePage } from "./home";
@@ -23,14 +22,6 @@ export const Routing = () => {
         element={
           <UserAuth>
             <DeckPage />
-          </UserAuth>
-        }
-      />
-      <Route
-        path="/decks/:deckId/cards"
-        element={
-          <UserAuth>
-            <Cards />
           </UserAuth>
         }
       />

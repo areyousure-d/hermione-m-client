@@ -1,4 +1,4 @@
-import { Container, SimpleGrid, Title } from "@mantine/core";
+import { Box, SimpleGrid, Text, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ import { CardPreview } from "@/entities/card/ui";
 import { DeleteCard } from "@/features/card/delete-card";
 import { ButtonLink } from "@/shared/ui/button-link";
 
-export const Cards = () => {
+export const CardList = () => {
   const { deckId } = useParams() as { deckId: string };
 
   const {
@@ -25,10 +25,12 @@ export const Cards = () => {
     return <div>loading</div>;
   }
 
+  const cardListIsEmpty = !cardList || cardList.length === 0;
+
   return (
-    <Container>
-      <Title order={1} mb="lg">
-        Cards
+    <Box>
+      <Title order={2} mb="lg">
+        cards
       </Title>
 
       <SimpleGrid
@@ -40,20 +42,24 @@ export const Cards = () => {
           { maxWidth: "xs", cols: 1, spacing: "xs" },
         ]}
       >
-        {cardList?.map((card) => {
-          return (
-            <CardPreview key={card.id} card={card}>
-              <DeleteCard cardId={card.id} />
-              <ButtonLink
-                to={`/decks/${deckId}/update-card/${card.id}`}
-                size="xs"
-              >
-                Update
-              </ButtonLink>
-            </CardPreview>
-          );
-        })}
+        {cardListIsEmpty ? (
+          <Text>deck is empty</Text>
+        ) : (
+          cardList.map((card) => {
+            return (
+              <CardPreview key={card.id} card={card}>
+                <DeleteCard cardId={card.id} />
+                <ButtonLink
+                  to={`/decks/${deckId}/update-card/${card.id}`}
+                  size="xs"
+                >
+                  Update
+                </ButtonLink>
+              </CardPreview>
+            );
+          })
+        )}
       </SimpleGrid>
-    </Container>
+    </Box>
   );
 };
