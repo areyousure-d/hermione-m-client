@@ -1,7 +1,7 @@
-import { Button } from "@mantine/core";
 import { useUnit } from "effector-react";
 
 import { LoginForm, updateUserMutation, UserLoginDto } from "@/entities/user";
+import { Button } from "@/shared/ui/button";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";

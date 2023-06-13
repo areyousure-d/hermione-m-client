@@ -36,7 +36,16 @@ export const Header = () => {
     <Box>
       <MantineHeader height={60} px="md">
         <Group position="apart" sx={{ height: "100%" }}>
-          <Link to="/">hermione-m</Link>
+          <Link
+            to="/"
+            span
+            sx={(theme) => ({
+              fontWeight: 600,
+              fontSize: theme.fontSizes.lg,
+            })}
+          >
+            hermione-m
+          </Link>
 
           <Group>
             <ToggleTheme />

@@ -1,5 +1,7 @@
-import { Button, Group, Stack, Textarea } from "@mantine/core";
+import { Group, Stack, Textarea } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
+
+import { Button } from "@/shared/ui/button";
 
 import { Card } from "../..";
 import { cardEditSchema } from "./card-edit.schema";

@@ -25,7 +25,16 @@ export const MantineProvider = ({ children }: Props) => {
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <Provider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+      <Provider
+        theme={{
+          colorScheme,
+          fontFamily: "Montserrat, sans-serif",
+          fontFamilyMonospace: "Inconsolata, monospace",
+          headings: { fontFamily: "Inconsolata, monospace" },
+        }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
         <Notifications />
 
         {children}

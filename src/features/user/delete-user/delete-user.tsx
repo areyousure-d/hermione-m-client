@@ -1,9 +1,10 @@
-import { Button, Group, Stack, Text } from "@mantine/core";
+import { Group, Stack, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { deleteUserMutation } from "@/entities/user";
+import { Button } from "@/shared/ui/button";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
 import { $modalOpened, closeModal, openModal } from "./model";

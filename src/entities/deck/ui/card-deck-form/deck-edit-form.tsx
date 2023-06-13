@@ -1,5 +1,7 @@
-import { Button, Group, Stack, TextInput } from "@mantine/core";
+import { Group, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
+
+import { Button } from "@/shared/ui/button";
 
 type Props = {
   initialDeckname?: string;

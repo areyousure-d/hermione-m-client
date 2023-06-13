@@ -1,7 +1,8 @@
-import { Button, Group, Stack, TextInput } from "@mantine/core";
+import { Group, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { UserLoginDto } from "@/entities/user";
+import { Button } from "@/shared/ui/button";
 
 import { loginFormSchema } from "./login-form.schema";
 
