@@ -1,7 +1,7 @@
 import { Card as MantineCard, createStyles, Group, Text } from "@mantine/core";
 import { ReactNode } from "react";
 
-import { Card } from "../card.schema";
+import { Card } from "../../card.schema";
 
 const useStyles = createStyles((_theme) => ({
   card: {

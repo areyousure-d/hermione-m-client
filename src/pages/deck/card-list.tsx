@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Text, Title } from "@mantine/core";
+import { SimpleGrid, Text } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -6,11 +6,14 @@ import { useParams } from "react-router-dom";
 import { cardListQuery } from "@/entities/card";
 import { CardPreview } from "@/entities/card/ui";
 import { DeleteCard } from "@/features/card/delete-card";
+import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
+import { CardSkeleton } from "@/shared/ui/card-skeleton";
 
 export const CardList = () => {
   const { deckId } = useParams() as { deckId: string };
 
+  const [cardListQueryFailed] = useUnit([cardListQuery.$failed]);
   const {
     start: startFetchCardList,
     data: cardList,
@@ -21,45 +24,47 @@ export const CardList = () => {
     startFetchCardList(deckId);
   }, [startFetchCardList, deckId]);
 
-  if (pending) {
-    return <div>loading</div>;
+  if (cardListQueryFailed) {
+    return (
+      <Alert variant="error" title="Error">
+        error fetching cards
+      </Alert>
+    );
   }
 
   const cardListIsEmpty = !cardList || cardList.length === 0;
 
-  return (
-    <Box>
-      <Title order={2} mb="lg">
-        cards
-      </Title>
+  if (cardListIsEmpty) {
+    return <Text>deck is empty</Text>;
+  }
 
-      <SimpleGrid
-        cols={3}
-        spacing="md"
-        verticalSpacing="lg"
-        breakpoints={[
-          { maxWidth: "sm", cols: 2, spacing: "sm" },
-          { maxWidth: "xs", cols: 1, spacing: "xs" },
-        ]}
-      >
-        {cardListIsEmpty ? (
-          <Text>deck is empty</Text>
-        ) : (
-          cardList.map((card) => {
-            return (
-              <CardPreview key={card.id} card={card}>
-                <DeleteCard cardId={card.id} />
-                <ButtonLink
-                  to={`/decks/${deckId}/update-card/${card.id}`}
-                  size="xs"
-                >
-                  Update
-                </ButtonLink>
-              </CardPreview>
-            );
-          })
-        )}
-      </SimpleGrid>
-    </Box>
+  return (
+    <SimpleGrid
+      cols={3}
+      spacing="md"
+      verticalSpacing="lg"
+      breakpoints={[
+        { maxWidth: "sm", cols: 2, spacing: "sm" },
+        { maxWidth: "xs", cols: 1, spacing: "xs" },
+      ]}
+    >
+      {pending ? (
+        <CardSkeleton cardsNumber={3} />
+      ) : (
+        cardList.map((card) => {
+          return (
+            <CardPreview key={card.id} card={card}>
+              <DeleteCard cardId={card.id} />
+              <ButtonLink
+                to={`/decks/${deckId}/update-card/${card.id}`}
+                size="xs"
+              >
+                Update
+              </ButtonLink>
+            </CardPreview>
+          );
+        })
+      )}
+    </SimpleGrid>
   );
 };

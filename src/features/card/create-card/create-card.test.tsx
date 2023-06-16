@@ -9,7 +9,7 @@ import { CreateCard } from ".";
 import { createCardMutation } from "./model";
 
 describe("CreateCard", () => {
-  test("should render notification", async () => {
+  test("should render success notification", async () => {
     const cardBody = {
       front: "front",
       back: "back",
@@ -40,5 +40,37 @@ describe("CreateCard", () => {
     });
 
     expect(queryByText(/card created!/i)).toBeInTheDocument();
+  });
+
+  test("should render error notification", async () => {
+    const cardBody = {
+      front: "front",
+      back: "back",
+    };
+
+    const scope = fork({
+      handlers: new Map([
+        [
+          createCardMutation.__.executeFx,
+          () => {
+            throw new Error("createCardMutation test error");
+          },
+        ],
+      ]),
+    });
+    const { queryByText, getByText, getByLabelText } = render(
+      renderWithNotifications(<CreateCard />)
+    );
+    await userEvent.type(getByLabelText(/question/i), "test question");
+    await userEvent.type(getByLabelText(/answer/i), "test answer");
+    act(() => {
+      userEvent.click(getByText(/create card/i));
+    });
+    await allSettled(createCardMutation.start, {
+      scope,
+      params: { body: cardBody, deckId: 1 },
+    });
+
+    expect(queryByText(/Failed to create a card/i)).toBeInTheDocument();
   });
 });

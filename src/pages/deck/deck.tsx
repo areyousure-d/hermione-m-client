@@ -8,6 +8,7 @@ import { DeleteDeck } from "@/features/deck/delete-deck";
 import { UpdateDeck } from "@/features/deck/update-deck";
 import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
+import { PageLoader } from "@/shared/ui/page-loader";
 
 import { CardList } from "./card-list";
 import { DeckInfo } from "./deck-info";
@@ -23,14 +24,14 @@ export const DeckPage = () => {
   }, [fetchDeckById, deckId]);
 
   if (pending) {
-    return <div>loading</div>;
+    return <PageLoader />;
   }
 
   if (deckByIdQueryFailed || !deck) {
     return (
       <Container>
         <Alert variant="error" title="Error">
-          Error when fetching deck with id {deckId}
+          Error fetching deck with id {deckId}
         </Alert>
       </Container>
     );
@@ -51,6 +52,9 @@ export const DeckPage = () => {
 
       <DeckInfo deck={deck} />
 
+      <Title order={2} mb="lg">
+        cards
+      </Title>
       <CardList />
     </Container>
   );
