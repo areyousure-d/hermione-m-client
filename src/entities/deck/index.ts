@@ -5,5 +5,5 @@ export {
   deleteDeckMutation,
   updateDeckMutation,
 } from "./api";
-export type { Deck } from "./deck.schema";
+export type { Deck, DeckWithCardsInfo } from "./deck.schema";
 export { DeckCard, DeckEditForm, DeckList } from "./ui";

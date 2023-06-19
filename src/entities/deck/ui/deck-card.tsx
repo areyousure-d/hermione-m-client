@@ -1,11 +1,19 @@
-import { Card, createStyles, Group, Title } from "@mantine/core";
+import {
+  Badge,
+  Card,
+  createStyles,
+  Group,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 
 import { ButtonLink } from "@/shared/ui/button-link";
 
-import { Deck } from "../deck.schema";
+import { DeckWithCardsInfo } from "../deck.schema";
 
 type Props = {
-  deck: Deck;
+  deck: DeckWithCardsInfo;
 };
 
 const useStyles = createStyles((_theme) => ({
@@ -28,12 +36,27 @@ export const DeckCard = ({ deck }: Props) => {
         </Title>
       </Card.Section>
 
-      <Group position="right">
-        <ButtonLink to={`/learn/${deck.id}`} variant="outline">
-          Learn
-        </ButtonLink>
+      <Group position="center">
+        <Stack spacing="xs">
+          <Badge color="blue">new</Badge>
+          <Text align="center">{deck.cardsInfo.newCards}</Text>
+        </Stack>
+        <Stack spacing="xs">
+          <Badge color="red">learn</Badge>
+          <Text align="center">{deck.cardsInfo.learnPhase}</Text>
+        </Stack>
+        <Stack spacing="xs">
+          <Badge color="teal">review</Badge>
+          <Text align="center">{deck.cardsInfo.reviewPhase}</Text>
+        </Stack>
+      </Group>
+
+      <Group position="center">
         <ButtonLink to={`/decks/${deck.id}`} variant="outline">
           Open
+        </ButtonLink>
+        <ButtonLink to={`/learn/${deck.id}`} variant="outline">
+          Learn
         </ButtonLink>
       </Group>
     </Card>

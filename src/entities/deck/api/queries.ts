@@ -3,14 +3,14 @@ import { zodContract } from "@farfetched/zod";
 
 import { createRequestEffect } from "@/shared/api";
 
-import { deckSchema } from "../deck.schema";
+import { deckSchema, deckWithCardsInfoSchema } from "../deck.schema";
 
 const fetchDeckListFx = createRequestEffect(() => ({
   path: "/decks",
   method: "GET",
 }));
 
-const deckListContract = zodContract(deckSchema.array());
+const deckListContract = zodContract(deckWithCardsInfoSchema.array());
 
 export const deckListQuery = createQuery({
   effect: fetchDeckListFx,

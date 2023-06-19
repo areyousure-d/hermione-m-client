@@ -7,7 +7,7 @@ import { cardSchema } from "../card.schema";
 
 const cardListContract = zodContract(cardSchema.array());
 
-const fetchCardListFx = createRequestEffect((deckId: string) => ({
+const fetchCardListFx = createRequestEffect((deckId: string | number) => ({
   path: `/decks/${deckId}/cards`,
   method: "GET",
 }));
@@ -18,7 +18,7 @@ export const cardListQuery = createQuery({
 });
 
 export const cardsToLearnQuery = createQuery({
-  effect: createRequestEffect((deckId: string) => ({
+  effect: createRequestEffect((deckId: string | number) => ({
     path: `/learn/${deckId}/cards`,
     method: "GET",
   })),
