@@ -11,5 +11,5 @@ export const createMockCard = (cardId: number) => {
     interval: 60 * 1000 * 10,
     phase: "learn",
     steps: 0,
-  };
+  } as const;
 };

@@ -1,16 +1,10 @@
 import { render } from "@testing-library/react";
 
-import { Card } from "../..";
+import { createMockCard } from "@/tests/helpers";
+
 import { CardPreview } from "..";
 
-const card: Card = {
-  id: 1,
-  front: "front",
-  back: "back",
-  deckId: 1,
-  createdAt: new Date().toString(),
-  updatedAt: new Date().toString(),
-};
+const card = createMockCard(1);
 
 describe("CardPreview", () => {
   test("should render card front", () => {

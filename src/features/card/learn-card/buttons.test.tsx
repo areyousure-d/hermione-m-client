@@ -2,6 +2,8 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 
+import { createMockCard } from "@/tests/helpers";
+
 import { Buttons } from "./buttons";
 
 describe("Buttons", () => {
@@ -80,14 +82,7 @@ describe("Buttons", () => {
   });
 
   test("should call fetchCardsToLearn function", async () => {
-    const card = {
-      id: 1,
-      front: "test question",
-      back: "test answer",
-      createdAt: new Date().toDateString(),
-      updatedAt: new Date().toDateString(),
-      deckId: 1,
-    };
+    const card = createMockCard(1);
     const mockFn = vi.fn();
     const { getByText } = render(
       <Buttons
@@ -104,14 +99,7 @@ describe("Buttons", () => {
   });
 
   test("should call setIsAnswerVisible function after rating button clicked", async () => {
-    const card = {
-      id: 1,
-      front: "test question",
-      back: "test answer",
-      createdAt: new Date().toDateString(),
-      updatedAt: new Date().toDateString(),
-      deckId: 1,
-    };
+    const card = createMockCard(1);
     const mockFn = vi.fn();
     const { getByText } = render(
       <Buttons
