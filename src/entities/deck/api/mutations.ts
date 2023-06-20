@@ -7,7 +7,7 @@ import { Deck, deckSchema } from "../deck.schema";
 
 const deckContract = zodContract(deckSchema);
 
-export const updateDeckMutation = createMutation({
+export const editDeckMutation = createMutation({
   effect: createRequestEffect((deck: Pick<Deck, "id" | "deckname">) => ({
     path: `/decks/${deck.id}`,
     method: "PATCH",

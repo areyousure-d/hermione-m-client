@@ -3,24 +3,24 @@ import userEvent from "@testing-library/user-event";
 
 import { renderWithRouter } from "@/tests/helpers";
 
-import { UpdateDeck } from ".";
+import { EditDeck } from ".";
 
-describe("UpdateDeck", () => {
-  test("should render update deck button", () => {
+describe("EditDeck", () => {
+  test("should render deck button", () => {
     const { getByText } = render(
       renderWithRouter({
-        component: <UpdateDeck deckname="test deck" />,
+        component: <EditDeck deckname="test deck" />,
         initialRoute: "/decks/1",
       })
     );
 
-    expect(getByText(/update/i)).toBeInTheDocument();
+    expect(getByText(/edit/i)).toBeInTheDocument();
   });
 
   test("should not render modal at start", () => {
     const { queryByRole } = render(
       renderWithRouter({
-        component: <UpdateDeck deckname="test deck" />,
+        component: <EditDeck deckname="test deck" />,
         initialRoute: "/decks/1",
       })
     );
@@ -28,15 +28,15 @@ describe("UpdateDeck", () => {
     expect(queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  test("should open update deck modal", async () => {
+  test("should open edit deck modal", async () => {
     const { getByText, queryByRole } = render(
       renderWithRouter({
-        component: <UpdateDeck deckname="test deck" />,
+        component: <EditDeck deckname="test deck" />,
         initialRoute: "/decks/1",
       })
     );
 
-    await userEvent.click(getByText(/update/i));
+    await userEvent.click(getByText(/edit/i));
 
     expect(queryByRole("dialog")).toBeInTheDocument();
   });

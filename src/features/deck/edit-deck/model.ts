@@ -1,7 +1,7 @@
 import { update } from "@farfetched/core";
 import { sample } from "effector";
 
-import { deckListQuery, updateDeckMutation } from "@/entities/deck";
+import { deckListQuery, editDeckMutation } from "@/entities/deck";
 import {
   showErrorNotification,
   showLoadingNotification,
@@ -12,7 +12,7 @@ import { createModalModel } from "@/shared/ui/modal-with-loading";
 export const { $modalOpened, openModal, closeModal } = createModalModel();
 
 sample({
-  clock: updateDeckMutation.finished.finally,
+  clock: editDeckMutation.finished.finally,
   target: closeModal,
 });
 
@@ -20,7 +20,7 @@ sample({
  * Updating the deck list when a deck is updated
  */
 update(deckListQuery, {
-  on: updateDeckMutation,
+  on: editDeckMutation,
   by: {
     success: ({ mutation: _mutation, query: _query }) => {
       return {
@@ -33,18 +33,18 @@ update(deckListQuery, {
   },
 });
 
-updateDeckMutation.start.watch(() => {
+editDeckMutation.start.watch(() => {
   showLoadingNotification({ id: "update-deck", message: "Updating a deck" });
 });
 
-updateDeckMutation.finished.success.watch(() => {
+editDeckMutation.finished.success.watch(() => {
   showSuccessNotification({
     id: "update-deck",
     message: "Deck updated!",
   });
 });
 
-updateDeckMutation.finished.failure.watch(() => {
+editDeckMutation.finished.failure.watch(() => {
   showErrorNotification({
     id: "update-deck",
     message: "Failed to update a deck",

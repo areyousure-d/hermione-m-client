@@ -1,7 +1,7 @@
 import { useUnit } from "effector-react";
 import { useParams } from "react-router-dom";
 
-import { Deck, DeckEditForm, updateDeckMutation } from "@/entities/deck";
+import { Deck, DeckEditForm, editDeckMutation } from "@/entities/deck";
 import { Button } from "@/shared/ui/button";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
@@ -11,27 +11,27 @@ type Props = {
   deckname: string;
 };
 
-export const UpdateDeck = ({ deckname }: Props) => {
+export const EditDeck = ({ deckname }: Props) => {
   const [modalOpened, openModalFn, closeModalFn] = useUnit([
     $modalOpened,
     openModal,
     closeModal,
   ]);
   const { deckId } = useParams() as { deckId: string };
-  const { start: startUpdateDeck, pending } = useUnit(updateDeckMutation);
+  const { start: startEditDeck, pending } = useUnit(editDeckMutation);
 
   const submit = (deckname: Deck["deckname"]) => {
-    startUpdateDeck({ id: Number(deckId), deckname });
+    startEditDeck({ id: Number(deckId), deckname });
   };
 
   return (
     <>
       <Button onClick={openModalFn} color="green">
-        Update
+        Edit
       </Button>
 
       <ModalWithLoading
-        title="Update deck"
+        title="Edit deck"
         opened={modalOpened}
         onClose={closeModalFn}
         loading={pending}

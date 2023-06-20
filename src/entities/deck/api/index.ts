@@ -1,6 +1,6 @@
 export {
   createDeckMutation,
   deleteDeckMutation,
-  updateDeckMutation,
+  editDeckMutation,
 } from "./mutations";
 export { deckByIdQuery, deckListQuery } from "./queries";

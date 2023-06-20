@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { deckByIdQuery } from "@/entities/deck";
 import { DeleteDeck } from "@/features/deck/delete-deck";
-import { UpdateDeck } from "@/features/deck/update-deck";
+import { EditDeck } from "@/features/deck/edit-deck";
 import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
 import { PageLoader } from "@/shared/ui/page-loader";
@@ -46,7 +46,7 @@ export const DeckPage = () => {
           <ButtonLink to={`/learn/${deck.id}`}>Learn</ButtonLink>
           <ButtonLink to={`/decks/${deckId}/create-card`}>Add Card</ButtonLink>
           <DeleteDeck />
-          <UpdateDeck deckname={deck.deckname} />
+          <EditDeck deckname={deck.deckname} />
         </Group>
       </Group>
 

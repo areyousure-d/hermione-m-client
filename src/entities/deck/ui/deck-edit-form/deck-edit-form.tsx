@@ -32,8 +32,7 @@ export const DeckEditForm = ({ initialDeckname = "", submit }: Props) => {
     setDeckname(initialDeckname);
   };
 
-  const submitButtonText =
-    initialDeckname === "" ? "Create deck" : "Update deck";
+  const submitButtonText = initialDeckname === "" ? "Create" : "Save";
 
   return (
     <form onSubmit={onSubmit}>

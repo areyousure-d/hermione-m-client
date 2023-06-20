@@ -15,7 +15,7 @@ describe("UpdateDeckForm", () => {
       initialSelectionStart: 0,
       initialSelectionEnd: 9,
     });
-    await userEvent.click(getByText(/update/i));
+    await userEvent.click(getByText(/save/i));
 
     expect(getByText(/deckname cannot be empty/i)).toBeInTheDocument();
   });
@@ -31,7 +31,7 @@ describe("UpdateDeckForm", () => {
       initialSelectionStart: 0,
       initialSelectionEnd: 9,
     });
-    await userEvent.click(getByText(/update/i));
+    await userEvent.click(getByText(/save/i));
     expect(queryByText(/deckname cannot be empty/i)).toBeInTheDocument();
     await userEvent.type(getByLabelText(/deckname/i), "test deck");
 
