@@ -24,7 +24,7 @@ export const CardPreview = ({ card, children }: Props) => {
     <MantineCard shadow="md" className={classes.card}>
       <Text lineClamp={4}>{card.front}</Text>
 
-      <Group position="right">{children}</Group>
+      <Group position="center">{children}</Group>
     </MantineCard>
   );
 };

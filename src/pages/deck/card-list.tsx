@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 import { cardListQuery } from "@/entities/card";
 import { CardPreview } from "@/entities/card/ui";
-import { DeleteCard } from "@/features/card/delete-card";
 import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
 import { CardSkeleton } from "@/shared/ui/card-skeleton";
@@ -54,17 +53,11 @@ export const CardList = () => {
         cardList.map((card) => {
           return (
             <CardPreview key={card.id} card={card}>
-              <ButtonLink to={`/decks/${deckId}/cards/${card.id}`} size="xs">
-                Open
-              </ButtonLink>
-
-              <DeleteCard cardId={card.id} />
-
               <ButtonLink
-                to={`/decks/${deckId}/update-card/${card.id}`}
-                size="xs"
+                to={`/decks/${deckId}/cards/${card.id}`}
+                variant="outline"
               >
-                Update
+                Open
               </ButtonLink>
             </CardPreview>
           );

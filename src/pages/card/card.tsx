@@ -1,4 +1,11 @@
-import { Container, Skeleton, Spoiler, Text, Title } from "@mantine/core";
+import {
+  Container,
+  Group,
+  Skeleton,
+  Spoiler,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -6,6 +13,7 @@ import { useParams } from "react-router-dom";
 import { cardQuery } from "@/entities/card";
 
 import { CardInfo } from "./card-info";
+import { CardSettingsMenu } from "./card-settings-menu";
 
 export const CardPage = () => {
   const { deckId, cardId } = useParams() as { deckId: string; cardId: string };
@@ -17,9 +25,13 @@ export const CardPage = () => {
 
   return (
     <Container>
-      <Title order={1} mb="md">
-        Card
-      </Title>
+      <Group position="apart">
+        <Title order={1} mb="md">
+          Card
+        </Title>
+
+        <CardSettingsMenu deckId={deckId} cardId={cardId} />
+      </Group>
 
       <CardInfo card={card} pending={pending} />
 

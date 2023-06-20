@@ -4,56 +4,41 @@ import { useParams } from "react-router-dom";
 
 import { deleteCardMutation } from "@/entities/card";
 import { Button } from "@/shared/ui/button";
-import { Icon } from "@/shared/ui/icon";
 import { ModalWithLoading } from "@/shared/ui/modal-with-loading";
 
-import { $modalOpened, closeModal, openModal } from "./model";
+import { $modalOpened, closeModal } from "./model";
 
 type Props = {
-  cardId: number;
+  cardId: string;
 };
 
 export const DeleteCard = ({ cardId }: Props) => {
   const { deckId } = useParams() as { deckId: string };
   const { start: deleteCardFn, pending } = useUnit(deleteCardMutation);
-  const [modalOpened, openModalFn, closeModalFn] = useUnit([
-    $modalOpened,
-    openModal,
-    closeModal,
-  ]);
+  const [modalOpened, closeModalFn] = useUnit([$modalOpened, closeModal]);
 
-  const deleteCard = () => deleteCardFn({ deckId: Number(deckId), cardId });
+  const deleteCard = () =>
+    deleteCardFn({ deckId: Number(deckId), cardId: Number(cardId) });
 
   return (
-    <>
-      <Button
-        onClick={openModalFn}
-        color="red"
-        size="xs"
-        leftIcon={<Icon type="common" name="trash" width={18} height={18} />}
-      >
-        Delete
-      </Button>
+    <ModalWithLoading
+      title="Delete card"
+      opened={modalOpened}
+      onClose={closeModalFn}
+      loading={pending}
+    >
+      <Stack>
+        <Text>Are you sure you want to delete this card?</Text>
 
-      <ModalWithLoading
-        title="Delete card"
-        opened={modalOpened}
-        onClose={closeModalFn}
-        loading={pending}
-      >
-        <Stack>
-          <Text>Are you sure you want to delete this card?</Text>
-
-          <Group position="right">
-            <Button size="xs" onClick={closeModalFn}>
-              Cancel
-            </Button>
-            <Button size="xs" onClick={deleteCard}>
-              Yes
-            </Button>
-          </Group>
-        </Stack>
-      </ModalWithLoading>
-    </>
+        <Group position="right">
+          <Button size="xs" onClick={closeModalFn}>
+            Cancel
+          </Button>
+          <Button size="xs" onClick={deleteCard}>
+            Yes
+          </Button>
+        </Group>
+      </Stack>
+    </ModalWithLoading>
   );
 };
