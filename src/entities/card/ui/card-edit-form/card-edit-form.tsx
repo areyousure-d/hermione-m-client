@@ -79,7 +79,7 @@ export const CardEditForm = ({ submit, card }: Props) => {
 
         <Group position="right">
           <Button onClick={resetForm}>Reset</Button>
-          <Button type="submit">{card ? "Update card" : "Create card"}</Button>
+          <Button type="submit">{card ? "Save" : "Create"}</Button>
         </Group>
       </Stack>
     </form>

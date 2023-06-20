@@ -4,8 +4,8 @@ export {
   cardsToLearnQuery,
   createCardMutation,
   deleteCardMutation,
+  editCardMutation,
   learnCardMutation,
-  updateCardMutation,
 } from "./api";
 export type { Card } from "./card.schema";
 export type { Rating } from "./types";

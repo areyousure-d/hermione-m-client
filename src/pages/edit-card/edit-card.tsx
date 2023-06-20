@@ -1,15 +1,15 @@
 import { Container, Title } from "@mantine/core";
 
-import { UpdateCard } from "@/features/card/update-card";
+import { EditCard } from "@/features/card/edit-card";
 
-export const UpdateCardPage = () => {
+export const EditCardPage = () => {
   return (
     <Container>
       <Title order={2} mb="lg">
-        Update Card
+        Edit Card
       </Title>
 
-      <UpdateCard />
+      <EditCard />
     </Container>
   );
 };

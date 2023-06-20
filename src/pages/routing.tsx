@@ -3,13 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import { CardPage } from "./card";
 import { CreateCardPage } from "./create-card";
 import { DeckPage } from "./deck";
+import { EditCardPage } from "./edit-card";
 import { HomePage } from "./home";
 import { LearnCardPage } from "./learn-card";
 import { LoginPage } from "./login";
 import { NotFoundPage } from "./not-found";
 import { ProfilePage } from "./profile";
 import { SignUpPage } from "./sign-up";
-import { UpdateCardPage } from "./update-card";
 import { UserAuth } from "./user-auth";
 
 export const Routing = () => {
@@ -38,7 +38,7 @@ export const Routing = () => {
         path="/decks/:deckId/update-card/:cardId"
         element={
           <UserAuth>
-            <UpdateCardPage />
+            <EditCardPage />
           </UserAuth>
         }
       />

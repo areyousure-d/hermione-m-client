@@ -3,16 +3,16 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Card, CardEditForm, cardListQuery } from "@/entities/card";
 
-import { updateCardMutation } from "./model";
+import { editCardMutation } from "./model";
 
-export const UpdateCard = () => {
+export const EditCard = () => {
   const navigate = useNavigate();
   const { deckId, cardId } = useParams() as { deckId: string; cardId: string };
-  const { start: updateCard } = useUnit(updateCardMutation);
+  const { start: editCard } = useUnit(editCardMutation);
   const [cardList] = useUnit([cardListQuery.$data]);
 
   const submit = (formValues: Pick<Card, "front" | "back">) => {
-    updateCard({
+    editCard({
       body: { ...formValues },
       deckId: Number(deckId),
       cardId: Number(cardId),

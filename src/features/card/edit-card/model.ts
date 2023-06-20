@@ -1,6 +1,6 @@
 import { update } from "@farfetched/core";
 
-import { cardListQuery, updateCardMutation } from "@/entities/card";
+import { cardListQuery, editCardMutation } from "@/entities/card";
 import {
   showErrorNotification,
   showLoadingNotification,
@@ -8,13 +8,13 @@ import {
 } from "@/shared/lib/notification-helpers";
 
 update(cardListQuery, {
-  on: updateCardMutation,
+  on: editCardMutation,
   by: {
     success: ({ mutation, query: _query }) => {
       return {
         params: mutation.params.deckId,
         error: new Error(
-          "Error: refetch card list query on update card mutation"
+          "Error: refetch card list query on edit card mutation"
         ),
         refetch: true,
       };
@@ -22,22 +22,22 @@ update(cardListQuery, {
   },
 });
 
-updateCardMutation.start.watch(() => {
-  showLoadingNotification({ id: "update-card", message: "Updating a card" });
+editCardMutation.start.watch(() => {
+  showLoadingNotification({ id: "edit-card", message: "Updating a card" });
 });
 
-updateCardMutation.finished.success.watch(() => {
+editCardMutation.finished.success.watch(() => {
   showSuccessNotification({
-    id: "update-card",
+    id: "edit-card",
     message: "Card updated!",
   });
 });
 
-updateCardMutation.finished.failure.watch(() => {
+editCardMutation.finished.failure.watch(() => {
   showErrorNotification({
-    id: "update-card",
+    id: "edit-card",
     message: "Failed to update a card",
   });
 });
 
-export { updateCardMutation };
+export { editCardMutation };

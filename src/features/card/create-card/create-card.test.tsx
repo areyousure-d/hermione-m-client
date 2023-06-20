@@ -25,7 +25,7 @@ describe("CreateCard", () => {
     await userEvent.type(getByLabelText(/question/i), "test question");
     await userEvent.type(getByLabelText(/answer/i), "test answer");
     act(() => {
-      userEvent.click(getByText(/create card/i));
+      userEvent.click(getByText(/create/i));
     });
     await allSettled(createCardMutation.start, {
       scope,
@@ -57,7 +57,7 @@ describe("CreateCard", () => {
     await userEvent.type(getByLabelText(/question/i), "test question");
     await userEvent.type(getByLabelText(/answer/i), "test answer");
     act(() => {
-      userEvent.click(getByText(/create card/i));
+      userEvent.click(getByText(/create/i));
     });
     await allSettled(createCardMutation.start, {
       scope,

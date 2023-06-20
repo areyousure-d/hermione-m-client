@@ -39,7 +39,7 @@ type UpdateCardMutationParams = {
   body: Pick<Card, "front" | "back">;
 };
 
-export const updateCardMutation = createMutation({
+export const editCardMutation = createMutation({
   effect: createRequestEffect(
     ({ cardId, deckId, body }: UpdateCardMutationParams) => ({
       path: `/decks/${deckId}/cards/${cardId}`,

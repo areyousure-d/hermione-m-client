@@ -12,7 +12,7 @@ describe("CardEditForm", () => {
     );
 
     expect(queryByText(/question is required/i)).not.toBeInTheDocument();
-    await userEvent.click(getByText(/create card/i));
+    await userEvent.click(getByText(/create/i));
 
     expect(getByText(/question is required/i)).toBeInTheDocument();
   });
@@ -24,7 +24,7 @@ describe("CardEditForm", () => {
     );
 
     expect(queryByText(/answer is required/i)).not.toBeInTheDocument();
-    await userEvent.click(getByText(/create card/i));
+    await userEvent.click(getByText(/create/i));
 
     expect(getByText(/answer is required/i)).toBeInTheDocument();
   });
@@ -36,7 +36,7 @@ describe("CardEditForm", () => {
     );
 
     expect(queryByText(/question is required/i)).not.toBeInTheDocument();
-    await userEvent.click(getByText(/create card/i));
+    await userEvent.click(getByText(/create/i));
     expect(queryByText(/question is required/i)).toBeInTheDocument();
     await userEvent.type(getByLabelText(/question/i), "test question");
 
@@ -50,7 +50,7 @@ describe("CardEditForm", () => {
     );
 
     expect(queryByText(/answer is required/i)).not.toBeInTheDocument();
-    await userEvent.click(getByText(/create card/i));
+    await userEvent.click(getByText(/create/i));
     expect(queryByText(/answer is required/i)).toBeInTheDocument();
     await userEvent.type(getByLabelText(/answer/i), "test answer");
 
@@ -71,14 +71,14 @@ describe("CardEditForm", () => {
     expect(queryByText(/test answer/i)).not.toBeInTheDocument();
   });
 
-  test("should render 'create card' button when no card is given", async () => {
+  test("should render 'create' button when no card is given", async () => {
     const mockedSubmit = vi.fn();
     const { getByText } = render(<CardEditForm submit={mockedSubmit} />);
 
-    expect(getByText(/create card/i)).toBeInTheDocument();
+    expect(getByText(/create/i)).toBeInTheDocument();
   });
 
-  test("should render 'update card' button when card is given", async () => {
+  test("should render 'save' button when card is given", async () => {
     const mockedCard = {
       front: "test question",
       back: "test answer",
@@ -88,7 +88,7 @@ describe("CardEditForm", () => {
       <CardEditForm submit={mockedSubmit} card={mockedCard} />
     );
 
-    expect(getByText(/update card/i)).toBeInTheDocument();
+    expect(getByText(/save/i)).toBeInTheDocument();
   });
 
   test("should fill inputs by given card data", async () => {
