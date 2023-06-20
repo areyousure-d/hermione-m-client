@@ -4,14 +4,13 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { deckByIdQuery } from "@/entities/deck";
-import { DeleteDeck } from "@/features/deck/delete-deck";
-import { EditDeck } from "@/features/deck/edit-deck";
 import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
 import { PageLoader } from "@/shared/ui/page-loader";
 
 import { CardList } from "./card-list";
 import { DeckInfo } from "./deck-info";
+import { DeckSettingsMenu } from "./deck-settings-menu";
 
 export const DeckPage = () => {
   const { deckId } = useParams() as { deckId: string };
@@ -43,10 +42,13 @@ export const DeckPage = () => {
         <Title order={1}>{deck.deckname}</Title>
 
         <Group>
-          <ButtonLink to={`/learn/${deck.id}`}>Learn</ButtonLink>
-          <ButtonLink to={`/decks/${deckId}/create-card`}>Add Card</ButtonLink>
-          <DeleteDeck />
-          <EditDeck deckname={deck.deckname} />
+          <ButtonLink to={`/learn/${deck.id}`} variant="light">
+            Learn
+          </ButtonLink>
+          <ButtonLink to={`/decks/${deckId}/create-card`} variant="light">
+            Add Card
+          </ButtonLink>
+          <DeckSettingsMenu deckname={deck.deckname} />
         </Group>
       </Group>
 

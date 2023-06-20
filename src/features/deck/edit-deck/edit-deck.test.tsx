@@ -1,22 +1,12 @@
-import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { act, render } from "@testing-library/react";
+import { allSettled, fork } from "effector";
 
 import { renderWithRouter } from "@/tests/helpers";
 
 import { EditDeck } from ".";
+import { openModal } from "./model";
 
 describe("EditDeck", () => {
-  test("should render deck button", () => {
-    const { getByText } = render(
-      renderWithRouter({
-        component: <EditDeck deckname="test deck" />,
-        initialRoute: "/decks/1",
-      })
-    );
-
-    expect(getByText(/edit/i)).toBeInTheDocument();
-  });
-
   test("should not render modal at start", () => {
     const { queryByRole } = render(
       renderWithRouter({
@@ -29,14 +19,17 @@ describe("EditDeck", () => {
   });
 
   test("should open edit deck modal", async () => {
-    const { getByText, queryByRole } = render(
+    const scope = fork();
+    const { queryByRole } = render(
       renderWithRouter({
         component: <EditDeck deckname="test deck" />,
         initialRoute: "/decks/1",
       })
     );
 
-    await userEvent.click(getByText(/edit/i));
+    act(() => {
+      allSettled(openModal, { scope });
+    });
 
     expect(queryByRole("dialog")).toBeInTheDocument();
   });
