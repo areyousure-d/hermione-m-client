@@ -4,4 +4,4 @@ export {
   learnCardMutation,
   updateCardMutation,
 } from "./mutations";
-export { cardListQuery, cardsToLearnQuery } from "./queries";
+export { cardListQuery, cardQuery, cardsToLearnQuery } from "./queries";

@@ -7,7 +7,7 @@ describe("DeleteCard", () => {
   test("should render delete card button", () => {
     const { getByText } = render(<DeleteCard cardId={1} />);
 
-    expect(getByText(/delete card/i)).toBeInTheDocument();
+    expect(getByText(/delete/i)).toBeInTheDocument();
   });
 
   test("should not render modal when it closed", () => {
@@ -19,7 +19,7 @@ describe("DeleteCard", () => {
   test("should open modal", async () => {
     const { getByText, queryByText } = render(<DeleteCard cardId={1} />);
 
-    await userEvent.click(getByText(/delete card/i));
+    await userEvent.click(getByText(/delete/i));
 
     expect(
       queryByText(/are you sure you want to delete this card/i)

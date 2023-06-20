@@ -32,7 +32,7 @@ export const DeleteCard = ({ cardId }: Props) => {
         size="xs"
         leftIcon={<Icon type="common" name="trash" width={18} height={18} />}
       >
-        Delete card
+        Delete
       </Button>
 
       <ModalWithLoading

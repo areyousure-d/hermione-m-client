@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { allSettled, fork } from "effector";
 import { act } from "react-dom/test-utils";
 
-import { renderWithNotifications } from "@/tests/helpers";
+import { createMockCard, renderWithNotifications } from "@/tests/helpers";
 
 import { CreateCard } from ".";
 import { createCardMutation } from "./model";
@@ -14,14 +14,7 @@ describe("CreateCard", () => {
       front: "front",
       back: "back",
     };
-    const mockedCard = {
-      id: 1,
-      front: "mocked front",
-      back: "mocked back",
-      createdAt: new Date().toDateString(),
-      updatedAt: new Date().toDateString(),
-      deckId: 1,
-    };
+    const mockedCard = createMockCard(1);
 
     const scope = fork({
       handlers: new Map([[createCardMutation.__.executeFx, () => mockedCard]]),

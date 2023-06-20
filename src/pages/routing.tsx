@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+import { CardPage } from "./card";
 import { CreateCardPage } from "./create-card";
 import { DeckPage } from "./deck";
 import { HomePage } from "./home";
@@ -54,6 +55,14 @@ export const Routing = () => {
         element={
           <UserAuth>
             <LearnCardPage />
+          </UserAuth>
+        }
+      />
+      <Route
+        path="/decks/:deckId/cards/:cardId"
+        element={
+          <UserAuth>
+            <CardPage />
           </UserAuth>
         }
       />

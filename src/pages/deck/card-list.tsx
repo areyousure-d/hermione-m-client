@@ -54,7 +54,12 @@ export const CardList = () => {
         cardList.map((card) => {
           return (
             <CardPreview key={card.id} card={card}>
+              <ButtonLink to={`/decks/${deckId}/cards/${card.id}`} size="xs">
+                Open
+              </ButtonLink>
+
               <DeleteCard cardId={card.id} />
+
               <ButtonLink
                 to={`/decks/${deckId}/update-card/${card.id}`}
                 size="xs"

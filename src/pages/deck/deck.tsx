@@ -55,6 +55,7 @@ export const DeckPage = () => {
       <Title order={2} mb="lg">
         cards
       </Title>
+
       <CardList />
     </Container>
   );

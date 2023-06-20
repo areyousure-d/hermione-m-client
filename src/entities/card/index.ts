@@ -1,5 +1,6 @@
 export {
   cardListQuery,
+  cardQuery,
   cardsToLearnQuery,
   createCardMutation,
   deleteCardMutation,
