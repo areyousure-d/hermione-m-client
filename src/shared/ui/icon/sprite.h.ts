@@ -3,8 +3,6 @@ export type SpritesMap = {
     | "arrow-left"
     | "check"
     | "edit"
-    | "exclamation-circle"
-    | "info-circle"
     | "logout"
     | "moon"
     | "settings"
@@ -20,8 +18,6 @@ export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
     "arrow-left",
     "check",
     "edit",
-    "exclamation-circle",
-    "info-circle",
     "logout",
     "moon",
     "settings",
