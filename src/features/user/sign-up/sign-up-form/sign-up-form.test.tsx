@@ -26,7 +26,7 @@ describe("SignUpForm", () => {
     expect(
       queryByText(/Username must be 1 or more characters long/i)
     ).toBeInTheDocument();
-    await userEvent.type(getByLabelText("Username"), "username");
+    await userEvent.type(getByLabelText(/username/i), "username");
 
     expect(
       queryByText(/Username must be 1 or more characters long/i)
@@ -54,7 +54,7 @@ describe("SignUpForm", () => {
     expect(
       queryByText(/Password must be 8 or more characters long/i)
     ).toBeInTheDocument();
-    await userEvent.type(getByLabelText("Password"), "password");
+    await userEvent.type(getByLabelText(/^password\s*\*?/i), "password");
 
     expect(
       queryByText(/Password must be 8 or more characters long/i)
@@ -67,7 +67,7 @@ describe("SignUpForm", () => {
       <SignUpForm submit={mockFn} />
     );
 
-    await userEvent.type(getByLabelText("Password"), "password");
+    await userEvent.type(getByLabelText(/^password\s*\*?/i), "password");
     await userEvent.type(
       getByLabelText(/confirm password/i),
       "another password"
@@ -85,13 +85,13 @@ describe("SignUpForm", () => {
       <SignUpForm submit={mockFn} />
     );
 
-    await userEvent.type(getByLabelText("Username"), "username");
-    await userEvent.type(getByLabelText("Password"), "password");
+    await userEvent.type(getByLabelText(/username/i), "username");
+    await userEvent.type(getByLabelText(/^password\s*\*?/i), "password");
     await userEvent.type(getByLabelText(/confirm password/i), "password");
     await userEvent.click(getByText(/reset/i));
 
-    expect(getByLabelText("Username")).toHaveValue("");
-    expect(getByLabelText("Password")).toHaveValue("");
+    expect(getByLabelText(/username/i)).toHaveValue("");
+    expect(getByLabelText(/^password\s*\*?/i)).toHaveValue("");
     expect(getByLabelText(/confirm password/i)).toHaveValue("");
   });
 });

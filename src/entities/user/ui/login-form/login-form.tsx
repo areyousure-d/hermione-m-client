@@ -1,4 +1,4 @@
-import { Group, Stack, TextInput } from "@mantine/core";
+import { Group, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { UserLoginDto } from "@/entities/user";
@@ -69,16 +69,17 @@ export const LoginForm = ({ submit, username, isUpdate }: Props) => {
           onChange={onChange}
           value={formValues.username}
           error={formErrors.username}
+          withAsterisk
         />
 
-        <TextInput
-          type="password"
+        <PasswordInput
           name="password"
           label="Password"
           placeholder="password"
           onChange={onChange}
           value={formValues.password}
           error={formErrors.password}
+          withAsterisk
         />
 
         <Group position="right">
