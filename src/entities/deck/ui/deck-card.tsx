@@ -52,10 +52,10 @@ export const DeckCard = ({ deck }: Props) => {
       </Group>
 
       <Group position="center">
-        <ButtonLink to={`/decks/${deck.id}`} variant="outline">
+        <ButtonLink to={`/decks/${deck.id}`} variant="light">
           Open
         </ButtonLink>
-        <ButtonLink to={`/learn/${deck.id}`} variant="outline">
+        <ButtonLink to={`/learn/${deck.id}`} variant="light">
           Learn
         </ButtonLink>
       </Group>

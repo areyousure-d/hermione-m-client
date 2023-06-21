@@ -31,10 +31,10 @@ export const DeleteCard = ({ cardId }: Props) => {
         <Text>Are you sure you want to delete this card?</Text>
 
         <Group position="right">
-          <Button size="xs" onClick={closeModalFn}>
+          <Button onClick={closeModalFn} variant="lg">
             Cancel
           </Button>
-          <Button size="xs" onClick={deleteCard}>
+          <Button onClick={deleteCard} variant="lg">
             Yes
           </Button>
         </Group>

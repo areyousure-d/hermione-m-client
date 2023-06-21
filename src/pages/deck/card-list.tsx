@@ -55,7 +55,7 @@ export const CardList = () => {
             <CardPreview key={card.id} card={card}>
               <ButtonLink
                 to={`/decks/${deckId}/cards/${card.id}`}
-                variant="outline"
+                variant="light"
               >
                 Open
               </ButtonLink>

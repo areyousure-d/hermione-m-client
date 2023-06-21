@@ -27,7 +27,7 @@ export const DeckSettingsMenu = ({ deckname }: Props) => {
         arrowPosition="center"
       >
         <Menu.Target>
-          <ActionIcon variant="light" color="blue">
+          <ActionIcon variant="light" color="blue" size="lg">
             <Icon type="common" name="settings" width={24} height={24} />
           </ActionIcon>
         </Menu.Target>

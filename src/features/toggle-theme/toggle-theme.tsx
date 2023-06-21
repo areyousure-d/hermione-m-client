@@ -12,7 +12,7 @@ export const ToggleTheme = () => {
     <ActionIcon
       onClick={onClick}
       size="lg"
-      variant="outline"
+      variant="light"
       color="blue"
       sx={(theme) => ({
         backgroundColor:

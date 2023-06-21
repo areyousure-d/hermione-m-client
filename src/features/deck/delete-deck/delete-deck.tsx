@@ -30,10 +30,10 @@ export const DeleteDeck = () => {
         <Text mb="lg">Are you sure you want to delete this deck?</Text>
 
         <Group position="right">
-          <Button size="xs" onClick={closeModalFn}>
+          <Button onClick={closeModalFn} variant="light">
             Cancel
           </Button>
-          <Button size="xs" onClick={deleteDeck}>
+          <Button onClick={deleteDeck} variant="light">
             Yes
           </Button>
         </Group>

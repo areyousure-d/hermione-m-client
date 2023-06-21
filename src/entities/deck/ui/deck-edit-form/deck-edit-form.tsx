@@ -48,10 +48,10 @@ export const DeckEditForm = ({ initialDeckname = "", submit }: Props) => {
         />
 
         <Group position="right">
-          <Button onClick={onReset} size="xs">
+          <Button onClick={onReset} variant="light">
             Reset
           </Button>
-          <Button type="submit" size="xs">
+          <Button type="submit" variant="light">
             {submitButtonText}
           </Button>
         </Group>

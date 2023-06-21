@@ -21,7 +21,7 @@ export const UserAvatar = () => {
       <Menu.Target>
         <ActionIcon
           size="lg"
-          variant="outline"
+          variant="light"
           color="blue"
           sx={(theme) => ({
             backgroundColor:
