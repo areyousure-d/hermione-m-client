@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { deckByIdQuery } from "@/entities/deck";
 import { Alert } from "@/shared/ui/alert";
 import { ButtonLink } from "@/shared/ui/button-link";
+import { Icon } from "@/shared/ui/icon";
 import { PageLoader } from "@/shared/ui/page-loader";
 
 import { CardList } from "./card-list";
@@ -29,6 +30,16 @@ export const DeckPage = () => {
   if (deckByIdQueryFailed || !deck) {
     return (
       <Container>
+        <ButtonLink
+          to="/"
+          variant="light"
+          leftIcon={
+            <Icon type="common" name="arrow-left" width={20} height={20} />
+          }
+        >
+          Back to home
+        </ButtonLink>
+
         <Alert variant="error" title="Error">
           Error fetching deck with id {deckId}
         </Alert>
@@ -38,6 +49,17 @@ export const DeckPage = () => {
 
   return (
     <Container>
+      <ButtonLink
+        to="/"
+        variant="light"
+        mb="lg"
+        leftIcon={
+          <Icon type="common" name="arrow-left" width={20} height={20} />
+        }
+      >
+        Back to home
+      </ButtonLink>
+
       <Group position="apart" mb="lg">
         <Title order={1}>{deck.deckname}</Title>
 

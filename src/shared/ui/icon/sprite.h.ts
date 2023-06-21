@@ -1,5 +1,6 @@
 export type SpritesMap = {
   common:
+    | "arrow-left"
     | "check"
     | "edit"
     | "exclamation-circle"
@@ -16,6 +17,7 @@ export type SpritesMap = {
 
 export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
   common: [
+    "arrow-left",
     "check",
     "edit",
     "exclamation-circle",

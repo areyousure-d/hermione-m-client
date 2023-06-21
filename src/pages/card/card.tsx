@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { cardQuery } from "@/entities/card";
+import { ButtonLink } from "@/shared/ui/button-link";
+import { Icon } from "@/shared/ui/icon";
 
 import { CardInfo } from "./card-info";
 import { CardSettingsMenu } from "./card-settings-menu";
@@ -25,6 +27,16 @@ export const CardPage = () => {
 
   return (
     <Container>
+      <ButtonLink
+        to={`/decks/${deckId}`}
+        variant="light"
+        leftIcon={
+          <Icon type="common" name="arrow-left" width={20} height={20} />
+        }
+        mb="lg"
+      >
+        Back to deck
+      </ButtonLink>
       <Group position="apart">
         <Title order={1} mb="md">
           Card
