@@ -32,7 +32,6 @@ export const DeckPage = () => {
       <Container>
         <ButtonLink
           to="/"
-          variant="light"
           leftIcon={
             <Icon type="common" name="arrow-left" width={20} height={20} />
           }
@@ -51,7 +50,6 @@ export const DeckPage = () => {
     <Container>
       <ButtonLink
         to="/"
-        variant="light"
         mb="lg"
         leftIcon={
           <Icon type="common" name="arrow-left" width={20} height={20} />
@@ -64,12 +62,8 @@ export const DeckPage = () => {
         <Title order={1}>{deck.deckname}</Title>
 
         <Group>
-          <ButtonLink to={`/learn/${deck.id}`} variant="light">
-            Learn
-          </ButtonLink>
-          <ButtonLink to={`/decks/${deckId}/create-card`} variant="light">
-            Add Card
-          </ButtonLink>
+          <ButtonLink to={`/learn/${deck.id}`}>Learn</ButtonLink>
+          <ButtonLink to={`/decks/${deckId}/create-card`}>Add Card</ButtonLink>
           <DeckSettingsMenu deckname={deck.deckname} />
         </Group>
       </Group>

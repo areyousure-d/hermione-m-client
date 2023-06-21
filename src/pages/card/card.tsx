@@ -29,7 +29,6 @@ export const CardPage = () => {
     <Container>
       <ButtonLink
         to={`/decks/${deckId}`}
-        variant="light"
         leftIcon={
           <Icon type="common" name="arrow-left" width={20} height={20} />
         }

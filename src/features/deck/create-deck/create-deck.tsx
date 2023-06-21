@@ -20,9 +20,7 @@ export const CreateDeck = () => {
 
   return (
     <>
-      <Button onClick={openModalFn} variant="light">
-        Create Deck
-      </Button>
+      <Button onClick={openModalFn}>Create Deck</Button>
 
       <ModalWithLoading
         opened={modalOpened}

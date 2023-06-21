@@ -78,12 +78,8 @@ export const CardEditForm = ({ submit, card }: Props) => {
         />
 
         <Group position="right">
-          <Button onClick={resetForm} variant="light">
-            Reset
-          </Button>
-          <Button type="submit" variant="light">
-            {card ? "Save" : "Create"}
-          </Button>
+          <Button onClick={resetForm}>Reset</Button>
+          <Button type="submit">{card ? "Save" : "Create"}</Button>
         </Group>
       </Stack>
     </form>

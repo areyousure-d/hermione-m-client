@@ -53,10 +53,7 @@ export const CardList = () => {
         cardList.map((card) => {
           return (
             <CardPreview key={card.id} card={card}>
-              <ButtonLink
-                to={`/decks/${deckId}/cards/${card.id}`}
-                variant="light"
-              >
+              <ButtonLink to={`/decks/${deckId}/cards/${card.id}`}>
                 Open
               </ButtonLink>
             </CardPreview>

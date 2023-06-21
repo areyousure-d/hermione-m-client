@@ -36,35 +36,19 @@ export const Buttons = ({
       <Group position="center">
         {answerIsVisible ? (
           <>
-            <Button
-              onClick={createOnClickFn("again")}
-              color="red"
-              variant="light"
-            >
+            <Button onClick={createOnClickFn("again")} color="red">
               Again
             </Button>
-            <Button
-              onClick={createOnClickFn("hard")}
-              color="yellow"
-              variant="light"
-            >
+            <Button onClick={createOnClickFn("hard")} color="yellow">
               Hard
             </Button>
-            <Button onClick={createOnClickFn("good")} variant="light">
-              Good
-            </Button>
-            <Button
-              onClick={createOnClickFn("easy")}
-              color="green"
-              variant="light"
-            >
+            <Button onClick={createOnClickFn("good")}>Good</Button>
+            <Button onClick={createOnClickFn("easy")} color="green">
               Easy
             </Button>
           </>
         ) : (
-          <Button onClick={showAnswer} variant="light">
-            Show answer
-          </Button>
+          <Button onClick={showAnswer}>Show answer</Button>
         )}
       </Group>
     </Box>

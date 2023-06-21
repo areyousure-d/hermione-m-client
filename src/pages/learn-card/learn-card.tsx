@@ -9,7 +9,6 @@ export const LearnCardPage = () => {
     <Container>
       <ButtonLink
         to="/"
-        variant="light"
         leftIcon={
           <Icon type="common" name="arrow-left" width={20} height={20} />
         }
