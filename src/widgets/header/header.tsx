@@ -75,7 +75,7 @@ export const Header = () => {
         <ScrollArea sx={{ height: "calc(100vh - 6em)" }} mx="md">
           <Group position="center" grow pb="xl" px="md">
             <LoginButton closeDrawer={closeDrawer} />
-            <SignUpButton />
+            <SignUpButton closeDrawer={closeDrawer} />
           </Group>
         </ScrollArea>
       </Drawer>

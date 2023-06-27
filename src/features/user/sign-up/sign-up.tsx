@@ -1,7 +1,8 @@
-import { Box, LoadingOverlay } from "@mantine/core";
+import { Box, LoadingOverlay, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 
 import { UserLoginDto } from "@/entities/user";
+import { Alert } from "@/shared/ui/alert";
 import { Link } from "@/shared/ui/link";
 
 import { signUpMutation } from "./model";
@@ -17,19 +18,20 @@ export const SignUp = () => {
 
   if (signUpSuccess) {
     return (
-      <div>
-        <div>Account successfully created</div>
+      <Alert variant="success" title="Success">
         <div>
-          <Link to="/login">login now</Link>
+          Your account has been successfully created. You can now{" "}
+          <Link to="/login">log in</Link> to the system.
         </div>
-      </div>
+      </Alert>
     );
   }
 
   return (
-    <Box sx={{ width: "320px", margin: "auto" }}>
-      <LoadingOverlay visible={pending} overlayBlur={3} />
+    <Box sx={{ maxWidth: "320px", margin: "auto" }}>
+      <Title mb="lg">Sign up</Title>
       <SignUpForm submit={submit} />
+      <LoadingOverlay visible={pending} overlayBlur={3} />
     </Box>
   );
 };

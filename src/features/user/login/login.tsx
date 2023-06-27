@@ -1,4 +1,4 @@
-import { Box, LoadingOverlay } from "@mantine/core";
+import { Box, LoadingOverlay, Title } from "@mantine/core";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,8 +21,9 @@ export const Login = () => {
 
   return (
     <Box sx={{ maxWidth: "320px", margin: "auto" }}>
-      <LoadingOverlay visible={pending} overlayBlur={3} />
+      <Title mb="lg">Log in</Title>
       <LoginForm submit={start} />
+      <LoadingOverlay visible={pending} overlayBlur={3} />
     </Box>
   );
 };

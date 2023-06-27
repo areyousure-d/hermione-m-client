@@ -4,7 +4,7 @@ import { Login } from "@/features/user/login";
 
 export const LoginPage = () => {
   return (
-    <Container>
+    <Container p="0">
       <Login />
     </Container>
   );

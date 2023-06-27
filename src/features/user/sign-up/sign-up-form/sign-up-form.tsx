@@ -1,4 +1,4 @@
-import { Group, PasswordInput, Stack, TextInput } from "@mantine/core";
+import { Group, Paper, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { UserLoginDto } from "@/entities/user";
@@ -72,7 +72,14 @@ export const SignUpForm = ({ submit }: Props) => {
   const resetForm = () => setFormValues(initialFormValues);
 
   return (
-    <form onSubmit={onSubmit}>
+    <Paper
+      component="form"
+      onSubmit={onSubmit}
+      withBorder
+      radius="md"
+      shadow="md"
+      p="md"
+    >
       <Stack>
         <TextInput
           type="text"
@@ -108,6 +115,6 @@ export const SignUpForm = ({ submit }: Props) => {
           <Button type="submit">Sign up</Button>
         </Group>
       </Stack>
-    </form>
+    </Paper>
   );
 };

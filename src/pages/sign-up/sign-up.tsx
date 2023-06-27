@@ -1,9 +1,11 @@
+import { Container } from "@mantine/core";
+
 import { SignUp } from "@/features/user/sign-up";
 
 export const SignUpPage = () => {
   return (
-    <div>
+    <Container p="0">
       <SignUp />
-    </div>
+    </Container>
   );
 };
