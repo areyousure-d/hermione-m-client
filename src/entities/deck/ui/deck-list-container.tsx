@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const DeckList = ({ children }: Props) => {
+export const DeckListContainer = ({ children }: Props) => {
   return (
     <SimpleGrid
       cols={3}
