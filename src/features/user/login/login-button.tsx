@@ -18,7 +18,7 @@ export const LoginButton = ({ closeDrawer }: Props) => {
 
   return (
     <ButtonLink to="/login" onClick={closeDrawer}>
-      Login
+      Log in
     </ButtonLink>
   );
 };

@@ -16,7 +16,7 @@ export const SignUpButton = ({ closeDrawer }: Props) => {
 
   return (
     <ButtonLink to="/sign-up" onClick={closeDrawer}>
-      Sign Up
+      Sign up
     </ButtonLink>
   );
 };
