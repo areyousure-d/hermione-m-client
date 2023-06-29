@@ -14,7 +14,7 @@ export const LearnCardPage = () => {
         }
         mb="lg"
       >
-        To deck list
+        Back to home
       </ButtonLink>
 
       <LearnCard />

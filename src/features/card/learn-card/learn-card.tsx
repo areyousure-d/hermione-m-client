@@ -8,17 +8,15 @@ import { Alert } from "@/shared/ui/alert";
 
 import { Buttons } from "./buttons";
 import { CardView } from "./card-view";
-import { $cardToLearn, fetchCardsToLearn } from "./model";
+import { $cardToLearn } from "./model";
 
 export const LearnCard = () => {
   const [answerIsVisible, setAnswerIsVisible] = useState(false);
 
   const { deckId } = useParams() as { deckId: string };
-  const { pending: cardsToLearnLoading } = useUnit(cardsToLearnQuery);
-  const [cardToLearn, fetchCardsToLearnFn] = useUnit([
-    $cardToLearn,
-    fetchCardsToLearn,
-  ]);
+  const { start: fetchCardsToLearnFn, pending: cardsToLearnLoading } =
+    useUnit(cardsToLearnQuery);
+  const [cardToLearn] = useUnit([$cardToLearn]);
 
   useEffect(() => {
     if (deckId) {

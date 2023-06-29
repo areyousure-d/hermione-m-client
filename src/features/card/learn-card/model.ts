@@ -1,15 +1,8 @@
-import { createEvent, createStore, sample } from "effector";
+import { createStore, sample } from "effector";
 
 import { Card, cardsToLearnQuery } from "@/entities/card";
 
-export const fetchCardsToLearn = createEvent<string>();
-
 export const $cardToLearn = createStore<Card | null>(null);
-
-sample({
-  clock: fetchCardsToLearn,
-  target: cardsToLearnQuery.start,
-});
 
 sample({
   clock: cardsToLearnQuery.finished.success,
